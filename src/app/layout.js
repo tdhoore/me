@@ -3,6 +3,13 @@ import { Inter } from "next/font/google";
 import "../scss/index.scss";
 import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import {
+  EffectComposer,
+  N8AO,
+  Bloom,
+  Noise,
+} from "@react-three/postprocessing";
+import Scene from "../components/scene";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,28 +41,34 @@ function Box(props) {
     </mesh>
   );
 }
-
+//<ambientLight intensity={2} color={"#DBE1E0"} />
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="">
-          <Canvas>
-            <ambientLight intensity={Math.PI / 2} />
-            <spotLight
-              position={[10, 10, 10]}
-              angle={0.15}
-              penumbra={1}
-              decay={0}
-              intensity={Math.PI}
+        <main className="h-dvh">
+          <Canvas shadows dpr={[1, 1.5]}>
+            <color attach="background" args={["#DBE1E0"]} />
+            <hemisphereLight
+              color="#DBE1E0"
+              groundColor="#B6BAB1"
+              position={[-7, 25, 13]}
+              intensity={3.5}
             />
-            <pointLight
-              position={[-10, -10, -10]}
-              decay={0}
-              intensity={Math.PI}
+            <fog attach="fog" args={["#DBE1E0", 10, 40]} />
+            <directionalLight
+              name="light"
+              intensity={1}
+              color="#dbe1e0"
+              position={[2.24, 5.29, 4.57]}
+              rotation={[-0.86, 0.31, -1.18]}
             />
-            <Box position={[-1.2, 0, 0]} />
-            <Box position={[1.2, 0, 0]} />
+            <Scene />
+            <EffectComposer disableNormalPass>
+              <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
+
+              <Noise opacity={0.02} />
+            </EffectComposer>
             {children}
           </Canvas>
         </main>
