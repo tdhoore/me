@@ -41,7 +41,7 @@ function Box(props) {
     </mesh>
   );
 }
-//<ambientLight intensity={2} color={"#DBE1E0"} />
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -66,7 +66,6 @@ export default function RootLayout({ children }) {
             <Scene />
             <EffectComposer disableNormalPass>
               <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
-
               <Noise opacity={0.02} />
             </EffectComposer>
             {children}

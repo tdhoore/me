@@ -1,4 +1,7 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
+import * as THREE from "three";
+import { useFrame } from "@react-three/fiber";
+import { map, clamp } from "../functions/functions";
 import {
   useGLTF,
   PerspectiveCamera,
@@ -11,12 +14,40 @@ useGLTF.preload("/portfolio.glb");
 
 export default function Scene(props) {
   const { nodes, materials } = useGLTF("/portfolio.glb");
+  const [angle, setAngle] = useState(0);
 
-  console.log(materials["Material.003"]);
+  useFrame((state, delta, xrFrame) => {
+    setAngle(
+      new THREE.Vector2(
+        state.camera.position.x,
+        state.camera.position.z
+      ).angle()
+    );
+  });
 
-  /*
-  
-*/
+  const createSlices = () => {
+    const slices = [];
+    const activeIndex = map(angle, 0, Math.PI * 2, 0, 7);
+
+    for (let i = 0; i < 8; i++) {
+      //console.log(i, pos);
+      slices.push(
+        <mesh
+          key={`slice-${i}`}
+          name={`slice-${i}`}
+          castShadow
+          receiveShadow
+          geometry={nodes["slice-5"].geometry}
+          material={materials["Material.002"]}
+          rotation={[0, ((Math.PI * 2) / 8) * i, 0]}
+          position={[0, 0, 0]}
+        />
+      );
+    }
+
+    return slices;
+  };
+
   return (
     <group {...props} dispose={null} position={[0, -1.5, 0]}>
       <PerspectiveCamera
@@ -56,7 +87,19 @@ export default function Scene(props) {
         geometry={nodes.plafform.geometry}
         material={materials["Material.002"]}
       />
-      <mesh
+
+      {createSlices()}
+
+      <OrbitControls
+        enablePan={false}
+        enableZoom={false}
+        minPolarAngle={Math.PI / 2.2}
+        maxPolarAngle={Math.PI / 2.2}
+      />
+    </group>
+  );
+}
+/*<mesh
         name="slice-8"
         castShadow
         receiveShadow
@@ -112,13 +155,4 @@ export default function Scene(props) {
         receiveShadow
         geometry={nodes["slice-7"].geometry}
         material={materials["Material.002"]}
-      />
-      <OrbitControls
-        enablePan={false}
-        enableZoom={false}
-        minPolarAngle={Math.PI / 2.2}
-        maxPolarAngle={Math.PI / 2.2}
-      />
-    </group>
-  );
-}
+      />*/
