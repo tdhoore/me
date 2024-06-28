@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import { map, clamp } from "../functions/functions";
-import {
-  useGLTF,
-  PerspectiveCamera,
-  BakeShadows,
-  OrbitControls,
-  ContactShadows,
-} from "@react-three/drei";
+import { map } from "../functions/functions";
+import Slice from "./slice";
+import { useGLTF, PerspectiveCamera, OrbitControls } from "@react-three/drei";
 
 useGLTF.preload("/portfolio.glb");
 
@@ -27,20 +22,17 @@ export default function Scene(props) {
 
   const createSlices = () => {
     const slices = [];
-    const activeIndex = map(angle, 0, Math.PI * 2, 0, 7);
+    const activeIndex = Math.round(map(angle, 0, Math.PI * 2, 0, 7));
 
     for (let i = 0; i < 8; i++) {
-      //console.log(i, pos);
       slices.push(
-        <mesh
+        <Slice
           key={`slice-${i}`}
-          name={`slice-${i}`}
-          castShadow
-          receiveShadow
-          geometry={nodes["slice-5"].geometry}
+          index={i}
+          activeIndex={activeIndex}
+          geometry={nodes["slice-3"].geometry}
           material={materials["Material.002"]}
           rotation={[0, ((Math.PI * 2) / 8) * i, 0]}
-          position={[0, 0, 0]}
         />
       );
     }
