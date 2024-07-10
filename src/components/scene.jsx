@@ -1,24 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import * as THREE from "three";
-import { useFrame } from "@react-three/fiber";
 import { map } from "../functions/functions";
 import Slice from "./slice";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useGLTF, PerspectiveCamera, OrbitControls } from "@react-three/drei";
 
 useGLTF.preload("/portfolio.glb");
 
 export default function Scene(props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const pages = [
+    "/",
+    "/about",
+    "/projects/1",
+    "/projects/2",
+    "/projects/3",
+    "/contact",
+  ];
+
   const { nodes, materials } = useGLTF("/portfolio.glb");
   const [angle, setAngle] = useState(0);
+  const camera = useRef();
 
-  useFrame((state, delta, xrFrame) => {
-    setAngle(
-      new THREE.Vector2(
-        state.camera.position.x,
-        state.camera.position.z
-      ).angle()
-    );
-  });
+  const handleChangeOrbit = () => {
+    if (camera.current) {
+      setAngle(
+        new THREE.Vector2(
+          camera.current.position.x,
+          camera.current.position.z
+        ).angle()
+      );
+
+      setPage();
+    }
+  };
+
+  const getActivePage = () => {
+    let index = Math.round(map(angle, 0, Math.PI * 2, 0, pages.length - 1)) - 1;
+
+    if (index < 0) {
+      index = pages.length + index;
+    }
+
+    return pages[index];
+  };
+
+  const setPage = () => {
+    const page = getActivePage();
+    if (pathname !== page) {
+      router.push(page);
+    }
+  };
 
   const createSlices = () => {
     const slices = [];
@@ -43,13 +77,13 @@ export default function Scene(props) {
   return (
     <group {...props} dispose={null} position={[0, -1.5, 0]}>
       <PerspectiveCamera
+        ref={camera}
         name="cam"
         makeDefault={true}
         far={100}
         near={0.1}
         fov={22.9}
         position={[-2.95, 1.91, 11.84]}
-        rotation={[-0.04, -0.24, -0.01]}
       />
 
       <directionalLight
@@ -87,64 +121,9 @@ export default function Scene(props) {
         enableZoom={false}
         minPolarAngle={Math.PI / 2.2}
         maxPolarAngle={Math.PI / 2.2}
+        onChange={() => handleChangeOrbit()}
+        target={[0, 0, 0]}
       />
     </group>
   );
 }
-/*<mesh
-        name="slice-8"
-        castShadow
-        receiveShadow
-        geometry={nodes["slice-8"].geometry}
-        material={materials["Material.002"]}
-        position={[0, 0, 0]}
-      />
-      <mesh
-        name="slice-1"
-        castShadow
-        receiveShadow
-        geometry={nodes["slice-1"].geometry}
-        material={materials["Material.002"]}
-      />
-      <mesh
-        name="slice-2"
-        castShadow
-        receiveShadow
-        geometry={nodes["slice-2"].geometry}
-        material={materials["Material.002"]}
-      />
-      <mesh
-        name="slice-3"
-        castShadow
-        receiveShadow
-        geometry={nodes["slice-3"].geometry}
-        material={materials["Material.002"]}
-      />
-      <mesh
-        name="slice-4"
-        castShadow
-        receiveShadow
-        geometry={nodes["slice-4"].geometry}
-        material={materials["Material.002"]}
-      />
-      <mesh
-        name="slice-5"
-        castShadow
-        receiveShadow
-        geometry={nodes["slice-5"].geometry}
-        material={materials["Material.002"]}
-      />
-      <mesh
-        name="slice-6"
-        castShadow
-        receiveShadow
-        geometry={nodes["slice-6"].geometry}
-        material={materials["Material.002"]}
-      />
-      <mesh
-        name="slice-7"
-        castShadow
-        receiveShadow
-        geometry={nodes["slice-7"].geometry}
-        material={materials["Material.002"]}
-      />*/
