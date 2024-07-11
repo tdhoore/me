@@ -1,10 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import * as THREE from "three";
 import { map } from "../functions/functions";
 import Slice from "./slice";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import { useGLTF, PerspectiveCamera, OrbitControls } from "@react-three/drei";
+import {
+  useGLTF,
+  PerspectiveCamera,
+  OrbitControls,
+  CameraControls,
+} from "@react-three/drei";
 
 useGLTF.preload("/portfolio.glb");
 
@@ -22,10 +27,21 @@ export default function Scene(props) {
 
   const { nodes, materials } = useGLTF("/portfolio.glb");
   const [angle, setAngle] = useState(0);
+  const camControlls = useRef();
   const camera = useRef();
 
+  useEffect(() => {
+    const currentPage = pages.indexOf(pathname);
+    if (currentPage !== -1) {
+      const newAngle = map(currentPage, 0, pages.length - 1, 0, Math.PI * 2);
+
+      camControlls.current?.rotateAzimuthTo(newAngle);
+      setAngle(newAngle);
+    }
+  }, []);
+
   const handleChangeOrbit = () => {
-    if (camera.current) {
+    if (camControlls.current) {
       setAngle(
         new THREE.Vector2(
           camera.current.position.x,
@@ -116,13 +132,13 @@ export default function Scene(props) {
 
       {createSlices()}
 
-      <OrbitControls
+      <CameraControls
         enablePan={false}
         enableZoom={false}
         minPolarAngle={Math.PI / 2.2}
         maxPolarAngle={Math.PI / 2.2}
         onChange={() => handleChangeOrbit()}
-        target={[0, 0, 0]}
+        ref={camControlls}
       />
     </group>
   );
