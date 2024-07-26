@@ -9,7 +9,9 @@ import {
   PerspectiveCamera,
   OrbitControls,
   CameraControls,
+  Gltf,
 } from "@react-three/drei";
+import Subject from "./subject";
 
 useGLTF.preload("/portfolio.glb");
 
@@ -17,18 +19,39 @@ export default function Scene(props) {
   const router = useRouter();
   const pathname = usePathname();
   const pages = [
-    "/",
-    "/about",
-    "/projects/1",
-    "/projects/2",
-    "/projects/3",
-    "/contact",
+    { url: "/", model: "/asset.glb" },
+    { url: "/about", model: "/btn.glb" },
+    { url: "/projects/1", model: "/btn.glb" },
+    { url: "/projects/2", model: "/btn.glb" },
+    { url: "/projects/3", model: "/btn.glb" },
+    { url: "/contact", model: "/btn.glb" },
   ];
 
   const { nodes, materials } = useGLTF("/portfolio.glb");
   const [angle, setAngle] = useState(0);
+  const [modelIndex, setModelIndex] = useState(0);
   const camControlls = useRef();
   const camera = useRef();
+
+  const ACTION = {
+    NONE: 0,
+    ROTATE: 1,
+    TRUCK: 2,
+    OFFSET: 4,
+    DOLLY: 8,
+    ZOOM: 16,
+    TOUCH_ROTATE: 32,
+    TOUCH_TRUCK: 64,
+    TOUCH_OFFSET: 128,
+    TOUCH_DOLLY: 256,
+    TOUCH_ZOOM: 512,
+    TOUCH_DOLLY_TRUCK: 1024,
+    TOUCH_DOLLY_OFFSET: 2048,
+    TOUCH_DOLLY_ROTATE: 4096,
+    TOUCH_ZOOM_TRUCK: 8192,
+    TOUCH_ZOOM_OFFSET: 16384,
+    TOUCH_ZOOM_ROTATE: 32768,
+  };
 
   useEffect(() => {
     const currentPage = pages.indexOf(pathname);
@@ -60,13 +83,16 @@ export default function Scene(props) {
       index = pages.length + index;
     }
 
+    setModelIndex(index);
+
     return pages[index];
   };
 
   const setPage = () => {
     const page = getActivePage();
-    if (pathname !== page) {
-      router.push(page);
+    if (pathname !== page.url) {
+      //set url
+      router.push(page.url);
     }
   };
 
@@ -131,10 +157,28 @@ export default function Scene(props) {
       />
 
       {createSlices()}
+      {pages.map((page, index) => {
+        return (
+          <Subject
+            key={page.url}
+            model={page.model}
+            active={modelIndex === index}
+          />
+        );
+      })}
 
       <CameraControls
-        enablePan={false}
-        enableZoom={false}
+        mouseButtons={{
+          left: ACTION.ROTATE,
+          middle: ACTION.NONE,
+          right: ACTION.NONE,
+          wheel: ACTION.NONE,
+        }}
+        touches={{
+          one: ACTION.TOUCH_ROTATE,
+          two: ACTION.NONE,
+          three: ACTION.NONE,
+        }}
         minPolarAngle={Math.PI / 2.2}
         maxPolarAngle={Math.PI / 2.2}
         onChange={() => handleChangeOrbit()}
