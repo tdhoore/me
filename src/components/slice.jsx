@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSpring, animated } from "@react-spring/three";
 
 export default function Slice(props) {
+  const [hover, setHover] = useState(false);
   const mat = props.material.clone();
   const { position, color } = useSpring({
-    position: [0, props.activeIndex === props.index ? 0.5 : 0, 0],
-    color: props.activeIndex === props.index ? "#C1D9CC" : "#DFE5E4",
+    position: [0, hover ? 0.5 : 0, 0],
+    color: hover ? "#C1D9CC" : "#DFE5E4",
+    config: {
+      mass: 1,
+      tension: 500,
+      friction: hover ? 50 : 400,
+      precision: 0.0001,
+    },
   });
+
+  const onHover = (e, setting) => {
+    e.stopPropagation();
+    setHover(setting);
+  };
 
   return (
     <animated.mesh
-      key={`slice-${props.index}`}
       name={`slice-${props.index}`}
       castShadow
       receiveShadow
@@ -19,6 +30,8 @@ export default function Slice(props) {
       material-color={color}
       rotation={props.rotation}
       position={position}
+      onPointerOver={(e) => onHover(e, true)}
+      onPointerOut={(e) => onHover(e, false)}
     />
   );
 }

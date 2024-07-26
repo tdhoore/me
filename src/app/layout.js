@@ -1,14 +1,10 @@
 "use client";
 import { Inter } from "next/font/google";
 import "../scss/index.scss";
-import React, { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  EffectComposer,
-  N8AO,
-  Bloom,
-  Noise,
-} from "@react-three/postprocessing";
+import React from "react";
+import { Canvas } from "@react-three/fiber";
+import { EffectComposer, N8AO, Noise } from "@react-three/postprocessing";
+
 import Scene from "../components/scene";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -39,7 +35,9 @@ export default function RootLayout({ children }) {
               position={[2.24, 5.29, 4.57]}
               rotation={[-0.86, 0.31, -1.18]}
             />
+
             <Scene />
+
             <EffectComposer disableNormalPass>
               <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
               <Noise opacity={0.02} />
