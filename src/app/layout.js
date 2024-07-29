@@ -3,7 +3,12 @@ import { Inter } from "next/font/google";
 import "../scss/index.scss";
 import React from "react";
 import { Canvas } from "@react-three/fiber";
-import { EffectComposer, N8AO, Noise } from "@react-three/postprocessing";
+import {
+  EffectComposer,
+  N8AO,
+  Noise,
+  DepthOfField,
+} from "@react-three/postprocessing";
 
 import Scene from "../components/scene";
 
@@ -15,6 +20,7 @@ const inter = Inter({ subsets: ["latin"] });
 };*/
 
 export default function RootLayout({ children }) {
+  console.log(children);
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -37,13 +43,16 @@ export default function RootLayout({ children }) {
             />
 
             <Scene />
-
-            <EffectComposer disableNormalPass>
+            <EffectComposer>
+              <DepthOfField
+                focusDistance={0.1}
+                focalLength={0.1}
+                bokehScale={5}
+              />
               <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
               <Noise opacity={0.02} />
             </EffectComposer>
           </Canvas>
-          {children}
         </main>
       </body>
     </html>

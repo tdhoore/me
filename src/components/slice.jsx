@@ -9,7 +9,7 @@ export default function Slice(props) {
     color: hover ? "#C1D9CC" : "#DFE5E4",
     config: {
       mass: 1,
-      tension: 500,
+      tension: hover ? 1000 : 400,
       friction: hover ? 50 : 400,
       precision: 0.0001,
     },

@@ -1,74 +1,55 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import { map } from "../functions/functions";
 import Slice from "./slice";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import {
-  useGLTF,
-  PerspectiveCamera,
-  ScrollControls,
-  useScroll,
-} from "@react-three/drei";
+import { useGLTF, PerspectiveCamera, ScrollControls } from "@react-three/drei";
+import ProjectScene from "../app/projects/[projectId]/scene";
 import Subject from "./subject";
-import CameraController from "./cameraController";
-import { useFrame } from "@react-three/fiber";
 
 useGLTF.preload("/scene.glb");
 
 export default function Scene(props) {
-  const wat = useScroll();
   const router = useRouter();
   const pathname = usePathname();
+
+  const components = {
+    project: ProjectScene,
+  };
+
+  const [currentScene, setCurrentScene] = useState(null);
+
   const pages = [
     {
       url: "/",
       model: "/asset.glb",
-      camSettings: {
-        position: [-2.955, 1.907, 11.844],
-        rotation: [-0.04, -0.244, -0.01],
-      },
+      scene: "project",
     },
 
     {
       url: "/projects/1",
       model: "/btn.glb",
-      camSettings: {
-        position: [-1.775, 1.484, 7.265],
-        rotation: [0.002, -0.347, 0.001],
-      },
+      scene: "project",
     },
     {
       url: "/projects/2",
       model: "/btn.glb",
-      camSettings: {
-        position: [-1.775, 1.484, 7.265],
-        rotation: [0.002, -0.347, 0.001],
-      },
+      scene: "project",
     },
     {
       url: "/projects/3",
       model: "/btn.glb",
-      camSettings: {
-        position: [-1.775, 1.484, 7.265],
-        rotation: [0.002, -0.347, 0.001],
-      },
+      scene: "project",
     },
     {
       url: "/about",
       model: "/btn.glb",
-      camSettings: {
-        position: [-3.175, 1.489, 6.759],
-        rotation: [0.002, -0.347, 0.001],
-      },
+      scene: "project",
     },
     {
       url: "/contact",
       model: "/btn.glb",
-      camSettings: {
-        position: [-2.955, 1.907, 11.844],
-        rotation: [-0.04, -0.244, -0.01],
-      },
+      scene: "project",
     },
   ];
 
@@ -76,28 +57,20 @@ export default function Scene(props) {
 
   const [pageIndex, setPageIndex] = useState(0);
 
-  /*useEffect(() => {
-    const currentPage = pages.indexOf(pathname);
-    if (currentPage !== -1) {
-      const newAngle = map(currentPage, 0, pages.length - 1, 0, Math.PI * 2);
+  useEffect(() => {
+    //set init values
 
-      camControlls.current?.rotateAzimuthTo(newAngle);
-      setAngle(newAngle);
-    }
-  }, []);
+    pages.forEach((page, index) => {
+      if (page.url === pathname) {
+        //is current page set values
+        setPageIndex(index);
 
-  const handleChangeOrbit = () => {
-    if (camControlls.current) {
-      setAngle(
-        new THREE.Vector2(
-          camera.current.position.x,
-          camera.current.position.z
-        ).angle()
-      );
-
-      setPage();
-    }
-  };*/
+        //set current scene
+        const CurrentScene = components[page.scene];
+        setCurrentScene(<CurrentScene />);
+      }
+    });
+  });
 
   const getActivePage = (offset) => {
     let index = Math.round(map(offset, 0, 1, 0, pages.length - 1));
@@ -133,19 +106,18 @@ export default function Scene(props) {
 
     return slices;
   };
-  /*
- <PerspectiveCamera
+
+  return (
+    <ScrollControls pages={pages.length}>
+      <group {...props} dispose={null}>
+        <PerspectiveCamera
           makeDefault={true}
           far={100}
           near={0.1}
           fov={22.895}
-          {...pages[pageIndex].camSettings}
+          position={[0, 1.90734, 11.8442]}
+          rotation={[-0.04, 0, 0]}
         />
-*/
-  return (
-    <ScrollControls pages={pages.length}>
-      <group {...props} dispose={null}>
-        <CameraController pages={pages} />
         <directionalLight
           name="light"
           intensity={1}
@@ -173,23 +145,7 @@ export default function Scene(props) {
           material={materials["Material.002"]}
         />
         {createSlices()}
-
-        <PerspectiveCamera
-          makeDefault={false}
-          far={100}
-          near={0.1}
-          fov={22.895}
-          position={[-1.775, 1.484, 7.265]}
-          rotation={[0.002, -0.347, 0.001]}
-        />
-        <PerspectiveCamera
-          makeDefault={false}
-          far={100}
-          near={0.1}
-          fov={22.895}
-          position={[-3.175, 1.489, 6.759]}
-          rotation={[0.002, -0.347, 0.001]}
-        />
+        {currentScene}
       </group>
     </ScrollControls>
   );

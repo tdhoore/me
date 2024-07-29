@@ -18,7 +18,7 @@ export default function CameraController(props) {
     config: {
       mass: 1,
       tension: 500,
-      friction: 50,
+      friction: 200,
       precision: 0.0001,
     },
   });
