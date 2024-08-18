@@ -26,13 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main
-          className="h-dvh"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right bottom, #b6bab1, #bdc1b7, #c3c8bd, #cacfc4, #d1d6ca)",
-          }}
-        >
+        <main className="h-dvh">
           <Canvas shadows dpr={[1, 1.5]}>
             <Scene />
 
@@ -56,6 +50,9 @@ export default function RootLayout({ children }) {
                 </LayerMaterial>
               </mesh>
             </Environment>
+            <EffectComposer>
+              <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
+            </EffectComposer>
           </Canvas>
         </main>
       </body>

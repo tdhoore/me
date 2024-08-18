@@ -18,10 +18,12 @@ export default function Scene(props) {
 
   materials["glow.001"].emissiveIntensity = 2;
 
+  materials["chell.001"].opacity = 1;
+
   const ShellMat = () => (
     <MeshTransmissionMaterial
       samples={16}
-      resolution={256}
+      resolution={1024}
       transmission={0.9}
       roughness={0.5}
       clearcoat={0.1}
@@ -40,14 +42,22 @@ export default function Scene(props) {
     />
   );
 
+  console.log(materials);
+
   return (
     <animated.group {...mainAnim} dispose={null}>
-      <mesh castShadow receiveShadow geometry={nodes.Cube019.geometry}>
-        <ShellMat />
-      </mesh>
-      <mesh castShadow receiveShadow geometry={nodes.Cube018.geometry}>
-        <ShellMat />
-      </mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Cube019.geometry}
+        material={materials["chell.001"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Cube018.geometry}
+        material={materials["chell.001"]}
+      />
       <mesh
         castShadow
         receiveShadow
