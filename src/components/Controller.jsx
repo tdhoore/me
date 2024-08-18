@@ -1,56 +1,52 @@
 import React from "react";
-import { useGLTF, MeshTransmissionMaterial, Html } from "@react-three/drei";
+import {
+  useGLTF,
+  MeshTransmissionMaterial,
+  Html,
+  Float,
+} from "@react-three/drei";
+import { animated, useSpring } from "@react-spring/three";
 
 useGLTF.preload("/controller.glb");
 
 export default function Scene(props) {
+  const mainAnim = useSpring({
+    ...props,
+  });
+
   const { nodes, materials } = useGLTF("/controller.glb");
-  console.log(materials["glow.001"]);
 
   materials["glow.001"].emissiveIntensity = 2;
 
+  const ShellMat = () => (
+    <MeshTransmissionMaterial
+      samples={16}
+      resolution={256}
+      transmission={0.9}
+      roughness={0.5}
+      clearcoat={0.1}
+      clearcoatRoughness={0.1}
+      thickness={0.08}
+      backsideThickness={1}
+      ior={1.5}
+      chromaticAberration={1}
+      anisotropy={1}
+      distortionScale={0.1}
+      attenuationDistance={0.5}
+      attenuationColor={"#fff"}
+      color="#f1f4f3"
+      toneMapped={false}
+      backside="true"
+    />
+  );
+
   return (
-    <group {...props} dispose={null}>
+    <animated.group {...mainAnim} dispose={null}>
       <mesh castShadow receiveShadow geometry={nodes.Cube019.geometry}>
-        <MeshTransmissionMaterial
-          samples={16}
-          resolution={256}
-          transmission={0.95}
-          roughness={0.5}
-          clearcoat={0.1}
-          clearcoatRoughness={0.1}
-          thickness={0.08}
-          backsideThickness={0.5}
-          ior={1.5}
-          chromaticAberration={1}
-          anisotropy={1}
-          distortionScale={0.1}
-          attenuationDistance={0.5}
-          attenuationColor={"#fff"}
-          color="#fff"
-          toneMapped={false}
-          backside="true"
-        />
+        <ShellMat />
       </mesh>
       <mesh castShadow receiveShadow geometry={nodes.Cube018.geometry}>
-        <MeshTransmissionMaterial
-          samples={16}
-          resolution={256}
-          transmission={0.95}
-          roughness={0.5}
-          clearcoat={0.1}
-          clearcoatRoughness={0.1}
-          thickness={0.08}
-          backsideThickness={0.5}
-          ior={1.5}
-          chromaticAberration={1}
-          anisotropy={1}
-          distortionScale={0.1}
-          attenuationDistance={0.5}
-          attenuationColor={"#fff"}
-          color="#fff"
-          toneMapped={false}
-        />
+        <ShellMat />
       </mesh>
       <mesh
         castShadow
@@ -173,6 +169,6 @@ export default function Scene(props) {
           ></div>
         </Html>
       </mesh>
-    </group>
+    </animated.group>
   );
 }

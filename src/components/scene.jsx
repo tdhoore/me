@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import { map } from "../functions/functions";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import {
-  PerspectiveCamera,
-  ScrollControls,
-  Environment,
-} from "@react-three/drei";
-import ProjectScene from "../app/projects/[projectId]/scene";
 
+import { PerspectiveCamera } from "@react-three/drei";
+
+import ProjectScene from "../app/projects/[projectId]/scene";
 import Controller from "./Controller";
 
 export default function Scene(props) {
@@ -80,26 +77,23 @@ export default function Scene(props) {
   };
 
   return (
-    <ScrollControls pages={pages.length}>
-      <group {...props} dispose={null}>
-        <PerspectiveCamera
-          makeDefault={true}
-          far={100}
-          near={0.1}
-          fov={22.895}
-          position={[0, 0.6, 12]}
-          rotation={[-0.04, 0, 0]}
-        />
-        <directionalLight
-          name="light"
-          intensity={1}
-          color="#dbe1e0"
-          position={[2.24, 5.29, 4.57]}
-          rotation={[-0.86, 0.31, -1.18]}
-        />
-        <Controller rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]} />
-        {currentScene}
-      </group>
-    </ScrollControls>
+    <group {...props} dispose={null}>
+      <PerspectiveCamera
+        makeDefault={true}
+        far={100}
+        near={0.1}
+        fov={22.895}
+        position={[0, 0.6, 12]}
+        rotation={[-0.04, 0, 0]}
+      />
+      <directionalLight
+        name="light"
+        intensity={1}
+        color="#dbe1e0"
+        position={[2.24, 5.29, 4.57]}
+        rotation={[-0.86, 0.31, -1.18]}
+      />
+      <Controller rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]} />
+    </group>
   );
 }

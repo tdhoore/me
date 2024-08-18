@@ -1,13 +1,19 @@
 "use client";
 import { Inter } from "next/font/google";
 import "../scss/index.scss";
-import React from "react";
 import * as THREE from "three";
+import React, { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
-import { LayerMaterial, Depth, Noise } from "lamina";
+import { LayerMaterial, Noise, Gradient } from "lamina";
 
 import Scene from "../components/scene";
+import {
+  EffectComposer,
+  N8AO,
+  DepthOfField,
+  Bloom,
+} from "@react-three/postprocessing";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,26 +23,29 @@ const inter = Inter({ subsets: ["latin"] });
 };*/
 
 export default function RootLayout({ children }) {
-  console.log(children);
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="h-dvh">
+        <main
+          className="h-dvh"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right bottom, #b6bab1, #bdc1b7, #c3c8bd, #cacfc4, #d1d6ca)",
+          }}
+        >
           <Canvas shadows dpr={[1, 1.5]}>
             <Scene />
 
             <Environment background>
               <mesh scale={100}>
                 <sphereGeometry args={[1, 64, 64]} />
-                <LayerMaterial side={THREE.BackSide} color="#B6BAB1">
-                  <Depth
+                <LayerMaterial side={THREE.BackSide}>
+                  <Gradient
                     colorA="#B6BAB1"
-                    colorB="#7F827B"
-                    alpha={0.8}
-                    mode="normal"
-                    near={0}
-                    far={300}
-                    origin={[100, 100, 100]}
+                    colorB="#227845"
+                    axes="y"
+                    start={0}
+                    end={-0.5}
                   />
                   <Noise
                     mapping="local"
@@ -55,6 +64,28 @@ export default function RootLayout({ children }) {
 }
 /*
 
+  <fog attach="fog" args={["#ff0000", 0, 10]} />
+ <Environment background>
+              <mesh scale={100}>
+                <sphereGeometry args={[1, 64, 64]} />
+                <LayerMaterial side={THREE.BackSide}>
+                  <Gradient
+                    style={springs}
+                    colorA="#B6BAB1"
+                    colorB="#227845"
+                    axes="y"
+                    start={0}
+                    end={-0.5}
+                  />
+                  <Noise
+                    mapping="local"
+                    type="cell"
+                    scale={0.5}
+                    mode="softlight"
+                  />
+                </LayerMaterial>
+              </mesh>
+            </Environment>
   <EffectComposer>
               <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
               <Bloom
