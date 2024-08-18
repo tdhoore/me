@@ -2,13 +2,10 @@
 import { Inter } from "next/font/google";
 import "../scss/index.scss";
 import React from "react";
+import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import {
-  EffectComposer,
-  N8AO,
-  Noise,
-  DepthOfField,
-} from "@react-three/postprocessing";
+import { Environment } from "@react-three/drei";
+import { LayerMaterial, Depth, Noise } from "lamina";
 
 import Scene from "../components/scene";
 
@@ -26,7 +23,69 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <main className="h-dvh">
           <Canvas shadows dpr={[1, 1.5]}>
-            <hemisphereLight
+            <Scene />
+
+            <Environment background>
+              <mesh scale={100}>
+                <sphereGeometry args={[1, 64, 64]} />
+                <LayerMaterial side={THREE.BackSide} color="#B6BAB1">
+                  <Depth
+                    colorA="#B6BAB1"
+                    colorB="#7F827B"
+                    alpha={0.8}
+                    mode="normal"
+                    near={0}
+                    far={300}
+                    origin={[100, 100, 100]}
+                  />
+                  <Noise
+                    mapping="local"
+                    type="cell"
+                    scale={0.5}
+                    mode="softlight"
+                  />
+                </LayerMaterial>
+              </mesh>
+            </Environment>
+          </Canvas>
+        </main>
+      </body>
+    </html>
+  );
+}
+/*
+
+  <EffectComposer>
+              <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
+              <Bloom
+                intensity={1.0}
+                luminanceThreshold={0.9}
+                luminanceSmoothing={0.025}
+              />
+                <DepthOfField
+                focusDistance={0.1}
+                focalLength={0.1}
+                bokehScale={5}
+              />
+
+<Noise opacity={0.02} />
+            </EffectComposer>
+  <mesh scale={100}>
+                <sphereGeometry args={[1, 64, 64]} />
+                <LayerMaterial side={THREE.BackSide}>
+                  <Color color="#B6BAB1" alpha={1} mode="normal" />
+                  <Depth
+                    colorA="#B6BAB1"
+                    colorB="#dfe1df"
+                    alpha={0.5}
+                    mode="normal"
+                    near={0}
+                    far={300}
+                    origin={[100, 100, 100]}
+                  />
+                </LayerMaterial>
+              </mesh>
+<hemisphereLight
               color="#DBE1E0"
               groundColor="#B6BAB1"
               position={[-7, 25, 13]}
@@ -34,27 +93,11 @@ export default function RootLayout({ children }) {
             />
             <color attach="background" args={["#DBE1E0"]} />
             <fog attach="fog" args={["#DBE1E0", 10, 40]} />
+
             <directionalLight
               name="light"
               intensity={1}
               color="#dbe1e0"
               position={[2.24, 5.29, 4.57]}
               rotation={[-0.86, 0.31, -1.18]}
-            />
-
-            <Scene />
-            <EffectComposer>
-              <DepthOfField
-                focusDistance={0.1}
-                focalLength={0.1}
-                bokehScale={5}
-              />
-              <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
-              <Noise opacity={0.02} />
-            </EffectComposer>
-          </Canvas>
-        </main>
-      </body>
-    </html>
-  );
-}
+            />*/
