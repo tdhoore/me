@@ -16,65 +16,46 @@ export default function Scene(props) {
     project: ProjectScene,
   };
 
-  const [currentScene, setCurrentScene] = useState(null);
-
   const pages = [
     {
       url: "/",
-      model: "/asset.glb",
-      scene: "project",
+      scene: 1,
     },
 
     {
       url: "/projects/1",
       model: "/btn.glb",
-      scene: "project",
+      scene: 3,
     },
     {
       url: "/projects/2",
       model: "/btn.glb",
-      scene: "project",
+      scene: 3,
     },
     {
       url: "/projects/3",
       model: "/btn.glb",
-      scene: "project",
+      scene: 3,
     },
     {
       url: "/about",
       model: "/btn.glb",
-      scene: "project",
+      scene: 3,
     },
     {
       url: "/contact",
       model: "/btn.glb",
-      scene: "project",
+      scene: 2,
     },
   ];
 
-  const [pageIndex, setPageIndex] = useState(0);
+  const [activePage, setActivePage] = useState(
+    pages.filter((page) => page.url === pathname)[0]
+  );
 
   useEffect(() => {
-    //set init values
-
-    pages.forEach((page, index) => {
-      if (page.url === pathname) {
-        //is current page set values
-        setPageIndex(index);
-
-        //set current scene
-        const CurrentScene = components[page.scene];
-        setCurrentScene(<CurrentScene />);
-      }
-    });
-  });
-
-  const getActivePage = (offset) => {
-    let index = Math.round(map(offset, 0, 1, 0, pages.length - 1));
-    setPageIndex(index);
-
-    return pages[index];
-  };
+    setActivePage(pages.filter((page) => page.url === pathname)[0]);
+  }, [pathname]);
 
   return (
     <group {...props} dispose={null}>
@@ -93,13 +74,7 @@ export default function Scene(props) {
         position={[2.24, 5.29, 4.57]}
         rotation={[-0.86, 0.31, -1.18]}
       />
-      <Controller
-        rotation={[Math.PI / 1.8, Math.PI / 16, Math.PI / 5]}
-        position={[2.5, 1, 0]}
-      />
+      <Controller />
     </group>
   );
 }
-//[0, 0, 3] [Math.PI / 2, 0, 0]
-//[0, 0, -8] [Math.PI / 2, 0, 0]
-//[2.5, 1, 0] [Math.PI / 1.8, Math.PI / 16, Math.PI / 5]
