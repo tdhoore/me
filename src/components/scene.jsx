@@ -95,11 +95,11 @@ export default function Scene(props) {
       />
       <Controller
         rotation={[Math.PI / 1.8, Math.PI / 16, Math.PI / 5]}
-        position={[5, 1.8, -6]}
+        position={[2.5, 1, 0]}
       />
     </group>
   );
 }
+//[0, 0, 3] [Math.PI / 2, 0, 0]
 //[0, 0, -8] [Math.PI / 2, 0, 0]
-//[0, 0, 0] [Math.PI / 2, 0, 0]
-//[4, 1.8, -4]
+//[2.5, 1, 0] [Math.PI / 1.8, Math.PI / 16, Math.PI / 5]
