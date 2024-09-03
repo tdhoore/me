@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useGLTF, Html } from "@react-three/drei";
 import { animated, useSpring } from "@react-spring/three";
 import { usePathname, useRouter } from "next/navigation";
+import Lottie from "lottie-react";
+import companyLogoAnim from "../../public/company-logo-animation.json";
 import { map } from "../functions/functions";
+import ControllerUi from "./ControllerUi";
 
 useGLTF.preload("/controller.glb");
 
-export default function Scene(props) {
+export default function Controller(props) {
   const { nodes, materials } = useGLTF("/controller.glb");
   const router = useRouter();
   const pathname = usePathname();
@@ -20,6 +23,7 @@ export default function Scene(props) {
         rotation: [Math.PI / 2, 0, 0],
         position: [0, 0, -8],
       },
+      showMenu: false,
     },
     {
       urls: ["/projects", "/about"],
@@ -27,6 +31,7 @@ export default function Scene(props) {
         rotation: [Math.PI / 1.8, Math.PI / 16, Math.PI / 5],
         position: [2.5, 1, 0],
       },
+      showMenu: true,
     },
     {
       urls: ["/contact"],
@@ -34,6 +39,7 @@ export default function Scene(props) {
         rotation: [Math.PI / 2, 0, 0],
         position: [0, 0, 3],
       },
+      showMenu: true,
     },
   ].filter((loc) =>
     pathname === "/"
@@ -41,6 +47,7 @@ export default function Scene(props) {
       : loc.urls.filter((url) => pathname.includes(url)).length
   );
 
+  const [startMainAnim, setStartMainAnim] = useState(false);
   const [mainAnim, setMainAnim] = useSpring(() => ({
     ...locations[locations.length - 1].transform,
     config: {
@@ -75,19 +82,21 @@ export default function Scene(props) {
   };
 
   const handleShowLogoAnimation = (e) => {
+    setStartMainAnim(true);
+
     setMainAnim({
       rotation: [Math.PI / 2, 0, 0],
       position: [0, 0, 3],
     });
+  };
 
-    setTimeout(() => {
-      router.push("/projects/1");
+  const goToProjects = () => {
+    router.push("/projects/1");
 
-      setMainAnim({
-        rotation: [Math.PI / 1.8, Math.PI / 16, Math.PI / 5],
-        position: [2.5, 1, 0],
-      });
-    }, 5000);
+    setMainAnim({
+      rotation: [Math.PI / 1.8, Math.PI / 16, Math.PI / 5],
+      position: [2.5, 1, 0],
+    });
   };
 
   return (
@@ -115,22 +124,19 @@ export default function Scene(props) {
             material={materials["screen.001"]}
           >
             <Html
-              className="content w-[48px] h-[48px] bg-black rounded-[1px]"
+              className="content w-[480px] h-[480px] rounded-lg overflow-hidden bg-[#151515]"
+              distanceFactor={1}
               position={[0, 0.06, 0]}
               rotation-x={-Math.PI / 2}
               transform
               occlude
             >
-              <div
-                className="wrapper"
-                onPointerDown={(e) => e.stopPropagation()}
-              >
-                {pathname === "/" ? (
-                  <div onClick={(e) => handleShowLogoAnimation(e)}>dfsdf</div>
-                ) : (
-                  <div></div>
-                )}
-              </div>
+              <ControllerUi
+                startAnim={startMainAnim}
+                clickScreen={handleShowLogoAnimation}
+                aftermainAnim={goToProjects}
+                showMenu={locations[locations.length - 1].showMenu}
+              />
             </Html>
           </mesh>
           <mesh
