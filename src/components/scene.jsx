@@ -67,14 +67,8 @@ export default function Scene(props) {
         position={[0, 0.6, 12]}
         rotation={[-0.04, 0, 0]}
       />
-      <directionalLight
-        name="light"
-        intensity={1}
-        color="#dbe1e0"
-        position={[2.24, 5.29, 4.57]}
-        rotation={[-0.86, 0.31, -1.18]}
-      />
-      <Controller />
+
+      <Controller setBg={props.setBg} />
     </group>
   );
 }

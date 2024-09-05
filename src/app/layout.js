@@ -1,19 +1,13 @@
 "use client";
 import { Inter } from "next/font/google";
 import "../scss/index.scss";
-import * as THREE from "three";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Environment } from "@react-three/drei";
-import { LayerMaterial, Noise, Gradient } from "lamina";
-
+import { animated, useSpring as useSpringThree } from "@react-spring/three";
+import { animated as a, useSpring } from "@react-spring/web";
 import Scene from "../components/scene";
-import {
-  EffectComposer,
-  N8AO,
-  DepthOfField,
-  Bloom,
-} from "@react-three/postprocessing";
+import { EffectComposer, N8AO, Noise } from "@react-three/postprocessing";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,12 +17,75 @@ const inter = Inter({ subsets: ["latin"] });
 };*/
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+  const [bgAnim, setBgAnim] = useSpringThree(() => ({
+    intensity: pathname !== "/" ? 2 : 0,
+    color: pathname !== "/" ? "#dde7dc" : "#000",
+    groundColor: pathname !== "/" ? "#bec7bd" : "#000",
+  }));
+
+  const [lightAnim, setLightAnim] = useSpringThree(() => ({
+    intensity: pathname !== "/" ? 1 : 0.1,
+  }));
+
+  const [bg, setBg] = useState(pathname === "/" ? "bg--dark" : "");
+
+  const [{ opacity }, api] = useSpring(() => ({
+    from: {
+      opacity: 0.2,
+    },
+    to: {
+      opacity: 1,
+    },
+    loop: {
+      reverse: true,
+    },
+
+    config: {
+      mass: 1,
+      friction: 200,
+      tension: 1000,
+    },
+  }));
+
+  const updateBg = () => {
+    setBgAnim({
+      color: "#dde7dc",
+      groundColor: "#bec7bd",
+      intensity: 2,
+    });
+
+    setLightAnim({
+      intensity: 1,
+    });
+
+    setBg("");
+  };
+
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`bg ${bg} bg--extra`}>
         <main className="h-dvh">
           <Canvas shadows dpr={[1, 1.5]}>
-            <Scene />
+            <Scene setBg={updateBg} />
+            <animated.hemisphereLight {...bgAnim} position={[-7, 25, 13]} />
+            <animated.directionalLight
+              {...lightAnim}
+              color="#dbe1e0"
+              position={[2.24, 5.29, 4.57]}
+              rotation={[-0.86, 0.31, -1.18]}
+            />
+            <EffectComposer>
+              <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
+              <Noise opacity={0.01} />
+            </EffectComposer>
+          </Canvas>
+        </main>
+      </body>
+    </html>
+  );
+}
+/*
 
             <Environment background>
               <mesh scale={100}>
@@ -50,17 +107,6 @@ export default function RootLayout({ children }) {
                 </LayerMaterial>
               </mesh>
             </Environment>
-            <EffectComposer>
-              <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
-            </EffectComposer>
-          </Canvas>
-        </main>
-      </body>
-    </html>
-  );
-}
-/*
-
   <fog attach="fog" args={["#ff0000", 0, 10]} />
  <Environment background>
               <mesh scale={100}>

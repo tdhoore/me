@@ -43,9 +43,13 @@ export default function ControllerUi(props) {
   });
 
   return (
-    <div className="wrapper" onPointerDown={(e) => e.stopPropagation()}>
+    <div className="wrapper h-full" onPointerDown={(e) => e.stopPropagation()}>
       {!showMenu ? (
-        <animated.div style={{ opacity }} onClick={(e) => props.clickScreen(e)}>
+        <animated.div
+          className="bg"
+          style={{ opacity }}
+          onClick={(e) => props.clickScreen(e)}
+        >
           <Lottie
             lottieRef={lottiePlayer}
             animationData={companyLogoAnim}
@@ -58,7 +62,7 @@ export default function ControllerUi(props) {
           />
         </animated.div>
       ) : (
-        <nav>menu</nav>
+        <nav className="h-full bg">menu</nav>
       )}
     </div>
   );

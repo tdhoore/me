@@ -82,6 +82,7 @@ export default function Controller(props) {
   };
 
   const handleShowLogoAnimation = (e) => {
+    props.setBg("");
     setStartMainAnim(true);
 
     setMainAnim({
