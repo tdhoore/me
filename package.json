@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"npm run scssgen\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scssgen": "node ./node_scripts/scss-templates/index.js"
   },
   "dependencies": {
     "@react-spring/three": "^9.7.3",
@@ -30,6 +31,26 @@
     "postcss": "^8",
     "sass": "^1.77.5",
     "tailwindcss": "^3.4.1",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "@jgoz/esbuild-plugin-livereload": "^2.0.3",
+    "@wordpress/scripts": "^26.16.0",
+    "autoprefixer": "^10.4.17",
+    "browser-sync": "^3.0.2",
+    "caniuse-lite": "^1.0.30001580",
+    "chokidar": "^3.5.3",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.20.0",
+    "esbuild-sass-plugin": "^2.16.1",
+    "fontmin": "^1.0.1",
+    "generate-template-files": "^3.2.1",
+    "glob": "^10.3.10",
+    "just-kebab-case": "^4.2.0",
+    "just-pascal-case": "^3.2.0",
+    "process": "^0.11.10",
+    "rimraf": "^5.0.5",
+    "stylelint": "^16.2.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-scss": "^6.1.0"
   }
 }

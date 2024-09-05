@@ -1,0 +1,33 @@
+.btn {
+  --pColor: var(--Color2);
+
+  color: var(--pColor);
+  background-color: var(--primary);
+  display: block;
+  cursor: pointer;
+  border: solid 1px var(--primary);
+  padding: var(--btnTopPadding) var(--btnSidePadding);
+  text-decoration: none !important;
+  transition: background 300ms ease;
+
+  @media (hover: hover) {
+    &:hover {
+      --pColor: var(--Color1);
+
+      background-color: var(--secondary);
+    }
+  }
+
+  @include modifier("secondary") {
+    --pColor: var(--primary);
+    background-color: var(--secondary);
+
+    @media (hover: hover) {
+      &:hover {
+        --pColor: var(--secondary);
+
+        background-color: var(--primary);
+      }
+    }
+  }
+}
