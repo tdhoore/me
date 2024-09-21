@@ -1,0 +1,7 @@
+.project-images {
+  @apply absolute -z-10 top-0 left-0 h-full w-full;
+}
+
+.project-images__img {
+  @apply absolute aspect-square object-cover rounded-2xl;
+}

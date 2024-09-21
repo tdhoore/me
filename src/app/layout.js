@@ -1,15 +1,20 @@
 "use client";
-import { Inter } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "../scss/index.scss";
 import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { animated, useSpring as useSpringThree } from "@react-spring/three";
 import { animated as a, useSpring } from "@react-spring/web";
 import Scene from "../components/scene";
-import { EffectComposer, N8AO, Noise } from "@react-three/postprocessing";
+import {
+  EffectComposer,
+  N8AO,
+  Noise,
+  DepthOfField,
+} from "@react-three/postprocessing";
 import { usePathname } from "next/navigation";
 
-const inter = Inter({ subsets: ["latin"] });
+const archivo = Archivo({ subsets: [], weight: ["300", "900"] });
 
 /*export const metadata = {
   title: "Create Next App",
@@ -64,8 +69,8 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`bg ${bg} bg--extra`}>
-        <main className="h-dvh">
+      <body className={`bg ${bg} bg--extra ${archivo.className} text-primary`}>
+        <main className="relative h-dvh overflow-hidden">
           <Canvas shadows dpr={[1, 1.5]}>
             <Scene setBg={updateBg} />
             <animated.hemisphereLight {...bgAnim} position={[-7, 25, 13]} />
@@ -80,6 +85,7 @@ export default function RootLayout({ children }) {
               <Noise opacity={0.01} />
             </EffectComposer>
           </Canvas>
+          {children}
         </main>
       </body>
     </html>

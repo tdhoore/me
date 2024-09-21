@@ -7,6 +7,7 @@ import { PerspectiveCamera } from "@react-three/drei";
 
 import ProjectScene from "../app/projects/[projectId]/scene";
 import Controller from "./Controller";
+import ProjectImages from "./ProjectImages";
 
 export default function Scene(props) {
   const router = useRouter();

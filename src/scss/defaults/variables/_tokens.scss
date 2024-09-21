@@ -45,12 +45,12 @@ $tablet: 800px;
   }
 }
 
-$spaceGrotesk: 'Space Grotesk', sans-serif;
-$robotoMono: 'Roboto Mono', sans-serif;
+$hFont: "Space Grotesk", sans-serif;
+$robotoMono: "Roboto Mono", sans-serif;
 
 h1,
 .h1 {
-  font-family: $spaceGrotesk;
+  font-family: $hFont;
   font-size: 4rem;
   font-weight: 700;
   line-height: 5.6rem;
@@ -60,20 +60,27 @@ h1,
 
 h2,
 .h2 {
-  font-family: $spaceGrotesk;
-  font-size: 3.2rem;
-  font-weight: 700;
-  line-height: 4.8rem;
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 4rem;
   text-decoration: none;
-  text-transform: none;
+  text-transform: uppercase;
 }
 
 h3,
 .h3 {
-  font-family: $spaceGrotesk;
+  font-family: $hFont;
   font-size: 2.4rem;
-  font-weight: 700;
+  font-weight: 900;
   line-height: 3.2rem;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.number {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.5rem;
   text-decoration: none;
   text-transform: none;
 }
@@ -90,7 +97,7 @@ p,
 
 h4,
 .h4 {
-  font-family: $spaceGrotesk;
+  font-family: $hFont;
   font-size: 2rem;
   font-weight: 700;
   line-height: 3.2rem;
@@ -99,7 +106,7 @@ h4,
 }
 
 .tiny {
-  font-family: $spaceGrotesk;
+  font-family: $hFont;
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 2.4rem;
@@ -108,7 +115,7 @@ h4,
 }
 
 .btn {
-  font-family: $spaceGrotesk;
+  font-family: $hFont;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.4rem;
@@ -124,5 +131,3 @@ h4,
   text-decoration: none;
   text-transform: none;
 }
-
-$defaultFont: $robotoMono;

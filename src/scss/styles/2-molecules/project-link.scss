@@ -1,0 +1,38 @@
+.project-link {
+  @apply relative inline-flex gap-1 transition-transform;
+
+  & span {
+    @apply inline-block;
+  }
+
+  &:hover {
+    .project-link__number {
+      @apply scale-90;
+    }
+
+    .project-link__title {
+      @apply text-secondary;
+
+      &::after {
+        @apply translate-x-0 translate-y-0 opacity-100;
+      }
+    }
+  }
+}
+
+.project-link__number {
+  @apply overflow-hidden -translate-y-2 self-start transition-transform origin-bottom-right;
+}
+
+.project-link__title {
+  @apply relative overflow-hidden transition-colors;
+
+  & span {
+    @apply p-2;
+  }
+
+  &::after {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full bg-primary -z-10 origin-top-left -translate-x-4 -translate-y-4 opacity-0 transition-all rounded;
+  }
+}

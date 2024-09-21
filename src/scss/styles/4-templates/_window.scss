@@ -1,0 +1,8 @@
+.window {
+  @apply relative rounded-lg border-2 border-primary p-14;
+
+  &:before {
+    content: "";
+    @apply absolute -top-8 -left-[2px] -right-[2px] h-8 bg-primary rounded-lg border-2 border-primary;
+  }
+}

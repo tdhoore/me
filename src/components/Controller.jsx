@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useGLTF, Html } from "@react-three/drei";
 import { animated, useSpring } from "@react-spring/three";
 import { usePathname, useRouter } from "next/navigation";
-import Lottie from "lottie-react";
-import companyLogoAnim from "../../public/company-logo-animation.json";
 import { map } from "../functions/functions";
 import ControllerUi from "./ControllerUi";
 
@@ -21,7 +19,7 @@ export default function Controller(props) {
       urls: ["/"],
       transform: {
         rotation: [Math.PI / 2, 0, 0],
-        position: [0, 0, -8],
+        position: [0, 0, -4],
       },
       showMenu: false,
     },
@@ -92,7 +90,7 @@ export default function Controller(props) {
   };
 
   const goToProjects = () => {
-    router.push("/projects/1");
+    router.push("/projects");
 
     setMainAnim({
       rotation: [Math.PI / 1.8, Math.PI / 16, Math.PI / 5],
