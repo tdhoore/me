@@ -1,7 +1,11 @@
 .project-images {
-  @apply absolute -z-10 top-0 left-0 h-full w-full;
+  @apply absolute -z-10 top-0 left-0 h-full w-full pointer-events-none;
 }
 
 .project-images__img {
-  @apply absolute aspect-square object-cover rounded-2xl;
+  @apply absolute aspect-square w-auto;
+
+  & img {
+    @apply aspect-square object-cover rounded-2xl;
+  }
 }

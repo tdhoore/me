@@ -27,19 +27,21 @@ export default function Projects() {
   });
 
   return (
-    <div className="page-wrapper">
-      <div className="container">
-        <animated.ul className="projects-list" style={animateInList}>
-          {projects.map((project, index) => {
-            return (
-              <li key={`Project-${project.name}-${index}`}>
-                <ProjectLink {...project} count={index} />
-              </li>
-            );
-          })}
-        </animated.ul>
+    <>
+      <div className="page-wrapper">
+        <div className="container">
+          <animated.ul className="projects-list" style={animateInList}>
+            {projects.map((project, index) => {
+              return (
+                <li key={`Project-${project.name}-${index}`}>
+                  <ProjectLink {...project} count={index} />
+                </li>
+              );
+            })}
+          </animated.ul>
+        </div>
       </div>
       <ProjectImages />
-    </div>
+    </>
   );
 }
