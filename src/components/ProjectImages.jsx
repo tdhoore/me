@@ -16,21 +16,15 @@ export default function ProjectImages(props) {
     "h-1/6 bottom-[50%] left-[2%] opacity-50 -z-50 blur-sm",
   ];
 
-  const animateIn = useTransition(props.images ? props.images : [], {
-    from: { scale: 0, opacity: 0 },
-    enter: { scale: 1, opacity: 1 },
-    leave: { scale: 0, opacity: 0 },
-    config: {
-      tension: 500,
-      friction: 30,
-      precision: 0.001,
-    },
-    trail: 50,
-    //exitBeforeEnter: true,
-    onChange: () => {
-      counter = 0;
-    },
-  });
+  const imageInnerclasses = [
+    "",
+    "",
+    "opacity-50",
+    "opacity-50",
+    "",
+    "",
+    "opacity-50",
+  ];
 
   const getClassesByIndex = (index) => {
     let result = index;
@@ -50,30 +44,37 @@ export default function ProjectImages(props) {
     return result;
   };
 
+  const animateIn = useTransition(props.images ? props.images : [], {
+    from: { scale: 0, opacity: 0 },
+    enter: { scale: 1, opacity: 1 },
+    leave: { scale: 0, opacity: 0 },
+    config: {
+      tension: 500,
+      friction: 30,
+      precision: 0.001,
+    },
+    trail: 50,
+    //exitBeforeEnter: true,
+    onChange: () => {
+      counter = 0;
+    },
+  });
+
   return (
     <div className="project-images">
-      {animateIn((style, item, state, index) => (
-        <animated.div
-          style={style}
-          className={`project-images__img ${
-            imageClasses[getClassesByIndex(index)]
-          }`}
-        >
-          <ProjectImage img={item} />
-        </animated.div>
-      ))}
+      {animateIn((style, item, state, index) => {
+        return (
+          <animated.div
+            style={style}
+            className={`project-images__img ${imageClasses[item.imgIndex]}`}
+          >
+            <ProjectImage
+              img={item}
+              classes={imageInnerclasses[item.imgIndex]}
+            />
+          </animated.div>
+        );
+      })}
     </div>
   );
 }
-/* {props.images.length
-        ? imageClasses.map((imageClass, index) => {
-            return (
-              <ProjectImage
-                className={imageClass}
-                key={imageClass}
-                img={props.images[index]}
-                index={index}
-              />
-            );
-          })
-        : null}*/

@@ -36,7 +36,7 @@ export default function ProjectImages(props) {
   });
 
   return (
-    <animated.div style={move}>
+    <animated.div style={move} className={props.classes}>
       <Image src={props.img.url} alt={props.img.alt} width={500} height={500} />
     </animated.div>
   );

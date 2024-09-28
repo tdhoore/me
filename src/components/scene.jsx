@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { map } from "../functions/functions";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
@@ -7,7 +6,6 @@ import { PerspectiveCamera } from "@react-three/drei";
 
 import ProjectScene from "../app/projects/[projectId]/scene";
 import Controller from "./Controller";
-import ProjectImages from "./ProjectImages";
 
 export default function Scene(props) {
   const router = useRouter();

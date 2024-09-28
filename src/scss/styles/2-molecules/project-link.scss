@@ -7,7 +7,7 @@
 
   &:hover {
     .project-link__title {
-      @apply text-secondary;
+      @apply text-transparent;
       -webkit-text-stroke-width: 2px;
 
       &::after {

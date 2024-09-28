@@ -163,6 +163,3 @@ export default function Controller(props) {
     </animated.group>
   );
 }
-//[0, 0, 3] [Math.PI / 2, 0, 0]
-//[0, 0, -8] [Math.PI / 2, 0, 0]
-//[2.5, 1, 0] [Math.PI / 1.8, Math.PI / 16, Math.PI / 5]

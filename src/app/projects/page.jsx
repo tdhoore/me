@@ -118,7 +118,7 @@ export default function Projects() {
       precision: 0.001,
     },
   });
-  console.log(activeProject, projects[activeProject]);
+
   return (
     <>
       <div className="page-wrapper">
@@ -139,7 +139,14 @@ export default function Projects() {
         </div>
       </div>
       <ProjectImages
-        images={projects[activeProject] ? projects[activeProject].images : []}
+        images={
+          projects[activeProject]
+            ? projects[activeProject].images.map((img, index) => ({
+                imgIndex: index,
+                ...img,
+              }))
+            : []
+        }
       />
     </>
   );
