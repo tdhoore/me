@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`bg ${bg} bg--extra ${archivo.className} text-primary`}>
-        <main className="relative h-dvh overflow-hidden">
+        <main className="relative h-dvh overflow-hidden bg--noise">
           <Canvas shadows dpr={[1, 1.5]}>
             <Scene setBg={updateBg} />
             <animated.hemisphereLight {...bgAnim} position={[-7, 25, 13]} />

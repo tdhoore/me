@@ -20,8 +20,21 @@ export default function ProjectLink(props) {
     delay: 300 + props.count * 100,
   });
 
+  const handleMouseEnter = (e) => {
+    props.setActiveProject(props.count);
+  };
+
+  const handleMouseLeave = (e) => {
+    // props.setActiveProject(-1);
+  };
+
   return (
-    <a href="#" className="project-link">
+    <a
+      href="#"
+      className="project-link"
+      onMouseEnter={(e) => handleMouseEnter(e)}
+      onMouseLeave={(e) => handleMouseLeave(e)}
+    >
       <span className="project-link__number number">
         <animated.span style={animateInNumber}>
           {setCount(props.count, 2)}.

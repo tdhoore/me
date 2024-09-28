@@ -6,3 +6,13 @@ export const clamp = (number, min, max) => {
 };
 
 export const zeroPad = (num, places) => String(num).padStart(places, "0");
+
+export const getRandomNumber = (min, max) => {
+  return Math.random() * (max - min) + min;
+};
+
+export const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};

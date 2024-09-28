@@ -6,15 +6,12 @@
   }
 
   &:hover {
-    .project-link__number {
-      @apply scale-90;
-    }
-
     .project-link__title {
       @apply text-secondary;
+      -webkit-text-stroke-width: 2px;
 
       &::after {
-        @apply translate-x-0 translate-y-0 opacity-100;
+        //@apply translate-x-0 translate-y-0 opacity-100;
       }
     }
   }
@@ -25,7 +22,9 @@
 }
 
 .project-link__title {
-  @apply relative overflow-hidden transition-colors;
+  @apply relative overflow-hidden transition-all;
+
+  -webkit-text-stroke-color: #5b5b5b;
 
   & span {
     @apply p-2;

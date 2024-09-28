@@ -2,17 +2,110 @@
 import { useSpring, animated } from "@react-spring/web";
 import ProjectLink from "../../components/ProjectLink";
 import ProjectImages from "../../components/ProjectImages";
+import { useState } from "react";
 
 export default function Projects() {
+  const [activeProject, setActiveProject] = useState(0);
+
   const projects = [
     {
       name: "tester",
+      images: [
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+      ],
     },
     {
       name: "tester2",
+      images: [
+        {
+          url: "/test2.png",
+          alt: "Test",
+        },
+        {
+          url: "/test2.png",
+          alt: "Test",
+        },
+        {
+          url: "/test2.png",
+          alt: "Test",
+        },
+        {
+          url: "/test2.png",
+          alt: "Test",
+        },
+        {
+          url: "/test2.png",
+          alt: "Test",
+        },
+        {
+          url: "/test2.png",
+          alt: "Test",
+        },
+        {
+          url: "/test2.png",
+          alt: "Test",
+        },
+      ],
     },
     {
       name: "teste3",
+      images: [
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+        {
+          url: "/test.png",
+          alt: "Test",
+        },
+      ],
     },
   ];
 
@@ -25,7 +118,7 @@ export default function Projects() {
       precision: 0.001,
     },
   });
-
+  console.log(activeProject, projects[activeProject]);
   return (
     <>
       <div className="page-wrapper">
@@ -34,14 +127,20 @@ export default function Projects() {
             {projects.map((project, index) => {
               return (
                 <li key={`Project-${project.name}-${index}`}>
-                  <ProjectLink {...project} count={index} />
+                  <ProjectLink
+                    {...project}
+                    count={index}
+                    setActiveProject={setActiveProject}
+                  />
                 </li>
               );
             })}
           </animated.ul>
         </div>
       </div>
-      <ProjectImages />
+      <ProjectImages
+        images={projects[activeProject] ? projects[activeProject].images : []}
+      />
     </>
   );
 }
