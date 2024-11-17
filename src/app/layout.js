@@ -2,10 +2,10 @@
 import { Archivo } from "next/font/google";
 import "../scss/index.scss";
 import React, { useState } from "react";
-import { Canvas } from "@react-three/fiber";
+
 import { animated, useSpring as useSpringThree } from "@react-spring/three";
 import { animated as a, useSpring } from "@react-spring/web";
-import Scene from "../components/scene";
+import Scene from "../scene";
 import {
   EffectComposer,
   N8AO,
@@ -13,6 +13,7 @@ import {
   DepthOfField,
 } from "@react-three/postprocessing";
 import { usePathname } from "next/navigation";
+import { Physics } from "@react-three/rapier";
 
 const archivo = Archivo({ subsets: [], weight: ["300", "900"] });
 
@@ -71,20 +72,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`bg ${bg} bg--extra ${archivo.className} text-primary`}>
         <main className="relative h-dvh overflow-hidden bg--noise">
-          <Canvas shadows dpr={[1, 1.5]}>
-            <Scene setBg={updateBg} />
-            <animated.hemisphereLight {...bgAnim} position={[-7, 25, 13]} />
-            <animated.directionalLight
-              {...lightAnim}
-              color="#dbe1e0"
-              position={[2.24, 5.29, 4.57]}
-              rotation={[-0.86, 0.31, -1.18]}
-            />
-            <EffectComposer>
-              <N8AO aoRadius={3} distanceFalloff={2} intensity={1} />
-              <Noise opacity={0.01} />
-            </EffectComposer>
-          </Canvas>
+          <Scene />
           {children}
         </main>
       </body>

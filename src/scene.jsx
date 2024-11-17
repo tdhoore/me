@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { Physics, RigidBody, CuboidCollider } from "@react-three/rapier";
+import Player from "./components/Player";
+import { Canvas } from "@react-three/fiber";
+import React, { Suspense } from "react";
+import { Box, KeyboardControls } from "@react-three/drei";
+
+/*import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 import { Gltf, PerspectiveCamera } from "@react-three/drei";
 
 import ProjectScene from "./app/projects/[projectId]/scene";
-import Controller from "./components/Controller";
+import Controller from "./components/Controller";*/
 
 export default function Scene(props) {
   /*const router = useRouter();
@@ -56,17 +61,31 @@ export default function Scene(props) {
     setActivePage(pages.filter((page) => page.url === pathname)[0]);
   }, [pathname]);*/
 
+  const keyboardMap = [
+    { name: "left", keys: ["ArrowUp", "KeyW"] },
+    { name: "right", keys: ["ArrowDown", "KeyS"] },
+    { name: "backward", keys: ["ArrowLeft", "KeyA"] },
+    { name: "forward", keys: ["ArrowRight", "KeyD"] },
+  ];
+
   return (
-    <><group {...props} dispose={null}>
-      <PerspectiveCamera
-        makeDefault={true}
-        far={100}
-        near={0.1}
-        fov={22.895}
-        position={[0, 0.6, 12]}
-        rotation={[-0.04, 0, 0]}
-      />
-    </group></>
+    <Canvas shadows dpr={[1, 1.5]}>
+      <Suspense>
+        <Physics debug>
+          <KeyboardControls map={keyboardMap}>
+            <Player />
+
+            <RigidBody colliders="cuboid" type="fixed">
+              <Box
+                args={[10, 10, 10]}
+                position={[0, -5.5, 0]}
+                material-color="hotpink"
+              />
+            </RigidBody>
+          </KeyboardControls>
+        </Physics>
+      </Suspense>
+    </Canvas>
   );
 }
 /*   <Controller setBg={props.setBg} />*/
