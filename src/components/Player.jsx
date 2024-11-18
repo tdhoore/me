@@ -5,34 +5,50 @@ import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-const SPEED = 5;
-const direction = new THREE.Vector3();
-const frontVector = new THREE.Vector3();
-const sideVector = new THREE.Vector3();
-const rotation = new THREE.Vector3();
+const SPEED = 1;
+const MAX_VEL = 5;
 
 export default function Player(props) {
   const playerRigidBody = useRef();
+  const playerModel = useRef();
+
   const [, get] = useKeyboardControls();
 
   useFrame((state) => {
     if (playerRigidBody.current && typeof get === "function") {
       const { forward, backward, left, right } = get();
+      const impulse = { x: 0, y: 0, z: 0 };
+      let changeRotation = false;
+
       const velocity = playerRigidBody.current.linvel();
 
-      frontVector.set(0, 0, backward - forward);
-      sideVector.set(left - right, 0, 0);
+      if (right && velocity.x < MAX_VEL) {
+        impulse.x += SPEED;
+        changeRotation = true;
+      }
 
-      direction
-        .subVectors(frontVector, sideVector)
-        .normalize()
-        .multiplyScalar(SPEED);
+      if (left && velocity.x > -MAX_VEL) {
+        impulse.x -= SPEED;
+        changeRotation = true;
+      }
 
-      playerRigidBody.current.setLinvel({
-        x: direction.x,
-        y: velocity.y,
-        z: direction.z,
-      });
+      if (backward && velocity.z < MAX_VEL) {
+        impulse.z += SPEED;
+        changeRotation = true;
+      }
+
+      if (forward && velocity.z > -MAX_VEL) {
+        impulse.z -= SPEED;
+        changeRotation = true;
+      }
+
+      playerRigidBody.current.applyImpulse(impulse, true);
+
+      if (changeRotation) {
+        const angle = Math.atan2(velocity.x, velocity.z);
+
+        playerModel.current.rotation.y = angle;
+      }
     }
   });
 
@@ -45,11 +61,12 @@ export default function Player(props) {
       enabledRotations={[false, false, false]}
     >
       <CapsuleCollider args={[0.75, 0.5]}>
-        <Box args={[1, 1, 1]} />
+        <Box args={[1, 1, 1]} ref={playerModel} />
       </CapsuleCollider>
+
       <OrthographicCamera
         makeDefault
-        zoom={100}
+        zoom={30}
         position={[12, 8.738, 6.135]}
         rotation={[-0.959, 0.844, 0.816]}
       />

@@ -74,8 +74,7 @@ export default function Scene(props) {
         <Physics debug>
           <KeyboardControls map={keyboardMap}>
             <Player />
-
-            <RigidBody colliders="cuboid" type="fixed">
+            <RigidBody colliders="cuboid" type="fixed" friction={2}>
               <Box
                 args={[10, 10, 10]}
                 position={[0, -5.5, 0]}
