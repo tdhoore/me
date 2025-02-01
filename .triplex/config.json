@@ -1,5 +1,7 @@
 {
-  "components": ["../src/components/**/*.jsx"],
-  "files": ["../src/**/*.jsx"],
-  "assetsDir": "../public"
+  "$schema": "https://triplex.dev/config.schema.json",
+  "components": ["../src/components/**/*.tsx"],
+  "files": ["../src/**/*.tsx"],
+  "provider": "../src/components/Provider.tsx",
+  "publicDir": "../public"
 }
