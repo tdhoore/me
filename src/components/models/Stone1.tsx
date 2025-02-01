@@ -15,13 +15,13 @@ export default function Stone1({
   return (
     <group position={position} scale={scale} rotation={rotation} dispose={null}>
       <group position={[0, 0, 0]}>
-        <instancedMesh
+        <mesh
           castShadow
           receiveShadow
           geometry={nodes.Plane011.geometry}
           material={materials["stone.001"]}
         />
-        <instancedMesh
+        <mesh
           castShadow
           receiveShadow
           geometry={nodes.Plane011_1.geometry}

@@ -15,11 +15,11 @@ export function Scene() {
   return (
     <>
       <Physics debug>
-        <Stone1 position={[7.04, -0.24, 5.74]} />
+        <KeyboardControls map={keyboardMap}>
+          <Stone1 position={[7.04, -0.24, 5.74]} />
+          <Stone1 position={[11.74, 1.28, 9.94]} scale={[1.82, 0.6, 1]} />
+        </KeyboardControls>
       </Physics>
     </>
   );
 }
-/*   <KeyboardControls map={keyboardMap}>
-          <Stone1 />{/*<Player />}
-          </KeyboardControls>*/
