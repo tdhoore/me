@@ -1,7 +1,7 @@
 import { Physics, RigidBody } from "@react-three/rapier";
 import { KeyboardControls } from "@react-three/drei";
-import Stone1 from "./models/Stone1";
-import Stone1Instances from "./models/Stone1Instances";
+
+import Stone1, { Stone1Instances } from "./models/Stone1";
 import React from "react";
 
 export function Scene() {
@@ -16,9 +16,10 @@ export function Scene() {
     <>
       <Physics debug>
         <KeyboardControls map={keyboardMap}>
-          <Stone1 position={[7.04, -0.24, 5.74]} />
-          <Stone1 position={[11.74, 1.28, 9.94]} scale={[1.82, 0.6, 1]} />
-        </KeyboardControls>
+          <Stone1Instances>
+            <Stone1 position={[3.14, 0, -3.12]} scale={[1.46, 0.42, 1]} rotation={[0, -0.47123889803846897, 0]} />
+          </Stone1Instances>
+        </KeyboardControls>{" "}
       </Physics>
     </>
   );

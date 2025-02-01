@@ -12,10 +12,10 @@ export default function Player() {
   const playerRigidBody = useRef();
   const playerModel = useRef();
 
-  const [, get] = useKeyboardControls();
+  // const [, get] = useKeyboardControls();
 
   useFrame((state) => {
-    if (playerRigidBody.current && typeof get === "function") {
+    /*if (playerRigidBody.current && typeof get === "function") {
       const { forward, backward, left, right } = get();
       const impulse = { x: 0, y: 0, z: 0 };
       let changeRotation = false;
@@ -50,7 +50,7 @@ export default function Player() {
         //@ts-ignore
         playerModel.current.rotation.y = angle;
       }
-    }
+    }*/
   });
 
   return (
