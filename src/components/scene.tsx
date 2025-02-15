@@ -3,6 +3,8 @@ import { KeyboardControls } from "@react-three/drei";
 
 import Stone1, { Stone1Instances } from "./models/Stone1";
 import React from "react";
+import GrassStone1, { GrassStone1Instances } from "./models/GrassStone1";
+import GrassStone2, { GrassStone2Instances } from "./models/GrassStone2";
 
 export function Scene() {
   const keyboardMap = [
@@ -16,10 +18,13 @@ export function Scene() {
     <>
       <Physics debug>
         <KeyboardControls map={keyboardMap}>
-          <Stone1Instances>
-            <Stone1 position={[3.14, 0, -3.12]} scale={[1.46, 0.42, 1]} rotation={[0, -0.47123889803846897, 0]} />
-          </Stone1Instances>
-        </KeyboardControls>{" "}
+          <GrassStone1Instances>
+            <GrassStone2Instances>
+              <GrassStone2 /><GrassStone1 />
+            </GrassStone2Instances>
+          </GrassStone1Instances>
+
+        </KeyboardControls>
       </Physics>
     </>
   );

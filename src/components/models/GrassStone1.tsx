@@ -1,11 +1,12 @@
-import React, { useMemo, useContext, createContext } from "react";
 import { useGLTF, Merged } from "@react-three/drei";
-import { type Vector3Tuple } from "three";
+import React, { createContext, useContext, useMemo } from "react";
+import { Group } from "three";
 
 const context = createContext();
 
-export function Stone1Instances({ children, ...props }) {
-  const { nodes } = useGLTF("assets/stone1.glb");
+export function GrassStone1Instances({ children, ...props }) {
+  const { nodes } = useGLTF("/assets/grass-stone1.glb");
+  console.log("nodes", nodes);
   const instances = useMemo(
     () => ({
       Plane: nodes.Plane011,
@@ -23,23 +24,15 @@ export function Stone1Instances({ children, ...props }) {
   );
 }
 
-export default function Stone1({
-  position = [0, 0, 0],
-  rotation = [0, 0, 0],
-  scale = [1, 1, 1],
-}: {
-  position?: Vector3Tuple;
-  rotation?: Vector3Tuple;
-  scale?: Vector3Tuple;
-}) {
+export default function GrassStone1(props: any) {
   const instances = useContext(context);
   console.log(instances);
   return (
-    <group position={position} scale={scale} rotation={rotation} dispose={null}>
+    <group {...props} dispose={null}>
       <instances.Plane />
       <instances.Plane1 />
     </group>
   );
 }
 
-useGLTF.preload("assets/stone1.glb");
+useGLTF.preload("assets/grass-stone1.glb");
