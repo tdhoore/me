@@ -1,6 +1,7 @@
 import { Physics, RigidBody } from "@react-three/rapier";
-import { KeyboardControls } from "@react-three/drei";
-import Terrain from "./Terrain";
+import { KeyboardControls, PerspectiveCamera } from "@react-three/drei";
+import Slider from "./Slider";
+import Land from "./Land";
 
 export function Scene() {
   const keyboardMap = [
@@ -14,7 +15,14 @@ export function Scene() {
     <>
       <Physics debug>
         <KeyboardControls map={keyboardMap}>
-          <Terrain />
+          <PerspectiveCamera
+            makeDefault
+            position={[22.93, 25.361, 21.392]}
+            rotation={[-0.851, 0.617, 0.584]}
+            isPerspectiveCamera={false}
+          />
+          <Slider />
+          <Land />
         </KeyboardControls>
       </Physics>
     </>

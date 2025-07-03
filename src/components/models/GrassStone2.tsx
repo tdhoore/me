@@ -1,11 +1,11 @@
 import React, { useRef, useMemo, useContext, createContext } from "react";
 import { useGLTF, Merged } from "@react-three/drei";
 
-const context = createContext();
+const context = createContext(null);
 
-export function GrassStone2Instances({ children, ...props }) {
+export function GrassStone2Instances({ children }: any) {
   const { nodes } = useGLTF("/assets/grass-stone2.glb");
-  console.log("nodes", nodes.Cube053);
+
   const instances = useMemo(
     () => ({
       Cube: nodes.Cube053,
@@ -14,8 +14,8 @@ export function GrassStone2Instances({ children, ...props }) {
     [nodes]
   );
   return (
-    <Merged meshes={instances} {...props}>
-      {(instances) => (
+    <Merged meshes={instances}>
+      {(instances: any) => (
         <context.Provider value={instances} children={children} />
       )}
     </Merged>
@@ -24,7 +24,7 @@ export function GrassStone2Instances({ children, ...props }) {
 
 export default function GrassStone2(props) {
   const instances = useContext(context);
-  console.log(instances);
+
   return (
     <group {...props} dispose={null}>
       <instances.Cube />

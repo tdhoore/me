@@ -1,12 +1,11 @@
 import { useGLTF, Merged } from "@react-three/drei";
 import React, { createContext, useContext, useMemo } from "react";
-import { Group } from "three";
 
-const context = createContext();
+const context = createContext(null);
 
-export function GrassStone1Instances({ children, ...props }) {
+export function GrassStone1Instances({ children }: any) {
   const { nodes } = useGLTF("/assets/grass-stone1.glb");
-  console.log("nodes", nodes);
+
   const instances = useMemo(
     () => ({
       Plane: nodes.Plane011,
@@ -16,8 +15,8 @@ export function GrassStone1Instances({ children, ...props }) {
   );
 
   return (
-    <Merged meshes={instances} {...props}>
-      {(instances) => (
+    <Merged meshes={instances}>
+      {(instances: any) => (
         <context.Provider value={instances} children={children} />
       )}
     </Merged>
@@ -26,7 +25,7 @@ export function GrassStone1Instances({ children, ...props }) {
 
 export default function GrassStone1(props: any) {
   const instances = useContext(context);
-  console.log(instances);
+
   return (
     <group {...props} dispose={null}>
       <instances.Plane />
