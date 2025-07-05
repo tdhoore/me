@@ -1,28 +1,40 @@
 import * as THREE from "three";
 import React, { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
-import { GLTF } from "three-stdlib";
-
-type GLTFResult = GLTF & {
-  nodes: {
-    sea: THREE.Mesh;
-  };
-  materials: {
-    ["Material.008"]: THREE.MeshStandardMaterial;
-  };
-};
+import waterVertexShader from "../../shaders/water/vertex.glsl";
+import waterFragmentShader from "../../shaders/water/fragment.glsl";
+import { useFrame } from "@react-three/fiber";
+import CustomShaderMaterial from "three-custom-shader-material";
 
 export function Sea(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/assets/sea.glb") as GLTFResult;
+  const materialRef = useRef(null);
+
+  useFrame(({ clock }) => {
+    if (!materialRef.current) return;
+    materialRef.current.uniforms.uTime.value = clock.getElapsedTime();
+  });
+
   return (
     <group {...props} dispose={null}>
       <mesh
-        geometry={nodes.sea.geometry}
-        material={materials["Material.008"]}
         position={[-45.889, 0, -46.827]}
-      />
+        rotation={[-Math.PI / 2, 0, 0]}
+        receiveShadow
+        castShadow
+      >
+        <planeGeometry args={[256, 256]} />
+        <CustomShaderMaterial
+          ref={materialRef}
+          baseMaterial={THREE.MeshPhysicalMaterial}
+          vertexShader={waterVertexShader}
+          fragmentShader={waterFragmentShader}
+          uniforms={{
+            uTime: { value: 0 },
+            uWaveSpeed: { value: 1 },
+            uWaveAmplitude: { value: 0.01 },
+          }}
+          color="#60CDE6"
+        />
+      </mesh>
     </group>
   );
 }
-
-useGLTF.preload("/assets/sea.glb");

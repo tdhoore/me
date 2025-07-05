@@ -1,4 +1,5 @@
 varying vec3 vPosition;
+varying vec3 csm_vPositionW;
 
 void main() {
 

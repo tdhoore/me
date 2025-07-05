@@ -17,7 +17,7 @@ export function Scene() {
         <KeyboardControls map={keyboardMap}>
           <PerspectiveCamera
             makeDefault
-            position={[22.93, 25.361, 21.392]}
+            position={[10, 10, 10]}
             rotation={[-0.851, 0.617, 0.584]}
             isPerspectiveCamera={false}
           />

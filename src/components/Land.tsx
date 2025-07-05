@@ -15,20 +15,24 @@ export default function Land(props) {
         <group {...props}>
           <Bush position={[0.06, 0.57, -0.83]} />
           <Sea
-            receiveShadow={false}
+            receiveShadow={true}
             castShadow={true}
             frustumCulled={false}
             visible={true}
           />
           <Terrain />
           <Ruin position={[3.09, 0, 0]} />
-          <Tower position={[0, 0, -5.11]} castShadow={true} receiveShadow={true} />
+          <Tower
+            position={[0, 0, -5.11]}
+            castShadow={true}
+            receiveShadow={true}
+          />
           <Well position={[-15.68, 0, -9.87]} />
           <Tree position={[-16.1, 0, -3.48]} />
           <ambientLight
             position={[0, 2.38, 0]}
-            color={"#8fd2f7"}
-            intensity={2.52}
+            color={"#a2cfe6"}
+            intensity={1.66}
             castShadow={false}
             isAmbientLight={true}
             isLight={true}
@@ -39,7 +43,9 @@ export default function Land(props) {
             color={"#fffbe6"}
             isLight={true}
             isDirectionalLight={true}
-            intensity={2.9} castShadow={true} frustumCulled={false}
+            intensity={4.32}
+            castShadow={true}
+            frustumCulled={false}
           />
         </group>
       </ModelProvider>
