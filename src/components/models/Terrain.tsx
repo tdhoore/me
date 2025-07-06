@@ -6,6 +6,7 @@ import CustomShaderMaterial from "three-custom-shader-material";
 import terrainVertexShader from "../../shaders/terrain/vertex.glsl";
 import terrainFragmentShader from "../../shaders/terrain/fragment.glsl";
 import { useFrame } from "@react-three/fiber";
+import { Grass } from "./Grass";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -30,11 +31,10 @@ export function Terrain(props: JSX.IntrinsicElements["group"]) {
     <group {...props} dispose={null}>
       <mesh
         ref={mesh}
-        castShadow
-        receiveShadow
         geometry={nodes.Plane001.geometry}
         position={[0.015, -0.158, 0.435]}
         scale={[1.385, 0.192, 1.385]}
+        receiveShadow
       >
         <CustomShaderMaterial
           ref={materialRef}
@@ -44,7 +44,7 @@ export function Terrain(props: JSX.IntrinsicElements["group"]) {
           uniforms={{
             uTime: { value: 0 },
             uSandColor: { value: new THREE.Color("#EDE9D9") },
-            uGrassColor: { value: new THREE.Color("#61CF82") },
+            uGrassColor: { value: new THREE.Color("#55cd62") },
             uWaterLevel: { value: 0.001 },
             uWaveSpeed: { value: 1 },
             uWaveAmplitude: { value: 0.01 },
@@ -52,13 +52,6 @@ export function Terrain(props: JSX.IntrinsicElements["group"]) {
           }}
         />
       </mesh>
-
-      <Sampler count={5000} mesh={mesh}>
-        <instancedMesh args={[null, null, 5000]}>
-          <sphereGeometry args={[0.15, 32, 32]} />
-          <meshStandardMaterial color="blue" />
-        </instancedMesh>
-      </Sampler>
     </group>
   );
 }

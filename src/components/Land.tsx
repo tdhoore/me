@@ -7,6 +7,9 @@ import React from "react";
 import ModelProvider from "./ModelProvider";
 import { Sea } from "./models/Sea";
 import { Terrain } from "./models/Terrain";
+import { Environment, SoftShadows, Sphere } from "@react-three/drei";
+import { LayerMaterial, Depth } from "lamina";
+import * as THREE from "three";
 
 export default function Land(props) {
   return (
@@ -32,23 +35,27 @@ export default function Land(props) {
           <ambientLight
             position={[0, 2.38, 0]}
             color={"#a2cfe6"}
-            intensity={1.66}
-            castShadow={false}
-            isAmbientLight={true}
-            isLight={true}
-            visible={true}
+            intensity={1}
           />
           <directionalLight
             position={[5.47, 8.53, -7.3]}
             color={"#fffbe6"}
-            isLight={true}
-            isDirectionalLight={true}
-            intensity={4.32}
-            castShadow={true}
-            frustumCulled={false}
-          />
+            intensity={4.2}
+            castShadow
+            shadow-mapSize={[1024, 1024]}
+            shadow-radius={500000}
+          >
+            <orthographicCamera
+              attach="shadow-camera"
+              args={[-10, 10, 10, -10]}
+            />
+          </directionalLight>
+          <SoftShadows size={50} samples={15} />
+
+          <Environment preset="park" environmentIntensity={0.5} />
         </group>
       </ModelProvider>
     </>
   );
 }
+//a2cfe6

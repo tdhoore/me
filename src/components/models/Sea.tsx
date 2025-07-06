@@ -31,6 +31,7 @@ export function Sea(props: JSX.IntrinsicElements["group"]) {
             uTime: { value: 0 },
             uWaveSpeed: { value: 1 },
             uWaveAmplitude: { value: 0.01 },
+            uColor: { value: new THREE.Color("#60CDE6") },
           }}
           color="#60CDE6"
         />

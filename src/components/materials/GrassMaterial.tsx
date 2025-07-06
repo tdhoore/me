@@ -7,36 +7,50 @@ import grassFragmentShader from "../../shaders/grass/fragment.glsl";
 import { useTexture } from "@react-three/drei";
 
 export function GrassMaterial() {
-  const [grassAlpha, perlinNoise] = useTexture([
-    "assets/grass.jpeg",
-    "assets/perlinnoise.webp",
-  ]);
   const materialRef = useRef(null);
+
+  const [grassAlpha, perlinNoise] = useTexture(
+    ["assets/grass.jpeg", "assets/perlinnoise.webp"],
+    (loadedTextures) => {
+      if (materialRef.current) {
+        materialRef.current.uniforms.uNoiseTexture = loadedTextures[1];
+      }
+    }
+  );
 
   useFrame(({ clock }) => {
     if (!materialRef.current) return;
     materialRef.current.uniforms.uTime.value = clock.getElapsedTime();
   });
 
+  if (grassAlpha) {
+    grassAlpha.rotation = Math.PI;
+  }
+  console.log(perlinNoise);
   return (
     <CustomShaderMaterial
       ref={materialRef}
       baseMaterial={THREE.MeshPhysicalMaterial}
       vertexShader={grassVertexShader}
       fragmentShader={grassFragmentShader}
+      map={grassAlpha}
       uniforms={{
         uTime: { value: 0 },
         uEnableShadows: { value: true },
         uShadowDarkness: { value: 0.5 },
-        uGrassLightIntensity: { value: 1 },
-        uNoiseScale: { value: 1.5 },
+        uGrassLightIntensity: { value: 2 },
+        uNoiseScale: { value: 0.05 },
         uPlayerPosition: { value: new THREE.Vector3() },
-        baseColor: { value: new THREE.Color("#313f1b") },
-        tipColor1: { value: new THREE.Color("#9bd38d") },
-        tipColor2: { value: new THREE.Color("#1f352a") },
-        noiseTexture: { value: perlinNoise },
-        grassAlphaTexture: { value: grassAlpha },
+        uBaseColor: { value: new THREE.Color("#313f1b") },
+        uTipColor1: { value: new THREE.Color("#9bd38d") },
+        uTipColor2: { value: new THREE.Color("#1f352a") },
+        uNoiseTexture: { value: new THREE.Texture() },
       }}
+      side={THREE.DoubleSide}
+      transparent
+      shadowSide={1}
+      color="#313f1b"
+      alphaTest={0.1}
     />
   );
 }

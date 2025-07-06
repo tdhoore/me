@@ -1,8 +1,8 @@
  // FOG
-      #include <common>
-      #include <fog_pars_vertex>
+     //#include <common>
+      //#include <fog_pars_vertex>
       // FOG
-      #include <shadowmap_pars_vertex>
+     // #include <shadowmap_pars_vertex>
       uniform sampler2D uNoiseTexture;
       uniform float uNoiseScale;
       uniform float uTime;
@@ -10,23 +10,23 @@
       varying vec3 vColor;
       varying vec2 vGlobalUV;
       varying vec2 vUv;
-      varying vec3 vNormal;
-      varying vec3 vViewPosition;
+      //varying vec3 vNormal;
+      //varying vec3 vViewPosition;
       varying vec2 vWindColor;
       void main() {
-        #include <color_vertex>
+       // #include <color_vertex>
         
         // FOG
-        #include <begin_vertex>
-        #include <project_vertex>
-        #include <fog_vertex>
+       // #include <begin_vertex>
+        //#include <project_vertex>
+        //#include <fog_vertex>
         // FOG
         
         // SHADOW
-        #include <beginnormal_vertex>
-        #include <defaultnormal_vertex>
-        #include <worldpos_vertex>
-        #include <shadowmap_vertex>
+        //#include <beginnormal_vertex>
+        //#include <defaultnormal_vertex>
+        //#include <worldpos_vertex>
+        //#include <shadowmap_vertex>
         // SHADOW
 
         // wind effect
@@ -40,7 +40,7 @@
         vec2 windDirection = normalize(uWindDirection); // Normalize the wind direction
         vec4 modelPosition = modelMatrix * instanceMatrix * vec4(position, 1.0);
 
-        float terrainSize = 100.;
+        float terrainSize = 100.0;
         vGlobalUV = (terrainSize-vec2(modelPosition.xz))/terrainSize;
 
         vec4 noise = texture2D(uNoiseTexture,vGlobalUV+uTime*uNoiseSpeed);
@@ -63,5 +63,5 @@
         vUv = vec2(uv.x,1.-uv.y);
         vNormal = normalize(normalMatrix * normal);
         vWindColor = vec2(xDisp,zDisp);
-        vViewPosition = mvPosition.xyz;
+        //vViewPosition = mvPosition.xyz;
       }    

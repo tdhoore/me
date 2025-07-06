@@ -1,7 +1,10 @@
 import * as THREE from "three";
-import React, { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import React, { useMemo, useRef } from "react";
+import { Detailed, useGLTF, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+//import { GrassMaterial } from "../materials/GrassMaterial";
+import { GrassMaterial } from "../materials/TestGrass";
+import CustomShaderMaterial from "three-custom-shader-material";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -12,25 +15,35 @@ type GLTFResult = GLTF & {
   materials: {};
 };
 
-export function Model(props: JSX.IntrinsicElements["group"]) {
-  const { nodes } = useGLTF("/grassLODs.glb") as GLTFResult;
+export function Grass(props: JSX.IntrinsicElements["group"]) {
+  const { nodes } = useGLTF("assets/grassLODs.glb") as GLTFResult;
+
+  const grassMat = useMemo(() => new GrassMaterial(), []);
+  const [grassAlpha, perlinNoise] = useTexture(
+    ["assets/grass.jpeg", "assets/perlinnoise.webp"],
+    (loadedTextures) => {
+      grassMat.setupTextures(loadedTextures[0], loadedTextures[1]);
+    }
+  );
+
+  console.log(grassMat);
   return (
-    <group {...props} dispose={null}>
-      <mesh castShadow receiveShadow geometry={nodes.GrassLOD00.geometry} />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.GrassLOD01.geometry}
-        position={[-0.363, 0, 0]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.GrassLOD02.geometry}
-        position={[-0.743, 0, 0]}
-      />
-    </group>
+    <instancedMesh
+      args={[null, null, 200000]}
+      castShadow
+      receiveShadow
+      geometry={nodes.GrassLOD00.geometry}
+      {...props}
+      material={grassMat.material}
+    >
+      <CustomShaderMaterial baseMaterial={grassMat.material} />
+    </instancedMesh>
   );
 }
 
-useGLTF.preload("/grassLODs.glb");
+useGLTF.preload("assets/grassLODs.glb");
+/*    <Detailed distances={[0, 10, 20]}>
+      <mesh castShadow receiveShadow geometry={nodes.GrassLOD00.geometry} />
+      <mesh castShadow receiveShadow geometry={nodes.GrassLOD01.geometry} />
+      <mesh castShadow receiveShadow geometry={nodes.GrassLOD02.geometry} />
+    </Detailed>*/
