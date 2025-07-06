@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import React, { useRef } from "react";
-import { Sampler, useGLTF } from "@react-three/drei";
+import { Sampler, useGLTF, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import CustomShaderMaterial from "three-custom-shader-material";
 import terrainVertexShader from "../../shaders/terrain/vertex.glsl";
@@ -19,6 +19,8 @@ type GLTFResult = GLTF & {
 
 export function Terrain(props: JSX.IntrinsicElements["group"]) {
   const { nodes } = useGLTF("/assets/terrain.glb") as GLTFResult;
+  const [grass] = useTexture(["assets/textures/grass.PNG"]);
+
   const mesh = useRef(null);
   const materialRef = useRef(null);
 
@@ -49,6 +51,7 @@ export function Terrain(props: JSX.IntrinsicElements["group"]) {
             uWaveSpeed: { value: 1 },
             uWaveAmplitude: { value: 0.01 },
             uFoamDepth: { value: 0.002 },
+            uGrassTexture: { value: grass },
           }}
         />
       </mesh>
