@@ -35,12 +35,12 @@ export default function Land(props) {
           <ambientLight
             position={[0, 2.38, 0]}
             color={"#a2cfe6"}
-            intensity={1}
+            intensity={1.5}
           />
           <directionalLight
             position={[5.47, 8.53, -7.3]}
             color={"#fffbe6"}
-            intensity={4.2}
+            intensity={5.2}
             castShadow
             shadow-mapSize={[1024, 1024]}
             shadow-radius={500000}
@@ -50,9 +50,9 @@ export default function Land(props) {
               args={[-10, 10, 10, -10]}
             />
           </directionalLight>
-          <SoftShadows size={50} samples={15} />
+          <SoftShadows size={20} samples={15} />
 
-          <Environment preset="park" environmentIntensity={0.5} />
+          <Environment preset="park" environmentIntensity={0.1} />
         </group>
       </ModelProvider>
     </>
