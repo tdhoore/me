@@ -1,14 +1,10 @@
-varying vec2 csm_vUv;
+varying vec2 vUv;
 
 uniform float uTime;
 uniform float uWaveSpeed;
 uniform float uWaveAmplitude;
 
 void main() {
-  
-  // Send the uv coordinates to fragmentShader
-  csm_vUv = uv;
-
   // Modify the y position based on sine function, oscillating up and down over time
   float sineOffset = sin(uTime * uWaveSpeed) * uWaveAmplitude;
 
@@ -17,5 +13,6 @@ void main() {
   modifiedPosition.z += sineOffset; // z used as y because element is rotated
   
   csm_Position = modifiedPosition;
-  
+  // Send the uv coordinates to fragmentShader
+  vUv = uv;
 }

@@ -14,7 +14,10 @@ export function Sea(props: JSX.IntrinsicElements["group"]) {
   });
 
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+    >
       <mesh
         position={[-45.889, 0, -46.827]}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -32,6 +35,7 @@ export function Sea(props: JSX.IntrinsicElements["group"]) {
             uWaveSpeed: { value: 1 },
             uWaveAmplitude: { value: 0.01 },
             uColor: { value: new THREE.Color("#60CDE6") },
+            uAccentColor: { value: new THREE.Color("#60e679") },
           }}
           color="#60CDE6"
         />
