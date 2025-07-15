@@ -28,7 +28,7 @@ export function Terrain(props: JSX.IntrinsicElements["group"]) {
     if (!materialRef.current) return;
     materialRef.current.uniforms.uTime.value = clock.getElapsedTime();
   });
-
+  //EDE9D9
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -45,7 +45,7 @@ export function Terrain(props: JSX.IntrinsicElements["group"]) {
           fragmentShader={terrainFragmentShader}
           uniforms={{
             uTime: { value: 0 },
-            uSandColor: { value: new THREE.Color("#EDE9D9") },
+            uSandColor: { value: new THREE.Color("#fef8e0") },
             uGrassColor: { value: new THREE.Color("#55cd62") },
             uWaterLevel: { value: 0.001 },
             uWaveSpeed: { value: 1 },
@@ -60,13 +60,3 @@ export function Terrain(props: JSX.IntrinsicElements["group"]) {
 }
 
 useGLTF.preload("/assets/terrain.glb");
-
-/* <shaderMaterial
-          vertexShader={terrainVertexShader}
-          fragmentShader={terrainFragmentShader}
-          uniforms={{
-            uSandColor: { value: new THREE.Color("#EDE9D9") },
-            uGrassColor: { value: new THREE.Color("#61CF82") },
-          }}
-        />*/
-/*       */

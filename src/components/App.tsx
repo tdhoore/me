@@ -5,7 +5,7 @@ import { Scene } from "./scene";
 
 export default function App() {
   return (
-    <Canvas shadows>
+    <Canvas shadows="soft">
       <Scene />
     </Canvas>
   );

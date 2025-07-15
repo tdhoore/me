@@ -26,7 +26,7 @@ export function GrassMaterial() {
   if (grassAlpha) {
     grassAlpha.rotation = Math.PI;
   }
-  console.log(perlinNoise);
+
   return (
     <CustomShaderMaterial
       ref={materialRef}

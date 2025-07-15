@@ -27,7 +27,7 @@ const leafsMaterial = new CustomShaderMaterial({
   uniforms: {
     uTime: { value: 0 },
     uWindStrenght: { value: 0.15 },
-    uColor: { value: new THREE.Color("#55cd62") },
+    uColor: { value: new THREE.Color("#45c952") },
   },
   transparent: true,
   transmission: 0,
@@ -53,7 +53,10 @@ const barkMaterial = new CustomShaderMaterial({
 
 export function TreeInstances({ children, ...props }) {
   const { nodes } = useGLTF("/assets/tree.glb") as GLTFResult;
-  const [leafsTexture, barkTexture] = useTexture(["assets/textures/T_leaf.png", "assets/textures/T_bark_birch.png"]);
+  const [leafsTexture, barkTexture] = useTexture([
+    "assets/textures/T_leaf.png",
+    "assets/textures/T_bark_birch.png",
+  ]);
 
   const instances = useMemo(() => {
     leafsMaterial.alphaMap = leafsTexture;
@@ -74,15 +77,9 @@ export function TreeInstances({ children, ...props }) {
   });
 
   return (
-    <Merged
-      meshes={instances}
-      {...props}
-    >
+    <Merged meshes={instances} {...props} receiveShadow castShadow>
       {(instances) => (
-        <context.Provider
-          value={instances}
-          children={children}
-        />
+        <context.Provider value={instances} children={children} />
       )}
     </Merged>
   );
@@ -91,10 +88,7 @@ export function TreeInstances({ children, ...props }) {
 export function Tree(props: JSX.IntrinsicElements["group"]) {
   const instances = useContext(context);
   return (
-    <group
-      {...props}
-      dispose={null}
-    >
+    <group {...props} dispose={null}>
       <group rotation={[0.062, 0.002, 0.002]}>
         <instances.BzierCurve />
         <instances.BzierCurve1 />

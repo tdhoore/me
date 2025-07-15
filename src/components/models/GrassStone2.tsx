@@ -14,7 +14,7 @@ export function GrassStone2Instances({ children }: any) {
     [nodes]
   );
   return (
-    <Merged meshes={instances}>
+    <Merged meshes={instances} receiveShadow castShadow>
       {(instances: any) => (
         <context.Provider value={instances} children={children} />
       )}

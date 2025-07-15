@@ -26,7 +26,6 @@ export function Grass(props: JSX.IntrinsicElements["group"]) {
     }
   );
 
-  console.log(grassMat);
   return (
     <instancedMesh
       args={[null, null, 200000]}

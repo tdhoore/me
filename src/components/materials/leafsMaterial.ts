@@ -7,10 +7,14 @@ export const leafsMaterial = new CustomShaderMaterial({
   baseMaterial: THREE.MeshPhysicalMaterial,
   vertexShader: leafsVertexShader,
   fragmentShader: leafsFragmentShader,
-  uniforms: { uTime: { value: 0 }, uColor: { value: new THREE.Color("#55cd62") } },
+  uniforms: {
+    uTime: { value: 0 },
+    uColor: { value: new THREE.Color(" #2f9e4a") },
+  },
   transparent: true,
   transmission: 0,
   thickness: 0.004,
   metalness: 0,
   alphaTest: 0.1,
 });
+//#55cd62

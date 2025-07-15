@@ -26,7 +26,7 @@ const leafsMaterial = new CustomShaderMaterial({
   uniforms: {
     uTime: { value: 0 },
     uWindStrenght: { value: 1 },
-    uColor: { value: new THREE.Color("#55cd62") },
+    uColor: { value: new THREE.Color("#45c952") },
   },
   transparent: true,
   transmission: 0,
@@ -54,15 +54,9 @@ export function BushInstances({ children, ...props }) {
   });
 
   return (
-    <Merged
-      meshes={instances}
-      {...props}
-    >
+    <Merged meshes={instances} {...props} receiveShadow castShadow>
       {(instances) => (
-        <context.Provider
-          value={instances}
-          children={children}
-        />
+        <context.Provider value={instances} children={children} />
       )}
     </Merged>
   );
@@ -72,10 +66,7 @@ export function Bush(props: JSX.IntrinsicElements["group"]) {
   const instances = useContext(context);
 
   return (
-    <group
-      {...props}
-      dispose={null}
-    >
+    <group {...props} dispose={null}>
       <instances.Bush scale={0.3}>
         <meshBasicMaterial color="red" />
       </instances.Bush>

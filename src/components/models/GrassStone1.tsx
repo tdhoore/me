@@ -1,11 +1,22 @@
+import * as THREE from "three";
+import React, { useRef, useMemo, useContext, createContext } from "react";
 import { useGLTF, Merged } from "@react-three/drei";
-import React, { createContext, useContext, useMemo } from "react";
+import { GLTF } from "three-stdlib";
 
-const context = createContext(null);
+type GLTFResult = GLTF & {
+  nodes: {
+    Plane011: THREE.Mesh;
+    Plane011_1: THREE.Mesh;
+  };
+  materials: {
+    stone: THREE.MeshStandardMaterial;
+    Grass: THREE.MeshStandardMaterial;
+  };
+};
 
-export function GrassStone1Instances({ children }: any) {
-  const { nodes } = useGLTF("/assets/grass-stone1.glb");
-
+const context = createContext();
+export function GrassStone1Instances({ children, ...props }) {
+  const { nodes } = useGLTF("/assets/grass-stone1.glb") as GLTFResult;
   const instances = useMemo(
     () => ({
       Plane: nodes.Plane011,
@@ -13,19 +24,17 @@ export function GrassStone1Instances({ children }: any) {
     }),
     [nodes]
   );
-
   return (
-    <Merged meshes={instances}>
-      {(instances: any) => (
+    <Merged meshes={instances} {...props} receiveShadow castShadow>
+      {(instances) => (
         <context.Provider value={instances} children={children} />
       )}
     </Merged>
   );
 }
 
-export default function GrassStone1(props: any) {
+export function GrassStone1(props: JSX.IntrinsicElements["group"]) {
   const instances = useContext(context);
-
   return (
     <group {...props} dispose={null}>
       <instances.Plane />
@@ -34,4 +43,4 @@ export default function GrassStone1(props: any) {
   );
 }
 
-useGLTF.preload("assets/grass-stone1.glb");
+useGLTF.preload("/assets/grass-stone1.glb");
