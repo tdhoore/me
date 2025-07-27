@@ -7,6 +7,7 @@ import { TowerInstances } from "./models/Tower";
 import { RuinInstances } from "./models/Ruin";
 import { TreeInstances } from "./models/Tree";
 import { WellInstances } from "./models/Well";
+import { IslandInstances } from "./models/Island";
 
 const providers: FC[] = [
   GrassStone1Instances,
@@ -16,6 +17,7 @@ const providers: FC[] = [
   RuinInstances,
   TreeInstances,
   WellInstances,
+  IslandInstances,
 ];
 
 export default combineComponents(providers);
