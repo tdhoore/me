@@ -23,7 +23,7 @@ export default function HitBoxes(props: JSX.IntrinsicElements["group"]) {
       <RigidBody>
         <Box args={[0.1, 0.1, 0.1]} position={[-0.287, 3.057, 0.374]} />
       </RigidBody>
-      <RigidBody type="fixed" includeInvisible>
+      <RigidBody type="fixed" includeInvisible friction={5}>
         <MeshCollider type="trimesh">
           <mesh
             visible={false}
@@ -31,8 +31,8 @@ export default function HitBoxes(props: JSX.IntrinsicElements["group"]) {
             receiveShadow
             geometry={nodes.Cube050.geometry}
             material={nodes.Cube050.material}
-            position={[0.577, 0.954, 0.34]}
-            scale={[0.139, 0.049, 0.007]}
+            position={[13.26, 21.923, 7.808]}
+            scale={[3.188, 1.135, 0.161]}
           />
         </MeshCollider>
       </RigidBody>

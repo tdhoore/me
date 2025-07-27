@@ -56,7 +56,6 @@ type GLTFResult = GLTF & {
     Cube024: THREE.Mesh;
     Cube025: THREE.Mesh;
     Plane001: THREE.Mesh;
-    Plane017: THREE.Mesh;
     Cube027: THREE.Mesh;
     Cube029: THREE.Mesh;
     Cube010: THREE.Mesh;
@@ -164,7 +163,6 @@ export function IslandInstances({ children, ...props }) {
       Cube5: nodes.Cube024,
       Cube6: nodes.Cube025,
       Plane4: nodes.Plane001,
-      Plane5: nodes.Plane017,
       Cube7: nodes.Cube027,
       Cube8: nodes.Cube029,
       Cube9: nodes.Cube010,
@@ -200,13 +198,13 @@ export function IslandInstances({ children, ...props }) {
       Cube36: nodes.Cube036_1,
       Cube37: nodes.Cube036_2,
       Cube38: nodes.Cube036_3,
-      Plane6: nodes.Plane004,
-      Plane7: nodes.Plane008,
-      Plane8: nodes.Plane009,
+      Plane5: nodes.Plane004,
+      Plane6: nodes.Plane008,
+      Plane7: nodes.Plane009,
       Plant: nodes.plant,
       BzierCurve: nodes.BézierCurve008,
       BzierCurve1: nodes.BézierCurve008_1,
-      Plane9: nodes.Plane010,
+      Plane8: nodes.Plane010,
     }),
     [nodes]
   );
@@ -228,522 +226,526 @@ export function Island(props: JSX.IntrinsicElements["group"]) {
         far={100}
         near={0.1}
         fov={22.895}
-        position={[7.831, 5.934, 6.61]}
+        position={[179.992, 136.388, 151.939]}
         rotation={[-0.639, 0.773, 0.479]}
+        scale={22.985}
       />
       <group
-        position={[-0.973, 0, 0.964]}
+        position={[-22.372, 0, 22.167]}
         rotation={[0, -0.572, 0]}
-        scale={0.232}
+        scale={5.324}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[-0.41, 0, 1.218]}
+        position={[-9.429, 0, 28.003]}
         rotation={[-Math.PI, 0.557, -Math.PI]}
-        scale={[0.264, 0.093, 0.264]}
+        scale={[6.07, 2.138, 6.07]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[-0.427, 0.318, 0.847]}
+        position={[-9.823, 7.317, 19.475]}
         rotation={[-Math.PI, 0.686, -Math.PI]}
-        scale={[0.332, 0.252, 0.332]}
+        scale={[7.627, 5.781, 7.627]}
       >
         <instances.Cube />
         <instances.Cube1 />
       </group>
       <group
-        position={[0.151, -0.108, 1.207]}
+        position={[3.478, -2.483, 27.737]}
         rotation={[0, 0.732, 0]}
-        scale={[0.332, 0.252, 0.332]}
+        scale={[7.627, 5.781, 7.627]}
       >
         <instances.Cube />
         <instances.Cube1 />
       </group>
       <group
-        position={[0.069, 0.306, 0.834]}
+        position={[1.596, 7.034, 19.169]}
         rotation={[0, 0.791, 0]}
-        scale={[0.264, 0.158, 0.264]}
+        scale={[6.07, 3.623, 6.07]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[-0.391, 0.329, 0.837]}
+        position={[-8.997, 7.558, 19.246]}
         rotation={[Math.PI, -0.116, Math.PI]}
-        scale={[0.264, 0.149, 0.264]}
+        scale={[6.07, 3.426, 6.07]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[-0.549, 0.26, 1.158]}
+        position={[-12.615, 5.966, 26.608]}
         rotation={[-Math.PI, 0.295, -Math.PI]}
-        scale={[0.117, 0.149, 0.117]}
+        scale={[2.68, 3.426, 2.68]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[0.654, -0.108, 0.478]}
+        position={[15.025, -2.483, 10.979]}
         rotation={[Math.PI, -1.201, 0]}
-        scale={[-0.332, -0.405, -0.332]}
+        scale={[-7.627, -9.303, -7.627]}
       >
         <instances.Cube />
         <instances.Cube1 />
       </group>
       <group
-        position={[0.335, -0.005, 0.707]}
+        position={[7.704, -0.104, 16.241]}
         rotation={[0, 0.791, 0]}
-        scale={[0.264, 0.124, 0.264]}
+        scale={[6.07, 2.861, 6.07]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[0.348, 0.248, 0.363]}
+        position={[7.999, 5.691, 8.352]}
         rotation={[Math.PI, -1.099, Math.PI]}
-        scale={[0.264, 0.172, 0.264]}
+        scale={[6.07, 3.943, 6.07]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[0.42, 0.065, -0.766]}
+        position={[9.649, 1.502, -17.599]}
         rotation={[0, -1.486, 0]}
-        scale={[0.264, 0.225, 0.264]}
+        scale={[6.07, 5.178, 6.07]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[0.34, 0.183, -0.155]}
+        position={[7.813, 4.207, -3.564]}
         rotation={[0, 1.47, -Math.PI]}
-        scale={[-0.377, -0.405, -0.332]}
+        scale={[-8.663, -9.303, -7.627]}
       >
         <instances.Cube />
         <instances.Cube1 />
       </group>
       <group
-        position={[-0.5, 0.767, -0.751]}
+        position={[-11.498, 17.641, -17.272]}
         rotation={[Math.PI, -1.019, Math.PI]}
-        scale={[0.264, 0.112, 0.264]}
+        scale={[6.07, 2.579, 6.07]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[-0.617, 0.859, -0.224]}
+        position={[-14.174, 19.738, -5.152]}
         rotation={[-Math.PI, 1.511, -Math.PI]}
-        scale={[0.264, 0.094, 0.264]}
+        scale={[6.07, 2.15, 6.07]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[-0.722, 0.823, 0.596]}
+        position={[-16.597, 18.916, 13.696]}
         rotation={[0, 1.377, -Math.PI]}
-        scale={[-0.346, -0.2, -0.304]}
+        scale={[-7.948, -4.593, -6.997]}
       >
         <instances.Cube />
         <instances.Cube1 />
       </group>
       <group
-        position={[-0.84, 0.68, 0.752]}
+        position={[-19.311, 15.619, 17.279]}
         rotation={[0, 1.095, 0]}
-        scale={[0.28, 0.147, 0.382]}
+        scale={[6.425, 3.39, 8.782]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[-0.999, 1.206, 0.684]}
+        position={[-22.962, 27.713, 15.732]}
         rotation={[0, -1.57, 0]}
-        scale={[0.2, 0.044, 0.273]}
+        scale={[4.597, 1.015, 6.283]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[-0.392, 0.668, 0.126]}
+        position={[-8.999, 15.352, 2.902]}
         rotation={[0, -1.507, -Math.PI]}
-        scale={[-0.346, -0.295, -0.304]}
+        scale={[-7.948, -6.777, -6.997]}
       >
         <instances.Cube />
         <instances.Cube1 />
       </group>
       <group
-        position={[-1.054, 0.383, 0.2]}
+        position={[-24.234, 8.815, 4.597]}
         rotation={[0, Math.PI / 8, 0]}
-        scale={[0.328, 0.873, 0.328]}
+        scale={[7.542, 20.073, 7.542]}
       >
         <instances.Cylinder />
         <instances.Cylinder1 />
       </group>
-      <instances.Plane2 position={[0, 0.91, 0]} scale={[0.595, 0.795, 0.795]} />
+      <instances.Plane2
+        position={[0, 20.908, 0]}
+        scale={[13.683, 18.285, 18.285]}
+      />
       <instances.Plane3
-        position={[0.719, -0.056, 0.801]}
+        position={[16.525, -1.289, 18.419]}
         rotation={[0, 0.834, 0]}
-        scale={[1.115, 1, 1]}
+        scale={[25.633, 22.985, 22.985]}
       />
       <instances.Cylinder2
-        position={[-1.054, 0.469, 0.2]}
-        scale={[0.916, 1, 0.916]}
+        position={[-24.234, 10.79, 4.597]}
+        scale={[21.052, 22.985, 21.052]}
       />
       <group
-        position={[-0.606, 1.205, -0.252]}
+        position={[-13.932, 27.697, -5.796]}
         rotation={[Math.PI, 0, Math.PI]}
-        scale={[0.247, 0.228, 0.336]}
+        scale={[5.681, 5.251, 7.712]}
       >
         <instances.Cube2 />
         <instances.Cube3 />
       </group>
       <instances.Cube4
-        position={[-0.606, 1.205, -0.252]}
+        position={[-13.932, 27.697, -5.796]}
         rotation={[Math.PI, 0, Math.PI]}
-        scale={[0.247, 0.228, 0.361]}
+        scale={[5.681, 5.251, 8.296]}
       />
       <instances.Cube5
-        position={[-0.606, 1.205, -0.252]}
+        position={[-13.932, 27.697, -5.796]}
         rotation={[Math.PI, 0, Math.PI]}
-        scale={[0.247, 0.228, 0.361]}
+        scale={[5.681, 5.251, 8.296]}
       />
       <instances.Cube6
-        position={[-0.514, 1.19, -0.448]}
-        scale={[0.131, 0.015, 0.015]}
+        position={[-11.823, 27.357, -10.308]}
+        scale={[3.001, 0.34, 0.34]}
       />
       <instances.Plane4
-        position={[-3.292, 3.272, -0.312]}
-        scale={[1, 1.484, 1]}
-      />
-      <instances.Plane5
-        position={[-0.325, 1.54, -0.581]}
-        rotation={[0, 0, -0.247]}
-        scale={[0.118, 0.159, 0.106]}
+        position={[-75.665, 75.216, -7.164]}
+        scale={[22.985, 34.108, 22.985]}
       />
       <instances.Cube7
-        position={[-0.606, 1.205, -0.252]}
-        scale={[0.013, 0.012, 0.012]}
+        position={[-13.932, 27.697, -5.796]}
+        scale={[0.296, 0.265, 0.265]}
       />
       <instances.Cube8
-        position={[-0.705, 0.925, 0.179]}
-        scale={[0.238, 0.151, 0.31]}
+        position={[-16.195, 21.253, 4.121]}
+        scale={[5.479, 3.481, 7.123]}
       />
       <instances.Cube9
-        position={[-1.054, 2.86, 0.2]}
-        scale={[0.003, 0.149, 0.003]}
+        position={[-24.234, 65.745, 4.597]}
+        scale={[0.064, 3.429, 0.064]}
       />
       <instances.Cylinder3
-        position={[-1.054, 2.519, 0.2]}
-        scale={[0.926, 1, 0.926]}
+        position={[-24.234, 57.902, 4.597]}
+        scale={[21.292, 22.985, 21.292]}
       />
       <instances.Sphere
-        position={[-1.054, 2.544, 0.2]}
-        scale={[0.158, 0.171, 0.158]}
+        position={[-24.234, 58.474, 4.597]}
+        scale={[3.635, 3.924, 3.635]}
       />
       <instances.Cube10
-        position={[-0.176, 0.925, 0.387]}
-        scale={[0.238, 0.151, 0.102]}
+        position={[-4.035, 21.253, 8.904]}
+        scale={[5.479, 3.481, 2.34]}
       />
       <instances.Cube11
-        position={[-0.192, 0.773, 0.094]}
+        position={[-4.415, 17.773, 2.161]}
         rotation={[0, Math.PI / 2, 0]}
-        scale={[0.238, 0.151, 0.078]}
+        scale={[5.479, 3.481, 1.802]}
       />
-      <instances.Cube12 position={[-0.176, 0.925, 0.387]} />
+      <instances.Cube12 position={[-4.035, 21.253, 8.904]} scale={22.985} />
       <instances.Cube13
-        position={[0.761, 0.238, -0.514]}
+        position={[17.493, 5.479, -11.809]}
         rotation={[0, Math.PI / 2, 0]}
+        scale={22.985}
       />
       <instances.Cube14
-        position={[0.989, -0.159, 0.107]}
+        position={[22.74, -3.657, 2.448]}
         rotation={[0, -Math.PI / 2, 0]}
-        scale={[0.238, 0.151, 0.114]}
+        scale={[5.479, 3.481, 2.624]}
       />
       <group
-        position={[0.654, -0.079, -0.139]}
+        position={[15.041, -1.825, -3.191]}
         rotation={[0, -1.396, 0]}
-        scale={[0.264, 0.123, 0.264]}
+        scale={[6.07, 2.834, 6.07]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[0.774, -0.079, 0.325]}
+        position={[17.793, -1.825, 7.462]}
         rotation={[0, 0.727, 0]}
-        scale={[0.128, 0.182, 0.166]}
+        scale={[2.948, 4.18, 3.819]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
-      <instances.Cube15 position={[0.813, 0.767, 0.189]} />
+      <instances.Cube15 position={[18.686, 17.638, 4.338]} scale={22.985} />
       <group
-        position={[1.009, -0.165, -0.677]}
+        position={[23.187, -3.793, -15.551]}
         rotation={[-Math.PI, 0.893, -Math.PI]}
-        scale={[0.193, 0.135, 0.193]}
+        scale={[4.43, 3.103, 4.43]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <group
-        position={[0.75, -0.165, -0.703]}
+        position={[17.244, -3.793, -16.155]}
         rotation={[Math.PI, -0.134, Math.PI]}
-        scale={[0.135, 0.135, 0.139]}
+        scale={[3.096, 3.103, 3.199]}
       >
         <instances.Plane />
         <instances.Plane1 />
       </group>
       <instances.Cube16
-        position={[-0.858, 1.577, 0.337]}
+        position={[-19.704, 36.213, 7.83]}
         rotation={[3.072, 0.835, -3.09]}
-        scale={[-0.011, -0.011, -0.021]}
+        scale={[-0.247, -0.247, -0.49]}
       />
       <instances.Cube17
-        position={[-0.893, 1.582, 0.369]}
+        position={[-20.52, 36.328, 8.567]}
         rotation={[-0.069, -0.835, -0.052]}
-        scale={[0.011, 0.011, 0.021]}
+        scale={[0.247, 0.247, 0.49]}
       />
       <instances.Cube16
-        position={[-0.837, 1.892, 0.149]}
+        position={[-19.242, 43.479, 3.433]}
         rotation={[-0.017, -0.054, 0.099]}
-        scale={[0.009, 0.009, 0.017]}
+        scale={[0.198, 0.198, 0.393]}
       />
       <instances.Cube18
-        position={[-0.878, 1.309, 0.375]}
+        position={[-20.186, 30.078, 8.622]}
         rotation={[-0.069, -0.835, -0.052]}
-        scale={[0.01, 0.01, 0.02]}
+        scale={[0.236, 0.236, 0.469]}
       />
       <instances.Cube17
-        position={[-1.074, 1.715, 0.427]}
+        position={[-24.689, 39.41, 9.81]}
         rotation={[-2.402, -1.502, -2.403]}
-        scale={[0.009, 0.009, 0.019]}
+        scale={[0.217, 0.217, 0.431]}
       />
       <instances.Cube17
-        position={[-0.999, 1.415, 0.445]}
+        position={[-22.962, 32.535, 10.236]}
         rotation={[-1.171, 1.439, 1.177]}
-        scale={[-0.011, -0.011, -0.021]}
+        scale={[-0.247, -0.247, -0.491]}
       />
       <instances.Cube19
-        position={[-1.022, 2.082, 0.408]}
+        position={[-23.5, 47.849, 9.369]}
         rotation={[-1.25, 1.413, 1.259]}
-        scale={[-0.009, -0.009, -0.018]}
+        scale={[-0.209, -0.209, -0.415]}
       />
-      <group position={[-0.824, 1.652, 0.2]}>
+      <group position={[-18.943, 37.966, 4.597]} scale={22.985}>
         <instances.Cube20 />
         <instances.Cube21 />
       </group>
-      <group position={[-1.054, 1.652, 0.43]} rotation={[0, -Math.PI / 2, 0]}>
+      <group
+        position={[-24.234, 37.966, 9.888]}
+        rotation={[0, -Math.PI / 2, 0]}
+        scale={22.985}
+      >
         <instances.Cube22 />
         <instances.Cube23 />
       </group>
-      <group position={[-0.844, 1.99, 0.2]} scale={0.725}>
+      <group position={[-19.39, 45.742, 4.597]} scale={16.663}>
         <instances.Cube20 />
         <instances.Cube21 />
       </group>
       <group
-        position={[-1.054, 1.99, 0.411]}
+        position={[-24.234, 45.742, 9.441]}
         rotation={[0, -Math.PI / 2, 0]}
-        scale={0.725}
+        scale={16.663}
       >
         <instances.Cube20 />
         <instances.Cube21 />
       </group>
       <instances.Cube24
-        position={[-0.347, 1.521, -0.252]}
+        position={[-7.968, 34.97, -5.796]}
         rotation={[0, 0, -0.23]}
-        scale={[0.021, 0.016, 0.012]}
+        scale={[0.493, 0.357, 0.274]}
       />
       <group
-        position={[-0.371, 1.337, -0.252]}
+        position={[-8.525, 30.736, -5.79]}
         rotation={[0, 0, -0.1]}
-        scale={[0.04, 0.017, 0.053]}
+        scale={[0.926, 0.387, 1.211]}
       >
         <instances.Cube25 />
         <instances.Cube26 />
       </group>
       <group
-        position={[-0.371, 1.337, -0.064]}
+        position={[-8.525, 30.736, -1.482]}
         rotation={[0, 0, -0.1]}
-        scale={[0.04, 0.017, 0.053]}
+        scale={[0.926, 0.387, 1.211]}
       >
         <instances.Cube27 />
         <instances.Cube28 />
       </group>
       <group
-        position={[-0.371, 1.337, -0.439]}
+        position={[-8.525, 30.736, -10.092]}
         rotation={[0, 0, -0.1]}
-        scale={[0.04, 0.017, 0.053]}
+        scale={[0.926, 0.387, 1.211]}
       >
         <instances.Cube29 />
         <instances.Cube30 />
       </group>
       <instances.Cylinder4
-        position={[-1.054, 2.519, 0.2]}
-        scale={[0.926, 1, 0.926]}
+        position={[-24.234, 57.902, 4.597]}
+        scale={[21.292, 22.985, 21.292]}
       />
       <instances.Cube16
-        position={[-0.379, 1.267, 0.018]}
+        position={[-8.706, 29.121, 0.418]}
         rotation={[-0.029, -0.049, -0.125]}
-        scale={[0.009, 0.009, 0.017]}
+        scale={[0.198, 0.198, 0.393]}
       />
       <instances.Cube16
-        position={[-0.362, 1.417, -0.526]}
+        position={[-8.329, 32.579, -12.088]}
         rotation={[-0.029, -0.049, -0.125]}
-        scale={[0.009, 0.009, 0.017]}
+        scale={[0.198, 0.198, 0.393]}
       />
       <instances.Cube16
-        position={[-0.362, 1.457, -0.558]}
+        position={[-8.329, 33.501, -12.829]}
         rotation={[-0.029, -0.049, -0.125]}
-        scale={[0.009, 0.009, 0.017]}
+        scale={[0.198, 0.198, 0.393]}
       />
       <instances.Cube16
-        position={[-0.362, 1.476, -0.492]}
+        position={[-8.329, 33.918, -11.31]}
         rotation={[3.109, 0.049, 0.125]}
-        scale={[0.009, 0.009, 0.017]}
+        scale={[0.198, 0.198, 0.393]}
       />
       <instances.Cube16
-        position={[-0.374, 1.361, -0.18]}
+        position={[-8.467, 31.204, -4.114]}
         rotation={[3.113, 0.049, -3.017]}
-        scale={[-0.009, -0.009, -0.017]}
+        scale={[-0.198, -0.198, -0.393]}
       />
       <instances.Cube31
-        position={[-0.585, 1.511, 0.087]}
+        position={[-13.452, 34.726, 2.003]}
         rotation={[0, 0, -0.092]}
-        scale={[0.16, 0.009, 0.009]}
+        scale={[3.668, 0.202, 0.202]}
       />
-      <group position={[-0.634, 1.314, 0.087]} scale={[0.054, 0.087, 0.054]}>
+      <group position={[-14.572, 30.214, 2.003]} scale={[1.246, 1.999, 1.246]}>
         <instances.Cube32 />
         <instances.Cube33 />
         <instances.Cube34 />
         <instances.Cube35 />
       </group>
       <group
-        position={[-0.806, 1.314, 0.194]}
+        position={[-18.536, 30.214, 4.463]}
         rotation={[0, Math.PI / 2, 0]}
-        scale={[0.054, 0.087, 0.054]}
+        scale={[1.246, 1.999, 1.246]}
       >
         <instances.Cube36 />
         <instances.Cube37 />
         <instances.Cube38 />
       </group>
-      <instances.Plane6
-        position={[-0.585, 1.475, 0.088]}
+      <instances.Plane5
+        position={[-13.452, 33.911, 2.018]}
         rotation={[Math.PI / 2, 0, 0]}
-        scale={[0.07, 0.07, 0.042]}
+        scale={[1.6, 1.6, 0.959]}
       />
-      <instances.Plane7 position={[0.144, 1.159, -0.585]} />
-      <instances.Plane8 position={[-0.026, 0.973, 0.627]} />
+      <instances.Plane6 position={[3.307, 26.644, -13.453]} scale={22.985} />
+      <instances.Plane7 position={[-0.597, 22.365, 14.419]} scale={22.985} />
       <instances.Plant
-        position={[0.357, 0.945, -0.689]}
+        position={[8.196, 21.73, -15.834]}
         rotation={[0.208, -0.258, -0.252]}
-        scale={[0.02, 0.022, 0.018]}
+        scale={[0.465, 0.504, 0.405]}
       />
       <instances.Plant
-        position={[0.46, 0.927, -0.205]}
+        position={[10.582, 21.309, -4.719]}
         rotation={[0.307, -0.391, 0.021]}
-        scale={[0.02, 0.022, 0.018]}
+        scale={[0.465, 0.504, 0.405]}
       />
       <instances.Plant
-        position={[-0.06, 0.912, -0.488]}
+        position={[-1.376, 20.957, -11.219]}
         rotation={[0.096, -0.391, -0.032]}
-        scale={[0.02, 0.022, 0.018]}
+        scale={[0.465, 0.504, 0.405]}
       />
       <instances.Plant
-        position={[1.133, 0.357, -0.61]}
+        position={[26.052, 8.198, -14.018]}
         rotation={[-0.105, -0.454, -0.655]}
-        scale={[0.02, 0.022, 0.018]}
+        scale={[0.465, 0.504, 0.405]}
       />
       <instances.Plant
-        position={[0.92, 0.357, -0.684]}
+        position={[21.145, 8.198, -15.716]}
         rotation={[0.181, -0.342, -0.023]}
-        scale={[0.02, 0.022, 0.018]}
+        scale={[0.465, 0.504, 0.405]}
       />
       <instances.Plant
-        position={[1.041, 0.357, -0.788]}
+        position={[23.935, 8.198, -18.121]}
         rotation={[-0.027, 0.015, -0.221]}
-        scale={[0.02, 0.022, 0.018]}
+        scale={[0.465, 0.504, 0.405]}
       />
       <instances.Plant
-        position={[0.847, 0.357, -0.805]}
+        position={[19.471, 8.198, -18.497]}
         rotation={[-0.027, 0.015, -0.221]}
-        scale={[0.02, 0.022, 0.018]}
+        scale={[0.465, 0.504, 0.405]}
       />
       <instances.Plant
-        position={[0.763, 0.363, -0.738]}
+        position={[17.545, 8.343, -16.953]}
         rotation={[0.793, 1.143, -1.05]}
-        scale={[0.02, 0.022, 0.018]}
+        scale={[0.465, 0.504, 0.405]}
       />
       <group
-        position={[-0.593, 1.171, -0.797]}
+        position={[-13.635, 26.926, -18.323]}
         rotation={[0, 0.1, 0]}
-        scale={0.022}
+        scale={0.513}
       >
         <instances.BzierCurve />
         <instances.BzierCurve1 />
       </group>
       <group
-        position={[1.02, 0.342, -0.722]}
+        position={[23.44, 7.87, -16.599]}
         rotation={[0, 0.655, 0]}
-        scale={0.017}
+        scale={0.397}
       >
         <instances.BzierCurve />
         <instances.BzierCurve1 />
       </group>
       <group
-        position={[0.499, 0.911, -0.698]}
+        position={[11.469, 20.941, -16.047]}
         rotation={[Math.PI, -0.413, Math.PI]}
-        scale={0.022}
+        scale={0.513}
       >
         <instances.BzierCurve />
         <instances.BzierCurve1 />
       </group>
       <group
-        position={[0.363, 0.899, -0.268]}
+        position={[8.35, 20.658, -6.152]}
         rotation={[0, 1.201, 0]}
-        scale={0.018}
+        scale={0.409}
       >
         <instances.BzierCurve />
         <instances.BzierCurve1 />
       </group>
       <group
-        position={[0.138, 0.899, 0.91]}
+        position={[3.164, 20.656, 20.924]}
         rotation={[-Math.PI, 0.059, -Math.PI]}
-        scale={0.014}
+        scale={0.333}
       >
         <instances.BzierCurve />
         <instances.BzierCurve1 />
       </group>
       <group
-        position={[-0.4, 0.869, 0.885]}
+        position={[-9.194, 19.982, 20.338]}
         rotation={[0, -0.347, 0]}
-        scale={0.02}
+        scale={0.457}
       >
         <instances.BzierCurve />
         <instances.BzierCurve1 />
       </group>
       <group
-        position={[-0.378, 0.752, 1.214]}
+        position={[-8.678, 17.283, 27.907]}
         rotation={[0, 0.565, 0]}
-        scale={0.018}
+        scale={0.409}
       >
         <instances.BzierCurve />
         <instances.BzierCurve1 />
       </group>
       <group
-        position={[0, 0.869, -0.713]}
+        position={[0.004, 19.982, -16.391]}
         rotation={[0, -1.026, 0]}
-        scale={0.022}
+        scale={0.513}
       >
         <instances.BzierCurve />
         <instances.BzierCurve1 />
       </group>
-      <instances.Plane9
-        position={[0.719, -0.056, 0.801]}
+      <instances.Plane8
+        position={[16.525, -1.289, 18.419]}
         rotation={[0, 0.834, 0]}
-        scale={[1.115, 1, 1]}
+        scale={[25.633, 22.985, 22.985]}
       />
     </group>
   );

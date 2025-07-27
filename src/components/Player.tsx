@@ -5,8 +5,8 @@ import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-const SPEED = 0.003;
-const MAX_VEL = 0.005;
+const SPEED = 2;
+const MAX_VEL = 8;
 
 export default function Player() {
   const playerRigidBody = useRef();
@@ -58,14 +58,14 @@ export default function Player() {
       //@ts-ignore
       ref={playerRigidBody}
       colliders={false}
-      mass={1}
+      mass={0.1}
       type="dynamic"
       enabledRotations={[false, false, false]}
-      position={[0, 3, 0]}
+      position={[0.26, 30, 7.808]}
     >
-      <CapsuleCollider args={[0.05, 0.05]}>
+      <CapsuleCollider args={[1, 1]}>
         <Box
-          args={[0.05, 0.05, 0.05]}
+          args={[1, 1, 1]}
           //@ts-ignore
           ref={playerModel}
         />
