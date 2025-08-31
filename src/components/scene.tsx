@@ -23,11 +23,24 @@ export function Scene() {
   return (
     <Physics debug>
       <KeyboardControls map={keyboardMap}>
-        <Slider />
-        <Player />
         <ModelProvider>
           <Island />
           <directionalLight
+            position={[41.32, 77.72, -52.74]}
+            color={"#fffbe6"}
+            intensity={1.2}
+            castShadow
+            //  shadow-mapSize={[2048, 2048]}
+          />
+          <hemisphereLight intensity={2} />
+        </ModelProvider>
+      </KeyboardControls>
+    </Physics>
+  );
+}
+// <Slider />
+// <Environment preset="park" environmentIntensity={0.1} />
+/*     <directionalLight
             position={[41.32, 77.72, -52.74]}
             color={"#fffbe6"}
             intensity={1.2}
@@ -39,12 +52,4 @@ export function Scene() {
               args={[-10, 10, 10, -10]}
               far={130}
             />
-          </directionalLight>
-
-          <Environment preset="park" environmentIntensity={0.1} />
-        </ModelProvider>
-        <HitBoxes />
-      </KeyboardControls>
-    </Physics>
-  );
-}
+          </directionalLight>*/
