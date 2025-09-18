@@ -511,21 +511,29 @@ export function Island(props: JSX.IntrinsicElements["group"]) {
         position={[-8.329, 32.579, -12.088]}
         rotation={[-0.029, -0.049, -0.125]}
         scale={[0.198, 0.198, 0.393]}
+        castShadow
+        receiveShadow
       />
       <instances.Cube1
         position={[-8.329, 33.501, -12.829]}
         rotation={[-0.029, -0.049, -0.125]}
         scale={[0.198, 0.198, 0.393]}
+        castShadow
+        receiveShadow
       />
       <instances.Cube1
         position={[-8.329, 33.918, -11.31]}
         rotation={[3.109, 0.049, 0.125]}
         scale={[0.198, 0.198, 0.393]}
+        castShadow
+        receiveShadow
       />
       <instances.Cube1
         position={[-8.467, 31.204, -4.114]}
         rotation={[3.113, 0.049, -3.017]}
         scale={[-0.198, -0.198, -0.393]}
+        castShadow
+        receiveShadow
       />
       <group
         position={[-24.234, 8.815, 4.597]}
@@ -632,41 +640,57 @@ export function Island(props: JSX.IntrinsicElements["group"]) {
         position={[8.196, 21.73, -15.834]}
         rotation={[0.208, -0.258, -0.252]}
         scale={[0.465, 0.504, 0.405]}
+        castShadow
+        receiveShadow
       />
       <instances.Plant
         position={[10.582, 21.309, -4.719]}
         rotation={[0.307, -0.391, 0.021]}
         scale={[0.465, 0.504, 0.405]}
+        castShadow
+        receiveShadow
       />
       <instances.Plant
         position={[-1.376, 20.957, -11.219]}
         rotation={[0.096, -0.391, -0.032]}
         scale={[0.465, 0.504, 0.405]}
+        castShadow
+        receiveShadow
       />
       <instances.Plant
         position={[26.052, 8.198, -14.018]}
         rotation={[-0.105, -0.454, -0.655]}
         scale={[0.465, 0.504, 0.405]}
+        castShadow
+        receiveShadow
       />
       <instances.Plant
         position={[21.145, 8.198, -15.716]}
         rotation={[0.181, -0.342, -0.023]}
         scale={[0.465, 0.504, 0.405]}
+        castShadow
+        receiveShadow
       />
       <instances.Plant
         position={[23.935, 8.198, -18.121]}
         rotation={[-0.027, 0.015, -0.221]}
         scale={[0.465, 0.504, 0.405]}
+        castShadow
+        receiveShadow
       />
       <instances.Plant
         position={[19.471, 8.198, -18.497]}
         rotation={[-0.027, 0.015, -0.221]}
         scale={[0.465, 0.504, 0.405]}
+        castShadow
+        receiveShadow
       />
       <instances.Plant
         position={[17.545, 8.343, -16.953]}
         rotation={[0.793, 1.143, -1.05]}
         scale={[0.465, 0.504, 0.405]}
+        castShadow
+        receiveShadow
       />
       <mesh
         castShadow
@@ -680,106 +704,148 @@ export function Island(props: JSX.IntrinsicElements["group"]) {
         position={[-9.823, 7.317, 19.475]}
         rotation={[-Math.PI, 0.686, -Math.PI]}
         scale={[7.627, 5.781, 7.627]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain
         position={[3.478, -2.483, 27.737]}
         rotation={[0, 0.732, 0]}
         scale={[7.627, 5.781, 7.627]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain
         position={[15.025, -2.483, 10.979]}
         rotation={[Math.PI, -1.201, 0]}
         scale={[-7.627, -9.303, -7.627]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain
         position={[7.813, 4.207, -3.564]}
         rotation={[0, 1.47, -Math.PI]}
         scale={[-8.663, -9.303, -7.627]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain
         position={[-16.597, 18.916, 13.696]}
         rotation={[0, 1.377, -Math.PI]}
         scale={[-7.948, -4.593, -6.997]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain
         position={[-8.999, 15.352, 2.902]}
         rotation={[0, -1.507, -Math.PI]}
         scale={[-7.948, -6.777, -6.997]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[-9.429, 0, 28.003]}
         rotation={[-Math.PI, 0.557, -Math.PI]}
         scale={[6.07, 2.138, 6.07]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[1.596, 7.034, 19.169]}
         rotation={[0, 0.791, 0]}
         scale={[6.07, 3.623, 6.07]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[-8.997, 7.558, 19.246]}
         rotation={[Math.PI, -0.116, Math.PI]}
         scale={[6.07, 3.426, 6.07]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[-12.615, 5.966, 26.608]}
         rotation={[-Math.PI, 0.295, -Math.PI]}
         scale={[2.68, 3.426, 2.68]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[7.704, -0.104, 16.241]}
         rotation={[0, 0.791, 0]}
         scale={[6.07, 2.861, 6.07]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[7.999, 5.691, 8.352]}
         rotation={[Math.PI, -1.099, Math.PI]}
         scale={[6.07, 3.943, 6.07]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[9.649, 1.502, -17.599]}
         rotation={[0, -1.486, 0]}
         scale={[6.07, 5.178, 6.07]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[-11.498, 17.641, -17.272]}
         rotation={[Math.PI, -1.019, Math.PI]}
         scale={[6.07, 2.579, 6.07]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[-14.174, 19.738, -5.152]}
         rotation={[-Math.PI, 1.511, -Math.PI]}
         scale={[6.07, 2.15, 6.07]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[-19.311, 15.619, 17.279]}
         rotation={[0, 1.095, 0]}
         scale={[6.425, 3.39, 8.782]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[-22.962, 27.713, 15.732]}
         rotation={[0, -1.57, 0]}
         scale={[4.597, 1.015, 6.283]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[15.041, -1.825, -3.191]}
         rotation={[0, -1.396, 0]}
         scale={[6.07, 2.834, 6.07]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[17.793, -1.825, 7.462]}
         rotation={[0, 0.727, 0]}
         scale={[2.948, 4.18, 3.819]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[23.187, -3.793, -15.551]}
         rotation={[-Math.PI, 0.893, -Math.PI]}
         scale={[4.43, 3.103, 4.43]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[17.244, -3.793, -16.155]}
         rotation={[Math.PI, -0.134, Math.PI]}
         scale={[3.096, 3.103, 3.199]}
+        castShadow
+        receiveShadow
       />
       <instances.Terain1
         position={[-22.372, 0, 22.167]}

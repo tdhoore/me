@@ -30,9 +30,16 @@ export function Scene() {
             color={"#fffbe6"}
             intensity={1.2}
             castShadow
-            //  shadow-mapSize={[2048, 2048]}
-          />
-          <hemisphereLight intensity={2} />
+            shadow-mapSize={[2048, 2048]}
+            shadow-normalBias={0.06}
+          >
+            <orthographicCamera
+              attach="shadow-camera"
+              args={[-40.04, 34.18, 58.82, -57.46]}
+              far={130}
+            />
+          </directionalLight>
+          <Environment preset="park" environmentIntensity={0.2} />
         </ModelProvider>
       </KeyboardControls>
     </Physics>
