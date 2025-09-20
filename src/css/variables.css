@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed:wght@300;500&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-primary: rgba(255, 255, 255, 0.8);
+  --color-secondary: rgba(0, 0, 0, 0.8);
+  --color-accent: rgba(29, 72, 89);
+  --color-back-light: #1c4859;
+  --color-noise-color: #02404b;
+
+  --font-heading: "Barlow Condensed", sans-serif;
+  --font-body: "Barlow", sans-serif;
+
+  --text-4xl: 2.5rem;
+
+  --radius-btn: 0.125rem;
+}

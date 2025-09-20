@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { useEffect, useRef } from "react";
 import { Box, CameraControls } from "@react-three/drei";
 import Dust from "./Dust";
+import Projects from "./Projects";
 
 export default function App() {
   const noiseRef = useRef();
@@ -30,13 +31,13 @@ export default function App() {
 
   return (
     <div className="relative size-full">
-      <div className="absolute size-full z-10 bg-top bg-radial-[ellipse_at_top_center] from-[#1C4859] to-transparent opacity-30 pointer-events-none"></div>
+      <div className="absolute size-full z-10 bg-top bg-radial-[ellipse_at_top_center] from-back-light to-transparent opacity-30 pointer-events-none"></div>
       <div className="absolute z-20 top-0 size-full mix-blend-color-dodge pointer-events-none">
         <div
           className="absolute size-full z-20 bg-[url(/assets/textures/perlin.png)] opacity-4100 bg-size-[120%]"
           ref={otherNoiseRef}
         ></div>
-        <div className="absolute size-full z-30 bg-[#02404B] mix-blend-multiply opacity-25"></div>
+        <div className="absolute size-full z-30 bg-noise-color mix-blend-multiply opacity-25"></div>
         <div
           className="absolute size-full z-40 bg-[url(/assets/textures/perlin.png)]  bg-size-[80%]  opacity-40 bg-bottom "
           ref={noiseRef}
@@ -48,6 +49,7 @@ export default function App() {
         <fog attach="fog" args={["#000", 0, 5]} />
         <Dust />
         <Box />
+        <Projects />
         <CameraControls />
       </Canvas>
     </div>
