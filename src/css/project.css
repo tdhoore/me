@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .c-project {
-  @apply flex;
+  @apply flex focus:outline-0;
 }
 
 .c-project__container {
@@ -32,7 +32,8 @@
   @apply self-end font-heading uppercase font-light text-2xl text-nowrap me-0.5 opacity-0  blur-sm transition-all scale-95;
 }
 
-.c-project:hover {
+.c-project:hover,
+.c-project:focus {
   & .c-project__plus {
     @apply rotate-45 bg-transparent text-primary;
 
