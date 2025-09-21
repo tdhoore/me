@@ -6,6 +6,10 @@
   @apply h-[100dvh];
 }
 
+.body {
+  @apply bg-black;
+}
+
 .fog-effect {
   @apply drop-shadow-[0_0_10px] drop-shadow-back-light blur-[1px];
 }

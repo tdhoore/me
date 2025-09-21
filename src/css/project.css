@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .c-project {
-  @apply flex focus:outline-0;
+  @apply flex focus:outline-0 transition-all;
 }
 
 .c-project__container {
@@ -25,7 +25,7 @@
 }
 
 .c-project__line {
-  @apply relative -left-1 h-px w-[calc(100%_+_0.25rem)] flex-grow bg-primary opacity-20 origin-left scale-0 transition-transform duration-500;
+  @apply relative -left-1 h-px w-[calc(100%_+_0.25rem)] flex-grow bg-primary opacity-20 origin-left scale-0 transition-transform duration-500 blur-xs;
 }
 
 .c-project__sub-title {
@@ -43,11 +43,15 @@
   }
 
   & .c-project__line {
-    @apply scale-100;
+    @apply scale-100 blur-none;
   }
 
   & .c-project__title,
   & .c-project__sub-title {
     @apply opacity-100 blur-none scale-100;
   }
+}
+
+.c-project--active {
+  @apply pointer-events-none opacity-0 blur-sm;
 }

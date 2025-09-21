@@ -1,13 +1,27 @@
 import { Html } from "@react-three/drei";
+import { useNavigate } from "react-router";
 
 export interface projectPropsType {
   position: [number, number, number];
+  isActive: boolean;
 }
 
-export default function Project({ position }: projectPropsType) {
+export default function Project({ position, isActive }: projectPropsType) {
+  const navigate = useNavigate();
+
+  const handleLink = (e) => {
+    e.preventDefault();
+
+    navigate(e.currentTarget.getAttribute("href"));
+  };
+
   return (
     <Html position={position}>
-      <a href="#" className="c-project">
+      <a
+        href="/project/test"
+        className={`c-project ${isActive ? "c-project--active" : ""}`}
+        onClick={(e) => handleLink(e)}
+      >
         <article className="c-project__container">
           <div className="c-project__plus fog-effect">
             <svg

@@ -4,8 +4,10 @@ import { useEffect, useRef } from "react";
 import { Box, CameraControls } from "@react-three/drei";
 import Dust from "./Dust";
 import Projects from "./Projects";
+import { BrowserRouter, Route, Routes } from "react-router";
 
 export default function App() {
+  const camController = useRef(null);
   const noiseRef = useRef();
   const otherNoiseRef = useRef();
 
@@ -46,20 +48,27 @@ export default function App() {
       <div className="absolute size-full z-40 bg-[url(/assets/textures/noise.png)] opacity-[0.03] bg-bottom pointer-events-none"></div>
       <Canvas shadows>
         <color attach="background" args={["#000"]} />
-        <fog attach="fog" args={["#000", 0, 5]} />
+        <fog attach="fog" args={["#000", 0, 5]} />;
         <Dust />
         <Box />
-        <Projects />
-        <CameraControls />
+        <Projects camController={camController} />
+        <CameraControls ref={camController} />
       </Canvas>
     </div>
   );
 }
-
+//
 const root = document.querySelector("#root");
 
 if (root) {
   const rootReact = createRoot(root);
 
-  rootReact.render(<App />);
+  rootReact.render(
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<App />} />
+        <Route path="project/:id" element={<App />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
