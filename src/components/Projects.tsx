@@ -30,6 +30,10 @@ export default function Projects({ camController }) {
     });
   }, [camController]);
 
+  if (!id) {
+    moveToPosition([0, 0, 0], true);
+  }
+
   return (
     <group>
       {projects.map((project, index) => {
