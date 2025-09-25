@@ -1,7 +1,6 @@
 import { kebabCase } from "case-anything";
 import Project from "./Project";
 import { useLocation, useParams } from "react-router";
-import { Vector3 } from "three";
 import { useEffect } from "react";
 
 const projects = [
@@ -16,7 +15,6 @@ export default function Projects({ camController }) {
 
   const moveToPosition = (pos: number[], initSetup: boolean = false) => {
     if (camController.current) {
-      console.log("run");
       camController.current.setTarget(...pos, !initSetup);
     }
   };
@@ -37,7 +35,6 @@ export default function Projects({ camController }) {
   return (
     <group>
       {projects.map((project, index) => {
-        console.log(kebabCase(project.title));
         if (id === kebabCase(project.title)) {
           //is the active project
           moveToPosition(project.position);

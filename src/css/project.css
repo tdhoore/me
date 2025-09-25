@@ -33,7 +33,8 @@
 }
 
 .c-project:hover,
-.c-project:focus {
+.c-project:focus,
+.c-project--active {
   & .c-project__plus {
     @apply rotate-45 bg-transparent text-primary;
 
@@ -52,6 +53,6 @@
   }
 }
 
-.c-project--active {
+.c-project--hidden {
   @apply pointer-events-none opacity-0 blur-sm;
 }

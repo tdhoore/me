@@ -4,22 +4,49 @@ import { useEffect, useRef } from "react";
 import { Box, CameraControls } from "@react-three/drei";
 import Dust from "./Dust";
 import Projects from "./Projects";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import Overlay from "./Overlay";
+import EyeScene from "./EyeScene";
+
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 export default function App() {
+  const location = useLocation();
+
+  const disableControllsPaths = ["/about", "/contact"];
+
   const camController = useRef(null);
+
+  useEffect(() => {
+    if (camController.current) {
+    }
+  }, [camController]);
 
   return (
     <div className="relative size-full">
       <Overlay camController={camController} />
       <Canvas shadows>
-        <color attach="background" args={["#000"]} />
-        <fog attach="fog" args={["#000", 0, 5]} />;
+        <color
+          attach="background"
+          args={["#000"]}
+        />
+        <fog
+          attach="fog"
+          args={["#000", 0, 5]}
+        />
+        <ambientLight intensity={1} />
         <Dust />
-        <Box />
+        <EyeScene camController={camController} />
         <Projects camController={camController} />
-        <CameraControls ref={camController} />
+        <CameraControls
+          ref={camController}
+          dollySpeed={0}
+          truckSpeed={0}
+          enabled={!disableControllsPaths.includes(location.pathname)}
+        />
       </Canvas>
     </div>
   );
@@ -33,11 +60,26 @@ if (root) {
   rootReact.render(
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<App />} />
-        <Route index element={<App />} />
-        <Route path="project/:id" element={<App />} />
-        <Route path="about" element={<App />} />
-        <Route path="contact" element={<App />} />
+        <Route
+          path="*"
+          element={<App />}
+        />
+        <Route
+          index
+          element={<App />}
+        />
+        <Route
+          path="project/:id"
+          element={<App />}
+        />
+        <Route
+          path="about"
+          element={<App />}
+        />
+        <Route
+          path="contact"
+          element={<App />}
+        />
       </Routes>
     </BrowserRouter>
   );

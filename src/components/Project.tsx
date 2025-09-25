@@ -1,13 +1,15 @@
 import { Html } from "@react-three/drei";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 export interface projectPropsType {
   position: [number, number, number];
+  isHidden: boolean;
   isActive: boolean;
 }
 
-export default function Project({ position, isActive }: projectPropsType) {
+export default function Project({ position, isHidden = false, isActive }: projectPropsType) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLink = (e) => {
     e.preventDefault();
@@ -15,11 +17,16 @@ export default function Project({ position, isActive }: projectPropsType) {
     navigate(e.currentTarget.getAttribute("href"));
   };
 
+  //set the links as hidden
+  if (location.pathname !== "/" && !location.pathname.includes("project")) {
+    isHidden = true;
+  }
+
   return (
     <Html position={position}>
       <a
         href="/project/test"
-        className={`c-project ${isActive ? "c-project--active" : ""}`}
+        className={`c-project ${isHidden ? "c-project--hidden" : ""} ${isActive ? "c-project--active" : ""}`}
         onClick={(e) => handleLink(e)}
       >
         <article className="c-project__container">
@@ -31,7 +38,10 @@ export default function Project({ position, isActive }: projectPropsType) {
               viewBox="0 0 6 6"
               className=" size-2"
             >
-              <path d="M4 2H6V4H4V6H2V4H0V2H2V0H4V2Z" fill="currentColor" />
+              <path
+                d="M4 2H6V4H4V6H2V4H0V2H2V0H4V2Z"
+                fill="currentColor"
+              />
             </svg>
           </div>
           <div className="c-project__text-container fog-effect">

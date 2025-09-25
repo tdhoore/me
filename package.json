@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {},
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@react-three/drei": "^9.114.0",
     "@react-three/fiber": "^8.17.8",
     "@tanstack/react-router": "^1.131.49",
@@ -11,7 +12,9 @@
     "@types/three": "^0.168.0",
     "babel-plugin-glsl": "^1.0.0",
     "case-anything": "^3.1.2",
+    "gsap": "^3.13.0",
     "lamina": "^1.2.2",
+    "maath": "^0.10.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^7.9.1",
