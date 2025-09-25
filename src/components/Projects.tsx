@@ -11,7 +11,7 @@ const projects = [
 ];
 
 export default function Projects({ camController }) {
-  let { id } = useParams();
+  const { id } = useParams();
 
   const moveToPosition = (pos: number[], initSetup: boolean = false) => {
     if (camController.current) {
@@ -45,6 +45,7 @@ export default function Projects({ camController }) {
             {...project}
             key={`project${index}`}
             isActive={id === kebabCase(project.title)}
+            isHidden={id}
           />
         );
       })}

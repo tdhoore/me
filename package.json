@@ -22,7 +22,8 @@
     "tailwindcss": "^4.1.8",
     "three": "^0.168.0",
     "three-custom-shader-material": "^6.3.7",
-    "use-animation-frame": "^0.2.1"
+    "use-animation-frame": "^0.2.1",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.8",

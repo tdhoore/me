@@ -1,15 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed:wght@300;500&display=swap");
 @import "./variables.css";
+@import "./btn.css";
+@import "./wrapper.css";
 @import "./project.css";
+@import "./project-html.css";
 @import "tailwindcss";
 
 #root {
   @apply h-[100dvh];
 }
 
-.body {
-  @apply bg-black;
+body {
+  @apply bg-black text-primary font-body;
 }
 
-.fog-effect {
+@utility h2 {
+  @apply text-9xl leading-none uppercase font-medium font-heading fog-effect;
+}
+
+@utility detail-title {
+  @apply text-base leading-none uppercase font-light font-heading fog-effect blur-[0.5px];
+}
+
+@utility detail-text {
+  @apply text-2xl leading-none uppercase font-medium font-heading fog-effect blur-[0.5px];
+}
+
+@utility fog-effect {
   @apply drop-shadow-[0_0_10px] drop-shadow-back-light blur-[1px];
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fff;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
 }

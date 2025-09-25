@@ -1,0 +1,3 @@
+.wrapper {
+  @apply grid gap-6 p-20 grid-cols-12 max-w-[1800px] mx-auto;
+}

@@ -1,0 +1,75 @@
+.btn {
+  @apply relative text-secondary flex justify-center items-center border-none bg-none fog-effect uppercase font-medium font-heading leading-none blur-[0.5px] py-4 px-8;
+
+  &::before {
+    @apply content-[''] z-[-1] block absolute top-0 left-0 size-full fog-effect bg-primary rounded-sm;
+  }
+}
+
+.btn-close {
+  @apply fixed z-40 size-20 border-primary/80 flex justify-center items-center fog-effect text-primary cursor-pointer transition-colors duration-500;
+
+  & svg {
+    @apply transition-transform;
+  }
+
+  &.active {
+    @apply bg-primary text-secondary;
+
+    & svg {
+      @apply scale-110;
+    }
+  }
+
+  &::after {
+    @apply content-[""] absolute block z-[-1];
+  }
+}
+
+.btn-close--t {
+  @apply top-0 border-b;
+}
+
+.btn-close--b {
+  @apply bottom-0 border-t;
+}
+
+.btn-close--l {
+  @apply left-0 border-r;
+}
+
+.btn-close--r {
+  @apply right-0 border-l;
+}
+
+.btn-close--tl {
+  @apply rounded-br-sm;
+
+  &::after {
+    @apply top-0 -left-full w-screen h-full;
+  }
+}
+
+.btn-close--tr {
+  @apply rounded-bl-sm;
+
+  &::after {
+    @apply -top-full left-0 w-full h-screen;
+  }
+}
+
+.btn-close--bl {
+  @apply rounded-tr-sm;
+
+  &::after {
+    @apply -bottom-full left-0 w-full h-screen;
+  }
+}
+
+.btn-close--br {
+  @apply rounded-tl-sm;
+
+  &::after {
+    @apply bottom-0 -right-full w-screen h-full;
+  }
+}

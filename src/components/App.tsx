@@ -10,6 +10,7 @@ import EyeScene from "./EyeScene";
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import ProjectHtml from "./ProjectHtml";
 
 gsap.registerPlugin(useGSAP);
 
@@ -20,17 +21,13 @@ export default function App() {
 
   const camController = useRef(null);
 
-  useEffect(() => {
-    if (camController.current) {
-    }
-  }, [camController]);
-
   return (
     <div className="relative size-full">
       <nav className="fixed z-50 text-white">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
       </nav>
+      <ProjectHtml />
       <Overlay camController={camController} />
       <Canvas shadows>
         <color

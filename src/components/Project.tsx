@@ -1,5 +1,6 @@
 import { Html } from "@react-three/drei";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
+import { useVoidStore } from "../stores/VoidStore";
 
 export interface projectPropsType {
   position: [number, number, number];
@@ -8,20 +9,26 @@ export interface projectPropsType {
 }
 
 export default function Project({ position, isHidden = false, isActive }: projectPropsType) {
+  const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const showProjectDetail = useVoidStore((state) => state.showProjectDetail);
+  const setShowProjectDetail = useVoidStore((state) => state.setShowProjectDetail);
 
   const handleLink = (e) => {
     e.preventDefault();
 
+    setShowProjectDetail(true);
     navigate(e.currentTarget.getAttribute("href"));
   };
 
   //set the links as hidden
   if (location.pathname !== "/" && !location.pathname.includes("project")) {
     isHidden = true;
+  } else if (id) {
+    isHidden = showProjectDetail;
   }
-
   return (
     <Html position={position}>
       <a
