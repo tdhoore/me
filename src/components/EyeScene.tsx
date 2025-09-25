@@ -13,7 +13,7 @@ interface eyePosPerLocType {
   [key: string]: Vector3;
 }
 
-const eyeTarget = new Vector3();
+const eyeTarget = new Vector3(0, 0, 4);
 const dummy = new Object3D();
 
 const eyePosPerLoc: eyePosPerLocType = {
@@ -38,6 +38,8 @@ export default function EyeScene({ camController }) {
 
     gsap.to(lookAtRef.current?.position, {
       ...pos,
+      duration: 1.5,
+      ease: "power2.inOut",
     });
   }, [location, lookAtRef]);
 
@@ -46,12 +48,10 @@ export default function EyeScene({ camController }) {
     eyeWrapperRef.current.rotation.copy(camController.current._camera.rotation);
 
     //set eye target based on mouse position
-    eyeTarget.copy(camController.current._camera.position);
-
     const lookAtPos = lookAtRef.current.position;
 
     eyeTarget.y = map(state.pointer.y, -1, 1, -eyeYClamp, eyeYClamp);
-    eyeTarget.x = map(state.pointer.x, -1, 1, -eyeXClamp - lookAtPos.x, eyeXClamp - lookAtPos.x);
+    eyeTarget.x = map(state.pointer.x, -1, 1, Math.min(-eyeXClamp - lookAtPos.x, -eyeXClamp), Math.max(eyeXClamp - lookAtPos.x, eyeXClamp));
 
     dummy.lookAt(eyeTarget);
 

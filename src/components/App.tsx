@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { Box, CameraControls } from "@react-three/drei";
 import Dust from "./Dust";
 import Projects from "./Projects";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router";
+import { BrowserRouter, NavLink, Route, Routes, useLocation } from "react-router";
 import Overlay from "./Overlay";
 import EyeScene from "./EyeScene";
 
@@ -27,6 +27,10 @@ export default function App() {
 
   return (
     <div className="relative size-full">
+      <nav className="fixed z-50 text-white">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/about">About</NavLink>
+      </nav>
       <Overlay camController={camController} />
       <Canvas shadows>
         <color
