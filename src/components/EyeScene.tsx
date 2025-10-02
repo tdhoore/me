@@ -62,7 +62,7 @@ export default function EyeScene({ camController }) {
     <group ref={eyeWrapperRef}>
       <group
         ref={lookAtRef}
-        position={[2.5, -0.2, -5.8]}
+        position={[2.5, -0.2, -8]}
       >
         <Float>
           <pointLight

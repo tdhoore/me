@@ -25,19 +25,19 @@ export default function Overlay({ camController }) {
 
   return (
     <>
-      <div className="absolute size-full z-10 bg-top bg-radial-[ellipse_at_top_center] from-back-light to-transparent opacity-30 pointer-events-none"></div>
-      <div className="absolute z-20 top-0 size-full mix-blend-color-dodge pointer-events-none">
+      <div className="fixed size-full z-10 bg-top bg-radial-[ellipse_at_top_center] from-back-light to-transparent opacity-30 pointer-events-none"></div>
+      <div className="fixed z-20 top-0 size-full mix-blend-color-dodge pointer-events-none">
         <div
-          className="absolute size-full z-20 bg-[url(/assets/textures/perlin.png)] opacity-100 bg-size-[120%]"
+          className="fixed size-full z-20 bg-[url(/assets/textures/perlin.png)] opacity-100 bg-size-[120%]"
           ref={otherNoiseRef}
         ></div>
-        <div className="absolute size-full z-30 bg-noise-color mix-blend-multiply opacity-25"></div>
+        <div className="fixed size-full z-30 bg-noise-color mix-blend-multiply opacity-25"></div>
         <div
-          className="absolute size-full z-40 bg-[url(/assets/textures/perlin.png)]  bg-size-[80%]  opacity-40 bg-bottom "
+          className="fixed size-full z-40 bg-[url(/assets/textures/perlin.png)]  bg-size-[80%]  opacity-40 bg-bottom "
           ref={noiseRef}
         ></div>
       </div>
-      <div className="absolute size-full z-40 bg-[url(/assets/textures/noise.png)] opacity-[0.03] bg-bottom pointer-events-none"></div>
+      <div className="fixed size-full z-40 bg-[url(/assets/textures/noise.png)] opacity-[0.03] bg-bottom pointer-events-none"></div>
       <div className={`fixed top-1/2 left-1/2 -translate-1/2 size-1/2 z-40 pointer-events-none transition-opacity duration-500 bg-amber-700 ${activeProjectId ? "opacity-10 blur-xs" : "opacity-0 blur-xl"}`}></div>
     </>
   );

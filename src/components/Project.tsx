@@ -8,8 +8,8 @@ export interface projectPropsType {
   isActive: boolean;
 }
 
-export default function Project({ position, isHidden = false, isActive }: projectPropsType) {
-  const { id } = useParams();
+export default function Project({ position, id, isActive }: projectPropsType) {
+  let isHidden = false;
   const navigate = useNavigate();
   const location = useLocation();
 

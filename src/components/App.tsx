@@ -4,17 +4,19 @@ import { useEffect, useRef } from "react";
 import { Box, CameraControls } from "@react-three/drei";
 import Dust from "./Dust";
 import Projects from "./Projects";
-import { BrowserRouter, NavLink, Route, Routes, useLocation } from "react-router";
+import { BrowserRouter, NavLink, Route, Routes, useLocation, useParams } from "react-router";
 import Overlay from "./Overlay";
 import EyeScene from "./EyeScene";
-
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { SplitText } from "gsap/SplitText";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import ProjectHtml from "./ProjectHtml";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 
-export default function App() {
+export default function App({ children }) {
   const location = useLocation();
 
   const disableControllsPaths = ["/about", "/contact"];
@@ -27,7 +29,13 @@ export default function App() {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
       </nav>
-      <ProjectHtml />
+      <Routes>
+        <Route
+          path="project/:id"
+          element={<ProjectHtml />}
+        />
+      </Routes>
+
       <Overlay camController={camController} />
       <Canvas shadows>
         <fog
@@ -56,7 +64,11 @@ if (root) {
 
   rootReact.render(
     <BrowserRouter>
-      <Routes>
+      <App />
+    </BrowserRouter>
+  );
+}
+/*   <Routes>
         <Route
           path="*"
           element={<App />}
@@ -67,7 +79,7 @@ if (root) {
         />
         <Route
           path="project/:id"
-          element={<App />}
+          element={<ProjectHtml />}
         />
         <Route
           path="about"
@@ -77,7 +89,4 @@ if (root) {
           path="contact"
           element={<App />}
         />
-      </Routes>
-    </BrowserRouter>
-  );
-}
+      </Routes>*/

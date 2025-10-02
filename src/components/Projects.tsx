@@ -6,12 +6,19 @@ import { useEffect } from "react";
 const projects = [
   {
     title: "test",
-    position: [2, 0, 2],
+    position: [20, 0, 20],
   },
 ];
 
 export default function Projects({ camController }) {
-  const { id } = useParams();
+  const location = useLocation();
+  let id = null;
+
+  if (location.pathname.includes("project")) {
+    const urlParts = location.pathname.split("/");
+
+    id = urlParts[urlParts.length - 1];
+  }
 
   const moveToPosition = (pos: number[], initSetup: boolean = false) => {
     if (camController.current) {
@@ -45,7 +52,7 @@ export default function Projects({ camController }) {
             {...project}
             key={`project${index}`}
             isActive={id === kebabCase(project.title)}
-            isHidden={id}
+            id={id}
           />
         );
       })}

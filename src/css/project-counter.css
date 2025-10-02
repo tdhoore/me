@@ -1,0 +1,10 @@
+.project-counter {
+  @apply flex flex-col-reverse col-span-full gap-3 py-30;
+}
+
+.project-counter__count {
+  @apply relative h-32 inline-flex flex-col items-end overflow-clip;
+}
+
+.project-counter__new-count {
+}
