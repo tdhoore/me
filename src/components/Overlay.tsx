@@ -2,10 +2,13 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { map } from "../js/functions";
 import useAnimationFrame from "use-animation-frame";
+import { useVoidStore } from "../stores/VoidStore";
 
 export default function Overlay({ camController }) {
   const noiseRef = useRef();
   const otherNoiseRef = useRef();
+
+  const activeProjectId = useVoidStore((state) => state.activeProjectId);
 
   useAnimationFrame((e) => {
     if (camController.current) {
@@ -13,21 +16,9 @@ export default function Overlay({ camController }) {
 
       //update the overlay positioning
       if (noiseRef.current && otherNoiseRef.current) {
-        noiseRef.current.style.backgroundPosition = `${map(
-          rot.y,
-          -Math.PI,
-          Math.PI,
-          -500,
-          500
-        )}px ${map(rot.x, -Math.PI, Math.PI, -500, 500)}px`;
+        noiseRef.current.style.backgroundPosition = `${map(rot.y, -Math.PI, Math.PI, -500, 500)}px ${map(rot.x, -Math.PI, Math.PI, -500, 500)}px`;
 
-        otherNoiseRef.current.style.backgroundPosition = `${map(
-          rot.y,
-          -Math.PI,
-          Math.PI,
-          -400,
-          400
-        )}px ${map(rot.x, -Math.PI, Math.PI, -500, 500)}px`;
+        otherNoiseRef.current.style.backgroundPosition = `${map(rot.y, -Math.PI, Math.PI, -400, 400)}px ${map(rot.x, -Math.PI, Math.PI, -500, 500)}px`;
       }
     }
   });
@@ -47,6 +38,7 @@ export default function Overlay({ camController }) {
         ></div>
       </div>
       <div className="absolute size-full z-40 bg-[url(/assets/textures/noise.png)] opacity-[0.03] bg-bottom pointer-events-none"></div>
+      <div className={`fixed top-1/2 left-1/2 -translate-1/2 size-1/2 z-40 pointer-events-none transition-opacity duration-500 bg-amber-700 ${activeProjectId ? "opacity-10 blur-xs" : "opacity-0 blur-xl"}`}></div>
     </>
   );
 }

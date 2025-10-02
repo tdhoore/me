@@ -7,7 +7,7 @@
 }
 
 .btn-close {
-  @apply fixed z-40 size-20 border-primary/80 flex justify-center items-center fog-effect text-primary cursor-pointer transition-colors duration-500;
+  @apply fixed z-40 size-20 border-primary/80 flex justify-center items-center fog-effect text-primary cursor-pointer transition-colors duration-500 text-xl uppercase;
 
   & svg {
     @apply transition-transform;
@@ -41,7 +41,7 @@
 .btn-close--r {
   @apply right-0 border-l;
 }
-
+/*
 .btn-close--tl {
   @apply rounded-br-sm;
 
@@ -71,5 +71,28 @@
 
   &::after {
     @apply bottom-0 -right-full w-screen h-full;
+  }
+}
+*/
+
+.btn-footer {
+  @apply flex justify-between items-center gap-6 w-full h-20 bg-primary text-secondary px-8  cursor-pointer transition-colors duration-500 text-xl uppercase;
+
+  & span {
+    @apply transition-all fog-effect;
+  }
+
+  & svg {
+    @apply transition-transform fog-effect;
+  }
+
+  &.active {
+    & span {
+      @apply blur-[0.25px];
+    }
+
+    & svg {
+      @apply scale-110;
+    }
   }
 }

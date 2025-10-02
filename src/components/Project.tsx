@@ -15,6 +15,7 @@ export default function Project({ position, isHidden = false, isActive }: projec
 
   const showProjectDetail = useVoidStore((state) => state.showProjectDetail);
   const setShowProjectDetail = useVoidStore((state) => state.setShowProjectDetail);
+  const setActiveProjectId = useVoidStore((state) => state.setActiveProjectId);
 
   const handleLink = (e) => {
     e.preventDefault();
@@ -23,18 +24,29 @@ export default function Project({ position, isHidden = false, isActive }: projec
     navigate(e.currentTarget.getAttribute("href"));
   };
 
+  const handleMouseOver = (e) => {
+    setActiveProjectId(1);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveProjectId(null);
+  };
+
   //set the links as hidden
   if (location.pathname !== "/" && !location.pathname.includes("project")) {
     isHidden = true;
   } else if (id) {
     isHidden = showProjectDetail;
   }
+
   return (
     <Html position={position}>
       <a
         href="/project/test"
         className={`c-project ${isHidden ? "c-project--hidden" : ""} ${isActive ? "c-project--active" : ""}`}
         onClick={(e) => handleLink(e)}
+        onMouseEnter={(e) => handleMouseOver(e)}
+        onMouseLeave={(e) => handleMouseLeave(e)}
       >
         <article className="c-project__container">
           <div className="c-project__plus fog-effect">

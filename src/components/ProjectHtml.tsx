@@ -40,18 +40,75 @@ export default function ProjectHtml() {
           </div>
           <a className="btn">Lorem ipsum</a>
         </div>
-        <div className="project-html__top-img">
+        <div className="project-html__top-img project-html__img">
           <img
             src=""
             alt=""
           />
         </div>
-        <div className="project-html__bottom-img">
+        <div className="project-html__bottom-img project-html__img">
           <img
             src=""
             alt=""
           />
         </div>
+        <div className="project-html__bottom-img-2 project-html__img">
+          <img
+            src=""
+            alt=""
+          />
+        </div>
+        <section className="project-html__section-1">
+          <header>
+            <h2 className="h3">lorem ipsum</h2>
+          </header>
+          <div className="flex flex-col gap-4">
+            <p>Lorem ipsum dolor sit amet consectetur. Ornare magnis pretium enim ut netus adipiscing nulla. Leo arcu amet sed faucibus vel lorem amet congue. Morbi aenean imperdiet in libero tellus egestas adipiscing. Feugiat risus etiam scelerisque massa. Arcu nunc viverra laoreet amet diam nibh consequat suscipit. Elit amet sed at mattis odio eget eget velit. Suscipit morbi in lectus sodales laoreet montes proin ultricies tellus. Turpis elit quis metus at.</p>
+          </div>
+        </section>
+        <figure className="project-html__full-width-img project-html__img">
+          <img
+            src=""
+            alt=""
+          />
+        </figure>
+        <section className="project-html-section wrapper col-span-full">
+          <div className="project-html-section__content">
+            <header>
+              <h2 className="h3">lorem ipsum</h2>
+            </header>
+            <div className="project-html-section__text">
+              <p>Lorem ipsum dolor sit amet consectetur. Ornare magnis pretium enim ut netus adipiscing nulla. Leo arcu amet sed faucibus vel lorem amet congue. Morbi aenean imperdiet in libero tellus egestas adipiscing. Feugiat risus etiam scelerisque massa. Arcu nunc viverra laoreet amet diam nibh consequat suscipit. Elit amet sed at mattis odio eget eget velit. Suscipit morbi in lectus sodales laoreet montes proin ultricies tellus. Turpis elit quis metus at.</p>
+              <p>Lorem ipsum dolor sit amet consectetur. Ornare magnis pretium enim ut netus adipiscing nulla. Leo arcu amet sed faucibus vel lorem amet congue. Morbi aenean imperdiet in libero tellus egestas adipiscing. Feugiat risus etiam scelerisque massa. Arcu nunc viverra laoreet amet diam nibh consequat suscipit. Elit amet sed at mattis odio eget eget velit. Suscipit morbi in lectus sodales laoreet montes proin ultricies tellus. Turpis elit quis metus at.</p>
+            </div>
+          </div>
+          <div className="project-html-section__imgs">
+            <figure className="project-html__img">
+              <img
+                src=""
+                alt=""
+              />
+            </figure>
+            <figure className="project-html__img">
+              <img
+                src=""
+                alt=""
+              />
+            </figure>
+            <figure className="project-html__img">
+              <img
+                src=""
+                alt=""
+              />
+            </figure>
+          </div>
+        </section>
+        <section className="project-html__found">
+          <header>
+            <h2 className="h3 text-center">Found</h2>
+          </header>
+          <p className="h2 text-center">00/09</p>
+        </section>
       </div>
       <button
         onClick={clickBtn}
@@ -101,7 +158,7 @@ export default function ProjectHtml() {
         onMouseLeave={resetHoverBtn}
         onFocus={hoverBtn}
         onBlur={resetHoverBtn}
-        className={`btn-close btn-close--b btn-close--l btn-close--bl ${closeBtnHover ? "active" : ""}`}
+        className={`btn-footer ${closeBtnHover ? "active" : ""}`}
       >
         <svg
           width="12"
@@ -115,15 +172,7 @@ export default function ProjectHtml() {
             fill="currentColor"
           />
         </svg>
-      </button>
-      <button
-        onClick={clickBtn}
-        onMouseEnter={hoverBtn}
-        onMouseLeave={resetHoverBtn}
-        onFocus={hoverBtn}
-        onBlur={resetHoverBtn}
-        className={`btn-close btn-close--b btn-close--r btn-close--br ${closeBtnHover ? "active" : ""}`}
-      >
+        <span>Continue your search</span>
         <svg
           width="12"
           height="12"

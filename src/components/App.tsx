@@ -30,10 +30,6 @@ export default function App() {
       <ProjectHtml />
       <Overlay camController={camController} />
       <Canvas shadows>
-        <color
-          attach="background"
-          args={["#000"]}
-        />
         <fog
           attach="fog"
           args={["#000", 0, 5]}

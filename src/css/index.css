@@ -18,6 +18,10 @@ body {
   @apply text-9xl leading-none uppercase font-medium font-heading fog-effect;
 }
 
+@utility h3 {
+  @apply text-5xl leading-none uppercase font-medium font-heading fog-effect;
+}
+
 @utility detail-title {
   @apply text-base leading-none uppercase font-light font-heading fog-effect blur-[0.5px];
 }
@@ -27,7 +31,7 @@ body {
 }
 
 @utility fog-effect {
-  @apply drop-shadow-[0_0_10px] drop-shadow-back-light blur-[1px];
+  @apply drop-shadow-[0_0_10px] drop-shadow-back-light blur-[0.8px];
 }
 
 ::-webkit-scrollbar {
