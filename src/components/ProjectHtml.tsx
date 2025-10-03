@@ -15,13 +15,15 @@ export default function ProjectHtml() {
   const [closeBtnHover, setCloseBtnHover] = useState(false);
 
   const clickBtn = contextSafe(() => {
-    gsap.to("#smooth-wrapper", {
-      opacity: 0,
-      filter: "blur(20px)",
-      onComplete: () => {
-        navigate("/");
-      },
-    });
+    if (projectHtmlRef.current) {
+      gsap.to(projectHtmlRef.current, {
+        opacity: 0,
+        filter: "blur(20px)",
+        onComplete: () => {
+          navigate("/");
+        },
+      });
+    }
   });
   const hoverBtn = () => setCloseBtnHover(true);
   const resetHoverBtn = () => setCloseBtnHover(false);
