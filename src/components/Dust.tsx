@@ -1,7 +1,7 @@
 import { Float, useTexture } from "@react-three/drei";
 import { getRandomArbitrary } from "../js/functions";
 
-const particlesCount = 1000;
+const particlesCount = 3000;
 const particlePositions = new Float32Array(particlesCount * 3);
 const fieldSize = 10;
 

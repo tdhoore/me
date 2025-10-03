@@ -27,11 +27,6 @@ export default function ProjectHtml() {
   const resetHoverBtn = () => setCloseBtnHover(false);
 
   useGSAP(() => {
-    /*ScrollSmoother.create({
-      smooth: 1,
-      effects: true,
-    });*/
-
     const targets = gsap.utils.toArray(".move-in");
 
     targets.forEach((target) => {
