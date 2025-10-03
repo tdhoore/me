@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { createRoot } from "react-dom/client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { CameraControls } from "@react-three/drei";
 import Dust from "./Dust";
 import Projects from "./Projects";
@@ -14,6 +14,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import ProjectHtml from "./ProjectHtml";
 import ReactLenis from "lenis/react";
+import { useVoidStore } from "../stores/VoidStore";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 
@@ -23,6 +24,19 @@ export default function App() {
   const disableControllsPaths = ["/about", "/contact"];
 
   const camController = useRef(null);
+
+  const content = useVoidStore((state) => state.content);
+  const setContent = useVoidStore((state) => state.setContent);
+
+  useEffect(() => {
+    if (!content) {
+      fetch("/assets/content.json")
+        .then((r) => r.json())
+        .then((r) => {
+          setContent(r);
+        });
+    }
+  }, [content]);
 
   return (
     <ReactLenis

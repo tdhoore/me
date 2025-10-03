@@ -2,17 +2,13 @@ import { kebabCase } from "case-anything";
 import Project from "./Project";
 import { useLocation, useParams } from "react-router";
 import { useEffect } from "react";
-
-const projects = [
-  {
-    title: "test",
-    position: [20, 0, 20],
-  },
-];
+import { useVoidStore } from "../stores/VoidStore";
 
 export default function Projects({ camController }) {
   const location = useLocation();
   let id = null;
+
+  const content = useVoidStore((state) => state.content);
 
   if (location.pathname.includes("project")) {
     const urlParts = location.pathname.split("/");
@@ -27,13 +23,15 @@ export default function Projects({ camController }) {
   };
 
   useEffect(() => {
-    projects.forEach((project) => {
-      if (id === kebabCase(project.title)) {
-        //is the active project
-        moveToPosition(project.position, true);
-      }
-    });
-  }, [camController]);
+    if (content) {
+      content.projects.forEach((project) => {
+        if (id === kebabCase(project.title)) {
+          //is the active project
+          moveToPosition(project.position, true);
+        }
+      });
+    }
+  }, [camController, content]);
 
   if (!id) {
     moveToPosition([0, 0, 0], true);
@@ -41,22 +39,23 @@ export default function Projects({ camController }) {
 
   return (
     <group>
-      {projects.map((project, index) => {
-        if (id === kebabCase(project.title)) {
-          //is the active project
-          moveToPosition(project.position);
-        }
+      {content &&
+        content.projects.map((project, index) => {
+          if (id === kebabCase(project.title)) {
+            //is the active project
+            moveToPosition(project.position);
+          }
 
-        return (
-          <Project
-            {...project}
-            key={`project${index}`}
-            isActive={id === kebabCase(project.title)}
-            isFound={true}
-            id={id}
-          />
-        );
-      })}
+          return (
+            <Project
+              {...project}
+              key={`project${index}`}
+              isActive={id === kebabCase(project.title)}
+              isFound={true}
+              id={id}
+            />
+          );
+        })}
     </group>
   );
 }

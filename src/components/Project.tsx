@@ -1,6 +1,7 @@
 import { Html } from "@react-three/drei";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { useVoidStore } from "../stores/VoidStore";
+import { kebabCase } from "case-anything";
 
 export interface projectPropsType {
   position: [number, number, number];
@@ -9,7 +10,7 @@ export interface projectPropsType {
   isFound?: boolean;
 }
 
-export default function Project({ position, id, isActive, isFound }: projectPropsType) {
+export default function Project({ position, id, isActive, isFound, title, type }: projectPropsType) {
   let isHidden = false;
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,7 +44,7 @@ export default function Project({ position, id, isActive, isFound }: projectProp
   return (
     <Html position={position}>
       <a
-        href="/project/test"
+        href={`/project/${kebabCase(title)}`}
         className={`c-project ${isHidden ? "c-project--hidden" : ""} ${isActive ? "c-project--active" : ""} ${isFound ? "c-project--found" : ""}`}
         onClick={(e) => handleLink(e)}
         onMouseEnter={(e) => handleMouseOver(e)}
@@ -65,9 +66,9 @@ export default function Project({ position, id, isActive, isFound }: projectProp
             </svg>
           </div>
           <div className="c-project__text-container fog-effect">
-            <h2 className="c-project__title">lorem ipsum</h2>
+            <h2 className="c-project__title">{title}</h2>
             <div className="c-project__line"></div>
-            <p className="c-project__sub-title">design</p>
+            <p className="c-project__sub-title">{type}</p>
           </div>
         </article>
       </a>
