@@ -1,7 +1,7 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { createRoot } from "react-dom/client";
-import { useEffect, useRef } from "react";
-import { Box, CameraControls } from "@react-three/drei";
+import { useRef } from "react";
+import { CameraControls } from "@react-three/drei";
 import Dust from "./Dust";
 import Projects from "./Projects";
 import { BrowserRouter, NavLink, Route, Routes, useLocation, useParams } from "react-router";
@@ -13,10 +13,11 @@ import { SplitText } from "gsap/SplitText";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import ProjectHtml from "./ProjectHtml";
+import ReactLenis from "lenis/react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 
-export default function App({ children }) {
+export default function App() {
   const location = useLocation();
 
   const disableControllsPaths = ["/about", "/contact"];
@@ -24,10 +25,14 @@ export default function App({ children }) {
   const camController = useRef(null);
 
   return (
-    <div className="relative size-full">
+    <ReactLenis
+      options={{ autoRaf: true }}
+      root
+    >
       <nav className="fixed z-50 text-white">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
+        <NavLink to="/contact">About</NavLink>
       </nav>
       <Routes>
         <Route
@@ -35,25 +40,26 @@ export default function App({ children }) {
           element={<ProjectHtml />}
         />
       </Routes>
-
       <Overlay camController={camController} />
-      <Canvas shadows>
-        <fog
-          attach="fog"
-          args={["#000", 0, 5]}
-        />
-        <ambientLight intensity={1} />
-        <Dust />
-        <EyeScene camController={camController} />
-        <Projects camController={camController} />
-        <CameraControls
-          ref={camController}
-          dollySpeed={0}
-          truckSpeed={0}
-          enabled={!disableControllsPaths.includes(location.pathname)}
-        />
-      </Canvas>
-    </div>
+      <div className="fixed top-0 left-0 w-full h-[100dvh]">
+        <Canvas shadows>
+          <fog
+            attach="fog"
+            args={["#000", 0, 5]}
+          />
+          <ambientLight intensity={1} />
+          <Dust />
+          <EyeScene camController={camController} />
+          <Projects camController={camController} />
+          <CameraControls
+            ref={camController}
+            dollySpeed={0}
+            truckSpeed={0}
+            enabled={!disableControllsPaths.includes(location.pathname)}
+          />
+        </Canvas>
+      </div>
+    </ReactLenis>
   );
 }
 
@@ -68,25 +74,3 @@ if (root) {
     </BrowserRouter>
   );
 }
-/*   <Routes>
-        <Route
-          path="*"
-          element={<App />}
-        />
-        <Route
-          index
-          element={<App />}
-        />
-        <Route
-          path="project/:id"
-          element={<ProjectHtml />}
-        />
-        <Route
-          path="about"
-          element={<App />}
-        />
-        <Route
-          path="contact"
-          element={<App />}
-        />
-      </Routes>*/

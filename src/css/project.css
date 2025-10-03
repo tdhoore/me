@@ -29,7 +29,7 @@
 }
 
 .c-project__sub-title {
-  @apply self-end font-heading uppercase font-light text-2xl text-nowrap me-0.5 opacity-0  blur-sm transition-all scale-95;
+  @apply self-end font-heading uppercase font-light text-2xl text-nowrap me-0.5 opacity-0 blur-sm transition-all scale-95;
 }
 
 .c-project:hover,
@@ -55,4 +55,10 @@
 
 .c-project--hidden {
   @apply pointer-events-none opacity-0 blur-sm;
+}
+
+.c-project--found {
+  & .c-project__plus {
+    @apply bg-transparent text-primary;
+  }
 }

@@ -1,5 +1,5 @@
 .project-html {
-  @apply fixed top-0 left-0 size-full overflow-auto z-40 duration-500 transition-opacity;
+  @apply relative z-40 duration-500 transition-opacity;
 }
 
 .project-html__wrapper {

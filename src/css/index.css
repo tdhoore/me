@@ -8,7 +8,7 @@
 @import "tailwindcss";
 
 #root {
-  @apply h-[100dvh];
+  @apply min-h-[100dvh];
 }
 
 body {

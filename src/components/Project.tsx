@@ -4,11 +4,12 @@ import { useVoidStore } from "../stores/VoidStore";
 
 export interface projectPropsType {
   position: [number, number, number];
-  isHidden: boolean;
-  isActive: boolean;
+  isHidden?: boolean;
+  isActive?: boolean;
+  isFound?: boolean;
 }
 
-export default function Project({ position, id, isActive }: projectPropsType) {
+export default function Project({ position, id, isActive, isFound }: projectPropsType) {
   let isHidden = false;
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,7 +44,7 @@ export default function Project({ position, id, isActive }: projectPropsType) {
     <Html position={position}>
       <a
         href="/project/test"
-        className={`c-project ${isHidden ? "c-project--hidden" : ""} ${isActive ? "c-project--active" : ""}`}
+        className={`c-project ${isHidden ? "c-project--hidden" : ""} ${isActive ? "c-project--active" : ""} ${isFound ? "c-project--found" : ""}`}
         onClick={(e) => handleLink(e)}
         onMouseEnter={(e) => handleMouseOver(e)}
         onMouseLeave={(e) => handleMouseLeave(e)}

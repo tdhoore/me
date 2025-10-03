@@ -52,6 +52,7 @@ export default function Projects({ camController }) {
             {...project}
             key={`project${index}`}
             isActive={id === kebabCase(project.title)}
+            isFound={true}
             id={id}
           />
         );
