@@ -64,10 +64,10 @@
 }
 
 .project-html__btn-wrapper {
-  @apply relative flex justify-center items-center border border-primary rounded-full aspect-square overflow-hidden;
+  @apply relative flex justify-center items-center border border-primary rounded-full aspect-square overflow-clip;
 
   & a {
-    @apply detail-text size-full flex items-center transition-colors p-8;
+    @apply detail-text size-full flex items-center transition-colors p-8 aspect-square rounded-full;
 
     &:hover {
       @apply text-secondary;

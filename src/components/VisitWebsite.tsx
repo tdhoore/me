@@ -33,11 +33,15 @@ export default function VisitWebsite({ link }) {
     <div
       className=" project-html__visit-btn "
       data-delay={0.4}
-      onMouseEnter={() => setHoverBtn(true)}
-      onMouseLeave={() => setHoverBtn(false)}
     >
       <div className="project-html__btn-wrapper">
-        <a href={link.href}>{link.label}</a>
+        <a
+          href={link.href}
+          onMouseEnter={() => setHoverBtn(true)}
+          onMouseLeave={() => setHoverBtn(false)}
+        >
+          {link.label}
+        </a>
         <div className="project-html__hover">
           <div></div>
         </div>
