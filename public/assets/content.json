@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "title": "test",
+      "title": "Shake yo hands",
       "type": "Design",
       "tags": [
         {
@@ -9,59 +9,31 @@
           "value": "2024"
         },
         {
-          "label": "Fields",
+          "label": "Rolls",
           "value": ["Design", "front-end"]
         }
       ],
       "position": [0, 0, -20],
-      "intro": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati optio ea consequatur tenetur eos, ducimus cupiditate cumque possimus quasi mollitia nobis rem dicta nemo odio quis corporis minima sunt sit? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati optio ea consequatur tenetur eos, ducimus cupiditate cumque possimus quasi mollitia nobis rem dicta nemo odio quis corporis minima sunt sit?</p>",
+      "intro": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati optio ea consequatur tenetur eos, ducimus cupiditate cumque possimus quasi mollitia nobis rem dicta nemo odio quis corporis minima sunt sit? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati optio ea consequatur tenetur eos, ducimus cupiditate cumque possimus quasi mollitia nobis rem dicta nemo odio quis corporis minima sunt sit?</p> <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati optio ea consequatur tenetur eos, ducimus cupiditate cumque possimus quasi mollitia nobis rem dicta nemo odio quis corporis minima sunt sit? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati optio ea consequatur tenetur eos, ducimus cupiditate cumque possimus quasi mollitia nobis rem dicta nemo odio quis corporis minima sunt sit?</p>",
       "link": {
         "label": "Visit the website",
         "href": "#"
       },
-      "topImg": {
+      "leftImg": {
         "src": "",
         "alt": ""
       },
-      "bottomImg": {
+      "rightImg": {
         "src": "",
         "alt": ""
       },
       "content": [
-        {
-          "blockName": "Section1",
-          "title": "lorem ipsum",
-          "text": "Lorem ipsum dolor sit amet consectetur. Ornare magnis pretium enim ut netus adipiscing nulla. Leo arcu amet sed faucibus vel lorem amet congue. Morbi aenean imperdiet in libero tellus egestas adipiscing. Feugiat risus etiam scelerisque massa. Arcu nunc viverra laoreet amet diam nibh consequat suscipit. Elit amet sed at mattis odio eget eget velit. Suscipit morbi in lectus sodales laoreet montes proin ultricies tellus. Turpis elit quis metus at.",
-          "img": {
-            "src": "",
-            "alt": ""
-          }
-        },
         {
           "blockName": "FullWidthImg",
           "img": {
             "src": "",
             "alt": ""
           }
-        },
-        {
-          "blockName": "ImgSection",
-          "title": "lorem ipsum",
-          "text": "Lorem ipsum dolor sit amet consectetur. Ornare magnis pretium enim ut netus adipiscing nulla. Leo arcu amet sed faucibus vel lorem amet congue. Morbi aenean imperdiet in libero tellus egestas adipiscing. Feugiat risus etiam scelerisque massa. Arcu nunc viverra laoreet amet diam nibh consequat suscipit. Elit amet sed at mattis odio eget eget velit. Suscipit morbi in lectus sodales laoreet montes proin ultricies tellus. Turpis elit quis metus at.",
-          "imgs": [
-            {
-              "src": "",
-              "alt": ""
-            },
-            {
-              "src": "",
-              "alt": ""
-            },
-            {
-              "src": "",
-              "alt": ""
-            }
-          ]
         }
       ]
     }

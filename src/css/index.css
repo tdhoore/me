@@ -24,7 +24,7 @@ body {
 }
 
 @utility detail-title {
-  @apply text-base leading-none uppercase font-light font-heading fog-effect blur-[0.5px];
+  @apply text-2xl leading-none uppercase font-light font-heading fog-effect blur-[0.5px];
 }
 
 @utility detail-text {
@@ -33,27 +33,4 @@ body {
 
 @utility fog-effect {
   @apply drop-shadow-[0_0_10px] drop-shadow-back-light blur-[0.8px];
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #fff;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #fff;
-}
-
-#smooth-content {
-  will-change: transform;
 }

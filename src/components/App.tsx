@@ -15,6 +15,7 @@ import { useGSAP } from "@gsap/react";
 import ProjectHtml from "./ProjectHtml";
 import ReactLenis from "lenis/react";
 import { useVoidStore } from "../stores/VoidStore";
+import Eye from "./Eye";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 

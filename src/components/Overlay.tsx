@@ -46,7 +46,13 @@ export default function Overlay({ camController }) {
         ></div>
       </div>
       <div className="fixed top-0 left-0 size-full z-40 bg-[url(/assets/textures/noise.png)] opacity-[0.03] bg-bottom pointer-events-none"></div>
-      <div className={`fixed top-1/2 left-1/2 -translate-1/2 size-1/2 z-40 pointer-events-none transition-opacity duration-500 bg-amber-700 ${activeProjectId ? "opacity-10 blur-xs" : "opacity-0 blur-xl"}`}></div>
+      <div className={`wrapper fixed top-1/2 left-1/2 -translate-1/2 size-full z-40 pointer-events-none transition-opacity duration-500 ${activeProjectId ? "opacity-10 blur-xs" : "opacity-0 blur-xl"}`}>
+        <img
+          src=""
+          alt=""
+          className="project-html__img col-start-2 col-span-3 object-cover aspect-[4/5] self-end"
+        />
+      </div>
     </>
   );
 }

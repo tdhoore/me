@@ -1,19 +1,32 @@
 .btn {
-  @apply relative text-secondary flex justify-center items-center border-none bg-none fog-effect uppercase font-medium font-heading leading-none blur-[0.5px] py-4 px-8;
+  @apply relative text-secondary flex justify-center items-center border-none bg-none fog-effect uppercase font-medium font-heading leading-none blur-[0.5px] py-3 px-8 transition-all;
 
   &::before {
-    @apply content-[''] z-[-1] block absolute top-0 left-0 size-full fog-effect bg-primary rounded-sm;
+    @apply content-[''] z-[-1] block absolute top-0 left-0 size-full fog-effect bg-primary rounded-sm transition-colors border duration-500 border-primary;
+  }
+
+  &:hover,
+  &:focus {
+    @apply text-primary;
+
+    &::before {
+      @apply bg-transparent;
+    }
+  }
+
+  &:active {
+    @apply scale-95;
   }
 }
 
 .btn-close {
-  @apply fixed z-40 size-20 border-primary/80 flex justify-center items-center fog-effect text-primary cursor-pointer transition-colors duration-500 text-xl uppercase;
+  @apply size-6 border-l border-primary/80 flex justify-center items-center fog-effect text-primary cursor-pointer transition-colors text-xl uppercase;
 
   & svg {
     @apply transition-transform;
   }
 
-  &.active {
+  &:hover {
     @apply bg-primary text-secondary;
 
     & svg {
