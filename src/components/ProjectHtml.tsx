@@ -204,6 +204,17 @@ export default function ProjectHtml() {
               </svg>
             </a>
           </div>
+          <a
+            href="/"
+            className="project-html__footer-btn move-in"
+          >
+            Continue exploring
+            <span className="arrows">
+              <span>&gt;</span>
+              <span>&gt;</span>
+              <span>&gt;</span>
+            </span>
+          </a>
         </div>
       </article>
     )

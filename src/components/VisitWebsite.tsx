@@ -1,26 +1,25 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { clamp } from "three/src/math/MathUtils.js";
 
 export default function VisitWebsite({ link }) {
+  const btnRef = useRef(null);
   const [hoverBtn, setHoverBtn] = useState(false);
 
   const { contextSafe } = useGSAP();
 
   const onMove = contextSafe(({ clientX, clientY }) => {
-    const { innerWidth, innerHeight } = window;
+    /*const { innerWidth, innerHeight } = window;
 
-    if (!hoverBtn) {
-      gsap.to(".project-html__hover", {
-        x: clientX - innerWidth / 2,
-        y: clientY - innerHeight / 2,
-      });
-    } else {
-      gsap.to(".project-html__hover", {
-        x: 0,
-        y: 0,
-      });
-    }
+    const xPos = clamp(clientX - innerWidth / 2, -20, 20);
+    const yPos = clamp(clientY - innerHeight / 2, -20, 20);
+
+    gsap.to(".project-html__btn-wrapper", {
+      x: xPos,
+      y: yPos,
+      duration: 10,
+    });*/
   });
 
   useEffect(() => {
@@ -42,9 +41,6 @@ export default function VisitWebsite({ link }) {
         >
           {link.label}
         </a>
-        <div className="project-html__hover">
-          <div></div>
-        </div>
       </div>
     </div>
   ) : null;

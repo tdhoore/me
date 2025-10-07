@@ -7,12 +7,16 @@
 @import "./project-counter.css";
 @import "tailwindcss";
 
+html {
+  @apply overflow-clip;
+}
+
 #root {
   @apply min-h-[100dvh];
 }
 
 body {
-  @apply bg-black text-primary font-body;
+  @apply bg-black text-primary font-body body;
 }
 
 @utility h2 {
@@ -33,4 +37,8 @@ body {
 
 @utility fog-effect {
   @apply drop-shadow-[0_0_10px] drop-shadow-back-light blur-[0.8px];
+}
+
+@utility body {
+  @apply text-lg;
 }

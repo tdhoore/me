@@ -9,6 +9,7 @@ export default function Projects({ camController }) {
   let id = null;
 
   const content = useVoidStore((state) => state.content);
+  const foundProjects = useVoidStore((state) => state.foundProjects);
 
   if (location.pathname.includes("project")) {
     const urlParts = location.pathname.split("/");
@@ -51,7 +52,7 @@ export default function Projects({ camController }) {
               {...project}
               key={`project${index}`}
               isActive={id === kebabCase(project.title)}
-              isFound={true}
+              isFound={foundProjects.includes(kebabCase(project.title))}
               id={id}
             />
           );

@@ -11,7 +11,7 @@
 }
 
 .project-html__content {
-  @apply col-span-full px-0 gap-y-20 min-h-[calc(100dvh_-_10rem)];
+  @apply col-span-full px-0 gap-y-30 min-h-[calc(100dvh_-_10rem)] py-30;
   grid-template-rows: min-content 1fr min-content;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .project-html__details-wrapper {
-  @apply row-start-2 row-end-4 col-start-1 col-span-5 flex flex-col-reverse gap-6;
+  @apply flex flex-col-reverse gap-6 row-start-1 row-end-3 col-start-9 col-span-4;
 }
 
 .project-html__details {
@@ -56,22 +56,30 @@
 }
 
 .project-html__right-img {
-  @apply row-start-1 row-end-3 col-start-9 col-span-4;
+  @apply row-start-2 row-end-4 col-start-1 col-span-5;
 }
 
 .project-html__visit-btn {
-  @apply row-start-2 row-end-3 col-start-6 col-span-3 flex justify-center items-center text-center fog-effect;
+  @apply row-start-2 row-end-3 col-start-6 col-span-3 flex justify-center items-center text-center;
 }
 
 .project-html__btn-wrapper {
-  @apply relative flex justify-center items-center border border-primary rounded-full aspect-square overflow-clip;
+  @apply relative z-10 flex justify-center items-center  rounded-full aspect-square;
+
+  &::before {
+    @apply content-[''] absolute z-[-1] top-1/2 left-1/2 -translate-1/2 block size-[100%] rounded-full border border-primary transition-all duration-500;
+  }
+
+  &:hover {
+    @apply transition-all bg-primary text-secondary;
+
+    &::before {
+      @apply blur-md scale-110;
+    }
+  }
 
   & a {
-    @apply detail-text size-full flex items-center transition-colors p-8 aspect-square rounded-full;
-
-    &:hover {
-      @apply text-secondary;
-    }
+    @apply relative detail-text size-full flex items-center transition-colors p-8 aspect-square rounded-full;
   }
 
   & .project-html__hover {
@@ -118,6 +126,42 @@
 
     &.found {
       @apply bg-primary opacity-50;
+    }
+  }
+}
+
+.project-html__footer-btn {
+  @apply col-span-full detail-text flex items-center gap-2 fog-effect border  border-primary justify-self-start rounded-sm py-3 px-6 transition-colors;
+
+  & .arrows {
+    @apply flex items-center;
+
+    & span {
+      @apply mb-1 transition-transform;
+
+      &:first-of-type {
+        @apply delay-150;
+      }
+
+      &:nth-of-type(2) {
+        @apply delay-75;
+      }
+    }
+  }
+
+  &:hover {
+    @apply bg-primary text-secondary;
+
+    & .arrows span {
+      @apply translate-x-1;
+
+      &:first-of-type {
+        @apply delay-0;
+      }
+
+      &:last-of-type {
+        @apply delay-150;
+      }
     }
   }
 }
