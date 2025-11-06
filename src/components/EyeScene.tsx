@@ -18,7 +18,6 @@ const dummy = new Object3D();
 
 const eyePosPerLoc: eyePosPerLocType = {
   "/about": new Vector3(2.5, -0.2, -5.8),
-  "/contact": new Vector3(-2.5, -0.2, -5.8),
   default: new Vector3(2.5, -0.2, -8),
 };
 

@@ -2,13 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import ProjectCounter from "./ProjectCounter";
 import { useVoidStore } from "../stores/VoidStore";
 import { kebabCase } from "case-anything";
 import Section1 from "./Section1";
 import FullWidthImg from "./FullWidthImg";
 import ImgSection from "./ImgsSection";
-import { div } from "three/webgpu";
 import VisitWebsite from "./VisitWebsite";
 
 const sections = { Section1, FullWidthImg, ImgSection };

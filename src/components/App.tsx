@@ -1,6 +1,6 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { createRoot } from "react-dom/client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CameraControls } from "@react-three/drei";
 import Dust from "./Dust";
 import Projects from "./Projects";
@@ -15,17 +15,31 @@ import { useGSAP } from "@gsap/react";
 import ProjectHtml from "./ProjectHtml";
 import ReactLenis from "lenis/react";
 import { useVoidStore } from "../stores/VoidStore";
-import Eye from "./Eye";
+import Contact from "./Contact";
+import About from "./About";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 
+const pageAngles = {
+  about: {
+    rot: Math.PI / 3,
+    buffer: Math.PI / 6,
+  },
+  contact: {
+    rot: -Math.PI / 4,
+    buffer: Math.PI / 8,
+  },
+};
+
 export default function App() {
   const location = useLocation();
+  const [activePage, setActivePage] = useState("");
 
-  const disableControllsPaths = ["/about", "/contact"];
+  const disableControllsPaths = ["/about"];
 
   const camController = useRef(null);
 
+  const activeProjectId = useVoidStore((state) => state.activeProjectId);
   const content = useVoidStore((state) => state.content);
   const setContent = useVoidStore((state) => state.setContent);
 
@@ -39,6 +53,26 @@ export default function App() {
     }
   }, [content]);
 
+  const handleUpdateCameraControls = (e) => {
+    if (e.type === "update") { 
+      let hasActive = false;
+      const angle = e.target._camera.rotation.y;
+
+      Object.keys(pageAngles).forEach(page => {
+        const pageRot = pageAngles[page];
+
+        if (pageRot.rot + pageRot.buffer >= angle && pageRot.rot - pageRot.buffer <= angle) {
+          setActivePage(page);
+          hasActive = true;
+        }
+      });
+
+      if (!hasActive) { 
+        setActivePage("");
+      }
+    }
+  };
+
   return (
     <ReactLenis
       options={{ autoRaf: true }}
@@ -47,7 +81,7 @@ export default function App() {
       <nav className="fixed z-50 text-white">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
-        <NavLink to="/contact">About</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
       </nav>
       <Routes>
         <Route
@@ -56,6 +90,7 @@ export default function App() {
         />
       </Routes>
       <Overlay camController={camController} />
+      <About visible={activePage === "about" && !activeProjectId} />
       <div className="fixed top-0 left-0 w-full h-[100dvh]">
         <Canvas shadows>
           <fog
@@ -66,11 +101,13 @@ export default function App() {
           <Dust />
           <EyeScene camController={camController} />
           <Projects camController={camController} />
+
           <CameraControls
             ref={camController}
             dollySpeed={0}
             truckSpeed={0}
             enabled={!disableControllsPaths.includes(location.pathname)}
+            onChange={handleUpdateCameraControls}
           />
         </Canvas>
       </div>

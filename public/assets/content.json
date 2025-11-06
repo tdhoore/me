@@ -37,5 +37,22 @@
         }
       ]
     }
+  ],
+  "socials": [
+    {
+      "icon": "artstation",
+      "link": "artstation",
+      "text": "artstation"
+    },
+    {
+      "icon": "dsfs",
+      "link": "sdf",
+      "text": "artssdftation"
+    },
+    {
+      "icon": "fgfdgd",
+      "link": "weqe",
+      "text": "artqwereswfssdftation"
+    }
   ]
 }
