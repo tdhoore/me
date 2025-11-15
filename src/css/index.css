@@ -5,6 +5,7 @@
 @import "./project.css";
 @import "./project-html.css";
 @import "./project-counter.css";
+@import "./about.css";
 @import "tailwindcss";
 
 html {
@@ -25,6 +26,10 @@ body {
 
 @utility h3 {
   @apply text-5xl leading-none uppercase font-medium font-heading fog-effect;
+}
+
+@utility subTitle {
+  @apply text-2xl leading-none uppercase font-medium font-heading fog-effect opacity-80;
 }
 
 @utility detail-title {

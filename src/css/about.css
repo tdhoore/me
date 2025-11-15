@@ -1,0 +1,31 @@
+.about {
+  @apply fixed top-0 z-40 pointer-events-none;
+
+  & .wrapper {
+    @apply justify-end items-end min-h-[100dvh] pointer-events-none;
+  }
+}
+
+.about__article {
+  @apply col-span-5 flex flex-col gap-6 col-start-6 relative z-50 transition-all duration-500 pointer-events-auto;
+}
+
+.about__header {
+  @apply flex flex-col gap-4;
+}
+
+.about__title {
+  @apply h2;
+}
+
+.about__sub-title {
+  @apply subTitle;
+}
+
+.about--hidden {
+  @apply pointer-events-none;
+
+  & .about__article {
+    @apply opacity-0 blur-2xl pointer-events-none;
+  }
+}
