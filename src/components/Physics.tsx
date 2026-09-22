@@ -30,7 +30,7 @@ export default function PhysicsScene({ children }) {
 			_target.set(pos.x + _offset.x, pos.y + _offset.y, pos.z + _offset.y);
 			
       // Smoothly move the camera pivot to follow the character
-    	cam.setLookAt(_target.x, _target.y, _target.z, ctrl.currPos.x, ctrl.currPos.y, ctrl.currPos.z, true);
+    	//cam.setLookAt(_target.x, _target.y, _target.z, ctrl.currPos.x, ctrl.currPos.y, ctrl.currPos.z, true);
     }
   });
 

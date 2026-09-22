@@ -11,6 +11,8 @@ import PhysicsScene from "./Physics";
 import { CuboidCollider } from "@react-three/rapier";
 import * as THREE from "three/webgpu";
 import { KeyboardControls } from "@react-three/drei";
+import { Outside, OutsideInstances } from "./Outside";
+import { StatsGl } from "@react-three/drei";
 
 declare module "@react-three/fiber" {
   interface ThreeElements extends ThreeToJSXElements<typeof THREE> {}
@@ -42,18 +44,27 @@ export default function App() {
           shadows
           gl={async (props) => {
             const renderer = new THREE.WebGPURenderer(props as any);
+            
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFShadowMap
+
             await renderer.init();
             return renderer;
           }}
+          
         >
+          <StatsGl />
           <KeyboardControls map={keyboardMap}>
             <PhysicsScene>
               <CuboidCollider
-            
                 position={[0, -3, 0]}
                 args={[10, 1, 10]}
               />
             </PhysicsScene>
+            <OutsideInstances>
+              <Outside />
+            </OutsideInstances>
+            <ambientLight intensity={1} castShadow/>
           </KeyboardControls>
         </Canvas>
       </div>
