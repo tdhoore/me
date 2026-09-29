@@ -1,36 +1,81 @@
-import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
-import { Box, useKeyboardControls } from "@react-three/drei";
+import { useEffect, useRef } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import {  useKeyboardControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import { Ecctrl } from "ecctrl";
-import { EcctrlCameraControls } from "ecctrl/camera";
 import * as THREE from "three/webgpu";
+import { damp, damp3 } from "maath/easing";
 
-const _target = new THREE.Vector3();
-const _offset = new THREE.Vector3(-5, 5, 5);
+const newCamPosition = new THREE.Vector3();
+const playerDistance = new THREE.Vector3();
+const screenDistance = 0.4;
+
+const right = new THREE.Vector3();
+const up = new THREE.Vector3();
+
+const originalPosition = new THREE.Vector3();
+
+let panValue = { value: 0 };
+
+const panOffset = new THREE.Vector2();
+const maxPan = 2;
+
+const panCamera = (dx: number, dy: number, camera: THREE.Camera, delta: number) => {
+  const rightAxis = right.setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+
+  const upAxis = up.setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+
+  panOffset.x += dx;
+  panOffset.y += dy;
+
+  panOffset.x = THREE.MathUtils.clamp(panOffset.x, -maxPan, maxPan);
+
+  panOffset.y = THREE.MathUtils.clamp(panOffset.y, -maxPan, maxPan);
+
+  newCamPosition.copy(originalPosition);
+
+  newCamPosition.addScaledVector(rightAxis, -panOffset.x);
+  newCamPosition.addScaledVector(upAxis, panOffset.y);
+
+  damp3(camera.position, newCamPosition, 0.05, delta);
+};
 
 export default function PhysicsScene({ children }) {
   const [, getKeys] = useKeyboardControls();
+  const { camera } = useThree();
 
   const ecctrlRef = useRef(null);
-  const cameraRef = useRef(null);
 
-  useFrame(() => {
+  useEffect(() => {
+    originalPosition.copy(camera.position);
+  }, [camera]);
+
+  useFrame((_, delta) => {
     const ctrl = ecctrlRef.current;
-    const cam = cameraRef.current;
 
-		if (ctrl) {
+    if (ctrl) {
       const { forward, backward, leftward, rightward, jump, run } = getKeys();
+      //@ts-ignore
       ctrl.setMovement({ forward, backward, leftward, rightward, jump, run });
     }
 
-    if (ctrl && cam) {
-      // Character world position
-      const pos = ctrl.currPos; // THREE.Vector3 exposed by ecctrl ref
-			_target.set(pos.x + _offset.x, pos.y + _offset.y, pos.z + _offset.y);
-			
-      // Smoothly move the camera pivot to follow the character
-    	//cam.setLookAt(_target.x, _target.y, _target.z, ctrl.currPos.x, ctrl.currPos.y, ctrl.currPos.z, true);
+    if (ctrl && camera) {
+      let dampTarget = 0;
+      //@ts-ignore
+      playerDistance.copy(ctrl.currPos);
+      playerDistance.project(camera);
+
+      if (playerDistance.x < -1 + screenDistance) {
+        dampTarget = 0.1;
+      }
+
+      if (playerDistance.x > 1 - screenDistance) {
+        dampTarget = -0.1;
+      }
+
+      damp(panValue, "value", dampTarget, 0.8, delta);
+
+      panCamera(panValue.value, 0, camera, delta);
     }
   });
 
@@ -43,17 +88,10 @@ export default function PhysicsScene({ children }) {
         decDeltaTime={6}
         debug
         friction={-0.05}
-			>
-				
-			</Ecctrl>
-
-      <EcctrlCameraControls
-				ref={cameraRef}
-				makeDefault
-				smoothTime={0.1}
-      />
+      ></Ecctrl>
 
       {children}
     </Physics>
   );
 }
+

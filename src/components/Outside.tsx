@@ -1,5 +1,8 @@
-import React, { useMemo, useContext, createContext } from "react";
-import { useGLTF, Merged, PerspectiveCamera } from "@react-three/drei";
+import React, { useMemo, useContext, createContext, useRef } from "react";
+import { useGLTF, Merged, PerspectiveCamera, useHelper } from "@react-three/drei";
+import * as THREE from "three/webgpu";
+
+const levelScale = 2.8;
 
 const context = createContext();
 export function OutsideInstances({ children, ...props }) {
@@ -70,12 +73,42 @@ export function OutsideInstances({ children, ...props }) {
 
 export function Outside(props) {
   const instances = useContext(context);
+  const lightRef = useRef<THREE.DirectionalLight>(null!);
+
+  useHelper(lightRef, THREE.DirectionalLightHelper, 2, "red");
 
   return (
     <group
       {...props}
+      position={[0, -2, 0]}
+      scale={[levelScale, levelScale, levelScale]}
       dispose={null}
     >
+      <PerspectiveCamera
+        makeDefault={true}
+        far={100}
+        near={0.1}
+        fov={22}
+        position={[4.938, 3.889, 2.964]}
+        rotation={[-0.708, 0.762, 0.534]}
+        zoom={0.7}
+      />
+      <directionalLight
+        castShadow
+        intensity={1}
+        //decay={2}
+        shadow-bias={-0.001}
+        position={[0, 5, -1]}
+        rotation={[-1.404, -0.22, -0.301]}
+        ref={lightRef}
+        shadow-camera-left={-15}
+        shadow-camera-right={15}
+        shadow-camera-top={15}
+        shadow-camera-bottom={-15}
+        shadow-camera-near={0.1}
+        shadow-camera-far={30}
+        shadow-mapSize={[1024, 1024]}
+      />
       <instances.Bunker
         position={[0.291, 0, -2.716]}
         scale={0.402}
@@ -350,14 +383,7 @@ export function Outside(props) {
         rotation={[3.107, -1.108, -3.069]}
         scale={[0.214, 0.262, 0.196]}
       />
-      <PerspectiveCamera
-        makeDefault={false}
-        far={100}
-        near={0.1}
-        fov={22.895}
-        position={[4.938, 3.889, 2.964]}
-        rotation={[-0.708, 0.762, 0.534]}
-      />
+
       <instances.Door
         position={[0.291, 0.346, -2.405]}
         scale={[0.126, 0.213, 0.021]}
@@ -23437,14 +23463,7 @@ export function Outside(props) {
         rotation={[-2.675, -0.715, 2.91]}
         scale={0.098}
       />
-      <directionalLight
-        castShadow
-        intensity={1}
-        //decay={2}
-        shadow-bias={-0.001}
-        position={[0, 20, 0]}
-        rotation={[-1.404, -0.22, -0.301]}
-      />
+
       <instances.Terrainrock
         position={[1.339, -0.721, 0.835]}
         rotation={[0, -0.3, 0]}

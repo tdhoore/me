@@ -1,4 +1,4 @@
-import { Canvas, extend, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, extend, ThreeToJSXElements } from "@react-three/fiber";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, NavLink } from "react-router";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,7 +10,7 @@ import ReactLenis from "lenis/react";
 import PhysicsScene from "./Physics";
 import { CuboidCollider } from "@react-three/rapier";
 import * as THREE from "three/webgpu";
-import { KeyboardControls } from "@react-three/drei";
+import { KeyboardControls, useHelper } from "@react-three/drei";
 import { Outside, OutsideInstances } from "./Outside";
 import { StatsGl } from "@react-three/drei";
 
@@ -44,34 +44,36 @@ export default function App() {
           shadows
           gl={async (props) => {
             const renderer = new THREE.WebGPURenderer(props as any);
-            
+
             renderer.shadowMap.enabled = true;
-            renderer.shadowMap.type = THREE.PCFShadowMap
+            renderer.shadowMap.type = THREE.PCFShadowMap;
 
             await renderer.init();
             return renderer;
           }}
-          
         >
-          <StatsGl />
+          <StatsGl className="fixed z-80 right-0 top-0" />
           <KeyboardControls map={keyboardMap}>
             <PhysicsScene>
               <CuboidCollider
                 position={[0, -3, 0]}
-                args={[10, 1, 10]}
+                args={[50, 1, 50]}
               />
             </PhysicsScene>
             <OutsideInstances>
               <Outside />
             </OutsideInstances>
-            <ambientLight intensity={1} castShadow/>
+            <ambientLight
+              intensity={1}
+              castShadow
+            />
           </KeyboardControls>
         </Canvas>
       </div>
     </>
   );
 }
-//  <Overlay camController={camController} />
+
 const root = document.querySelector("#root");
 
 if (root) {
