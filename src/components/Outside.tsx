@@ -1,6 +1,11 @@
 import React, { useMemo, useContext, createContext, useRef } from "react";
 import { useGLTF, Merged, PerspectiveCamera, useHelper } from "@react-three/drei";
 import * as THREE from "three/webgpu";
+import { grass } from "./materials/grass";
+import { tallGrass } from "./materials/tallGrass";
+import { leaves } from "./materials/leaves";
+import { ground } from "./materials/ground";
+import { rock } from "./materials/rock";
 
 const levelScale = 2.8;
 
@@ -8,7 +13,7 @@ const context = createContext();
 export function OutsideInstances({ children, ...props }) {
   const { nodes } = useGLTF("/assets/bunker.glb");
   const instances = useMemo(() => {
-    return {
+    const meshes = {
       Bunker: nodes.bunker,
       Bush: nodes.bush,
       Door: nodes.door,
@@ -53,7 +58,39 @@ export function OutsideInstances({ children, ...props }) {
       Wire5: nodes.wire005,
       Wire6: nodes.wire006,
     };
+
+    Object.keys(meshes).forEach((nodeKey) => {
+      const currentMaterial = meshes[nodeKey].material;
+
+      console.log(currentMaterial.name);
+      if (currentMaterial.name === "GRASS") {
+        meshes[nodeKey].material = grass;
+      }
+
+      if (currentMaterial.name === "GRASS.001") {
+        meshes[nodeKey].material = tallGrass;
+      }
+
+      if (currentMaterial.name === "leafs") {
+        meshes[nodeKey].material = leaves;
+      }
+
+      if (currentMaterial.name === "Land") {
+        meshes[nodeKey].material = ground;
+      }
+
+      if (currentMaterial.name === "stone") {
+        meshes[nodeKey].material = rock;
+      }
+
+      if (currentMaterial.name === "Material.008") {
+        meshes[nodeKey].material = rock;
+      }
+    });
+
+    return meshes;
   }, [nodes]);
+
   return (
     <Merged
       meshes={instances}
