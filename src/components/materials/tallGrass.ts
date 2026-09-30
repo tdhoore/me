@@ -26,7 +26,7 @@ tallGrass.positionNode = Fn(() => {
 
   const wind = texture(simplexNoiseTexture, positionWorld.xz.mul(0.1).add(time.mul(0.08))).r;
 
-  const anchor = mul(wind, timeWiggle.sin(), 0.3, ownHeightMap);
+  const anchor = mul(wind, timeWiggle.sin(), 0.5, ownHeightMap);
 
   return positionLocal.add(vec3(0, anchor, anchor));
 })();

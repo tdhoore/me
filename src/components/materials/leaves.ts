@@ -26,7 +26,7 @@ leaves.positionNode = Fn(() => {
 
   const wind = texture(simplexNoiseTexture, positionWorld.xz.mul(0.05).add(time.mul(0.08))).r;
 
-  const anchor = mul(wind, timeWiggle.sin(), 0.03, ownHeightMap);
+  const anchor = mul(wind, timeWiggle.sin(), 0.05, ownHeightMap);
 
   return positionLocal.add(vec3(0, anchor, anchor));
 })();
