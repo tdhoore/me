@@ -129,7 +129,7 @@ export function Outside(props) {
         fov={22}
         position={[4.938, 3.889, 2.964]}
         rotation={[-0.708, 0.762, 0.534]}
-        zoom={0.7}
+        zoom={0.9}
       />
       <directionalLight
         castShadow

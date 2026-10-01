@@ -66,11 +66,11 @@ export default function PhysicsScene({ children }) {
       playerDistance.project(camera);
 
       if (playerDistance.x < -1 + screenDistance) {
-        dampTarget = 0.1;
+        dampTarget = 0.05;
       }
 
       if (playerDistance.x > 1 - screenDistance) {
-        dampTarget = -0.1;
+        dampTarget = -0.05;
       }
 
       damp(panValue, "value", dampTarget, 0.8, delta);
