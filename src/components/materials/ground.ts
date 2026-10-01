@@ -3,18 +3,14 @@ import * as THREE from "three/webgpu";
 
 export const ground = new THREE.MeshStandardNodeMaterial(
 	{
-		color: 0xff00dd,
 		roughness: 1
 	}
 );
 
 ground.colorNode = Fn(() => {
-	const worldHeight = clamp(vec3(positionLocal.y.add(2.1).smoothstep(0, 0.15)));
+  const worldHeight = positionLocal.y.add(2.1).clamp().smoothstep(0, 0.15);
 
-	const darkColor = color("#2C7206")
-	const baseColor = color("#3f9b0b")
-	
-	//return vec4(mix(darkColor, baseColor, worldHeight), 0);
-
-	return vec4(mix(darkColor, baseColor, worldHeight), 0);
+  const darkColor = color("#d7c888");
+  const baseColor = color("#85ff8c");
+  return vec4(mix(darkColor, baseColor, worldHeight), 0);
 })();

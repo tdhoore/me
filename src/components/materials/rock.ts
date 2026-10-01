@@ -1,4 +1,4 @@
-import { Fn, vec3, positionLocal, color, vec4, mix, clamp } from "three/src/nodes/TSL.js";
+import { remapClamp, Fn, vec3, mix, color, vec4, positionGeometry } from "three/tsl";
 import * as THREE from "three/webgpu";
 
 export const rock = new THREE.MeshStandardNodeMaterial({
@@ -7,10 +7,10 @@ export const rock = new THREE.MeshStandardNodeMaterial({
 });
 
 rock.colorNode = Fn(() => {
-  const worldHeight = clamp(vec3(positionLocal.y).add(1.4));
+  const worldHeight = remapClamp(positionGeometry.y.add(1.2), 0, 1);
 
-  const darkColor = color("#1f282e");
-  const baseColor = color("#36454f");
-
+  const darkColor = color(0x4f5e81);
+  const baseColor = color(0x6e83b4).mul(1.6);
+  
   return vec4(mix(darkColor, baseColor, worldHeight), 0);
 })();

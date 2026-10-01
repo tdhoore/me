@@ -1,5 +1,5 @@
+import ReactDOM from "react-dom/client";
 import { Canvas, extend, ThreeToJSXElements } from "@react-three/fiber";
-import { createRoot } from "react-dom/client";
 import { BrowserRouter, NavLink } from "react-router";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -10,9 +10,10 @@ import ReactLenis from "lenis/react";
 import PhysicsScene from "./Physics";
 import { CuboidCollider } from "@react-three/rapier";
 import * as THREE from "three/webgpu";
-import { KeyboardControls, useHelper } from "@react-three/drei";
+import { Box, Effects, KeyboardControls, useHelper } from "@react-three/drei";
 import { Outside, OutsideInstances } from "./Outside";
 import { StatsGl } from "@react-three/drei";
+import { PostProcessing } from "./Postprocessing";
 
 declare module "@react-three/fiber" {
   interface ThreeElements extends ThreeToJSXElements<typeof THREE> {}
@@ -43,7 +44,14 @@ export default function App() {
         <Canvas
           shadows
           gl={async (props) => {
-            const renderer = new THREE.WebGPURenderer(props as any);
+            const renderer = new THREE.WebGPURenderer({
+              ...props,
+              antialias: true
+            });
+
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.0;
 
             renderer.shadowMap.enabled = true;
             renderer.shadowMap.type = THREE.PCFShadowMap;
@@ -60,6 +68,7 @@ export default function App() {
                 args={[50, 1, 50]}
               />
             </PhysicsScene>
+       
             <OutsideInstances>
               <Outside />
             </OutsideInstances>
@@ -68,20 +77,15 @@ export default function App() {
               castShadow
             />
           </KeyboardControls>
+          <PostProcessing/>
         </Canvas>
       </div>
     </>
   );
 }
 
-const root = document.querySelector("#root");
-
-if (root) {
-  const rootReact = createRoot(root);
-
-  rootReact.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-  );
-}
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+);

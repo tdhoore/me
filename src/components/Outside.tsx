@@ -5,6 +5,7 @@ import { grass } from "./materials/grass";
 import { tallGrass } from "./materials/tallGrass";
 import { leaves } from "./materials/leaves";
 import { ground } from "./materials/ground";
+import { flower } from "./materials/flower";
 import { rock } from "./materials/rock";
 
 const levelScale = 2.8;
@@ -84,7 +85,7 @@ export function OutsideInstances({ children, ...props }) {
       }
 
       if (currentMaterial.name === "Material.008") {
-        meshes[nodeKey].material = rock;
+        meshes[nodeKey].material = flower;
       }
     });
 
@@ -94,8 +95,8 @@ export function OutsideInstances({ children, ...props }) {
   return (
     <Merged
       meshes={instances}
-      castShadow
-      receiveShadow
+     castShadow
+     receiveShadow
       {...props}
     >
       {(instances) => (
@@ -133,8 +134,7 @@ export function Outside(props) {
       <directionalLight
         castShadow
         intensity={1}
-        //decay={2}
-        shadow-bias={-0.001}
+        shadow-bias={-0.005}
         position={[0, 5, -1]}
         rotation={[-1.404, -0.22, -0.301]}
         ref={lightRef}
