@@ -5,6 +5,7 @@ import { Physics } from "@react-three/rapier";
 import { Ecctrl } from "ecctrl";
 import * as THREE from "three/webgpu";
 import { damp, damp3 } from "maath/easing";
+import { InteractionZone } from "./InteractionZone";
 
 const newCamPosition = new THREE.Vector3();
 const playerDistance = new THREE.Vector3();
@@ -89,7 +90,7 @@ export default function PhysicsScene({ children }) {
         debug
         friction={-0.05}
       ></Ecctrl>
-
+     
       {children}
     </Physics>
   );

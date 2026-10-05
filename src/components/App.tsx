@@ -14,6 +14,7 @@ import { Box, Effects, KeyboardControls, useHelper } from "@react-three/drei";
 import { Outside, OutsideInstances } from "./Outside";
 import { StatsGl } from "@react-three/drei";
 import { PostProcessing } from "./Postprocessing";
+import { InteractionZone } from "./InteractionZone";
 
 declare module "@react-three/fiber" {
   interface ThreeElements extends ThreeToJSXElements<typeof THREE> {}
@@ -46,7 +47,7 @@ export default function App() {
           gl={async (props) => {
             const renderer = new THREE.WebGPURenderer({
               ...props,
-              antialias: true
+              antialias: true,
             });
 
             renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -67,17 +68,18 @@ export default function App() {
                 position={[0, -3, 0]}
                 args={[50, 1, 50]}
               />
+
+              <OutsideInstances>
+                <Outside />
+              </OutsideInstances>
             </PhysicsScene>
-       
-            <OutsideInstances>
-              <Outside />
-            </OutsideInstances>
+
             <ambientLight
               intensity={1}
               castShadow
             />
           </KeyboardControls>
-          <PostProcessing/>
+          <PostProcessing />
         </Canvas>
       </div>
     </>

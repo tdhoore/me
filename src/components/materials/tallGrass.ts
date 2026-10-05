@@ -21,11 +21,11 @@ tallGrass.colorNode = Fn(() => {
 })();
 
 tallGrass.positionNode = Fn(() => {
-  const timeWiggle = time.mul(4).add(positionLocal.x).add(positionLocal.z);
+  const timeWiggle = time.mul(6).add(positionLocal.x).add(positionLocal.z);
 
   const wind = texture(simplexNoiseTexture, positionWorld.xz.mul(0.1).add(vec2(time.mul(0.08)))).r;
 
-  const anchor = mul(wind, timeWiggle.sin(), 0.03, ownHeightMap);
+  const anchor = mul(wind, timeWiggle.sin(), 0.01, ownHeightMap);
 
   return positionLocal.add(vec3(anchor, 0, anchor));
 })();

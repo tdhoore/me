@@ -7,6 +7,7 @@ import { leaves } from "./materials/leaves";
 import { ground } from "./materials/ground";
 import { flower } from "./materials/flower";
 import { rock } from "./materials/rock";
+import { InteractionZone } from "./InteractionZone";
 
 const levelScale = 2.8;
 
@@ -63,7 +64,7 @@ export function OutsideInstances({ children, ...props }) {
     Object.keys(meshes).forEach((nodeKey) => {
       const currentMaterial = meshes[nodeKey].material;
 
-      console.log(currentMaterial.name);
+      //console.log(currentMaterial.name);
       if (currentMaterial.name === "GRASS") {
         meshes[nodeKey].material = grass;
       }
@@ -122,6 +123,19 @@ export function Outside(props) {
       scale={[levelScale, levelScale, levelScale]}
       dispose={null}
     >
+      <InteractionZone
+        colliderProps={{
+          position: [0, 0, 0],
+          size: [1, 50, 1],
+        }}
+        promptProps={{
+          position: [0, 0.5, 0],
+          button: "e",
+          onClick: () => {
+            console.log("test");
+          },
+        }}
+      />
       <PerspectiveCamera
         makeDefault={true}
         far={100}
@@ -145,6 +159,8 @@ export function Outside(props) {
         shadow-camera-near={0.1}
         shadow-camera-far={30}
         shadow-mapSize={[1024, 1024]}
+        shadow-radius={4}
+        shadow-intensity={0.5}
       />
       <instances.Bunker
         position={[0.291, 0, -2.716]}

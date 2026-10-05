@@ -11,7 +11,7 @@ export function PostProcessing() {
   const postProcessing = useRef<THREE.RenderPipeline | null>(null);
 
   useEffect(() => {
-    const pp =  new THREE.RenderPipeline(gl)
+    const pp = new THREE.RenderPipeline(gl);
 
     const scenePass = pass(scene, camera);
 
