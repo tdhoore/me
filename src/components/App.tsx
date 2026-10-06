@@ -10,11 +10,10 @@ import ReactLenis from "lenis/react";
 import PhysicsScene from "./Physics";
 import { CuboidCollider } from "@react-three/rapier";
 import * as THREE from "three/webgpu";
-import { Box, Effects, KeyboardControls, useHelper } from "@react-three/drei";
+import { KeyboardControls } from "@react-three/drei";
 import { Outside, OutsideInstances } from "./Outside";
-import { StatsGl } from "@react-three/drei";
 import { PostProcessing } from "./Postprocessing";
-import { InteractionZone } from "./InteractionZone";
+import { Perf } from "r3f-webgpu-perf";
 
 declare module "@react-three/fiber" {
   interface ThreeElements extends ThreeToJSXElements<typeof THREE> {}
@@ -24,7 +23,7 @@ extend(THREE as any);
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 
-const keyboardMap = [
+export const keyboardMap = [
   { name: "forward", keys: ["ArrowUp", "KeyW"] },
   { name: "backward", keys: ["ArrowDown", "KeyS"] },
   { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
@@ -61,7 +60,8 @@ export default function App() {
             return renderer;
           }}
         >
-          <StatsGl className="fixed z-80 right-0 top-0" />
+          <Perf position="top-left" />
+
           <KeyboardControls map={keyboardMap}>
             <PhysicsScene>
               <CuboidCollider

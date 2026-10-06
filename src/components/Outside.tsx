@@ -63,8 +63,7 @@ export function OutsideInstances({ children, ...props }) {
 
     Object.keys(meshes).forEach((nodeKey) => {
       const currentMaterial = meshes[nodeKey].material;
-
-      //console.log(currentMaterial.name);
+      
       if (currentMaterial.name === "GRASS") {
         meshes[nodeKey].material = grass;
       }
