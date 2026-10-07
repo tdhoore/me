@@ -8,9 +8,10 @@ export const ground = new THREE.MeshStandardNodeMaterial(
 );
 
 ground.colorNode = Fn(() => {
-  const worldHeight = positionLocal.y.add(2.1).clamp().smoothstep(0, 0.15);
+  const worldHeight = positionLocal.y.add(1).clamp().smoothstep(0, 0.15);
 
   const darkColor = color("#d7c888");
   const baseColor = color("#85ff8c");
+
   return vec4(mix(darkColor, baseColor, worldHeight), 0);
 })();

@@ -1,4 +1,4 @@
-import { Fn, vec3, positionLocal, color, vec4, mix, uv, time, mul, texture, positionWorld, vec2 } from "three/tsl";
+import { Fn, vec3, positionLocal, color, vec4, mix, uv, time, mul, texture, positionWorld, vec2, instanceIndex } from "three/tsl";
 import * as THREE from "three/webgpu";
 
 const textureLoader = new THREE.TextureLoader();
@@ -21,11 +21,11 @@ tallGrass.colorNode = Fn(() => {
 })();
 
 tallGrass.positionNode = Fn(() => {
-  const timeWiggle = time.mul(6).add(positionLocal.x).add(positionLocal.z);
+  const timeWiggle = time.add(instanceIndex).mul(6);
 
-  const wind = texture(simplexNoiseTexture, positionWorld.xz.mul(0.1).add(vec2(time.mul(0.08)))).r;
+  const wind = texture(simplexNoiseTexture, positionWorld.xz.mul(0.05).add(vec2(time.mul(0.02)))).r;
 
-  const anchor = mul(wind, timeWiggle.sin(), 0.01, ownHeightMap);
+  const anchor = mul(wind, timeWiggle.sin(), 0.02, ownHeightMap);
 
   return positionLocal.add(vec3(anchor, 0, anchor));
 })();

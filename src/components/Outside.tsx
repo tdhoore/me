@@ -12,6 +12,7 @@ import { leaves } from "./materials/leaves";
 import { ground } from "./materials/ground";
 import { flower } from "./materials/flower";
 import { rock } from "./materials/rock";
+import { bush } from "./materials/bush";
 import { InteractionZone } from "./InteractionZone";
 
 const levelScale = 2.8;
@@ -23737,11 +23738,11 @@ export function OutsideInstances({ children, ...props }) {
     Object.keys(meshes).forEach((nodeKey) => {
       const currentMaterial = meshes[nodeKey].material;
 
-      if (currentMaterial.name === "GRASS") {
+      if (currentMaterial.name === "GRASS.003" || currentMaterial.name === "GRASS") {
         meshes[nodeKey].material = grass;
       }
 
-      if (currentMaterial.name === "GRASS.001") {
+      if (currentMaterial.name === "GRASS_TALL") {
         meshes[nodeKey].material = tallGrass;
       }
 
@@ -23749,7 +23750,11 @@ export function OutsideInstances({ children, ...props }) {
         meshes[nodeKey].material = leaves;
       }
 
-      if (currentMaterial.name === "Land") {
+      if (currentMaterial.name === "bush") {
+        meshes[nodeKey].material = bush;
+      }
+
+      if (currentMaterial.name === "Land.001") {
         meshes[nodeKey].material = ground;
       }
 
@@ -23757,7 +23762,7 @@ export function OutsideInstances({ children, ...props }) {
         meshes[nodeKey].material = rock;
       }
 
-      if (currentMaterial.name === "Material.008") {
+      if (currentMaterial.name === "flower") {
         meshes[nodeKey].material = flower;
       }
     });
@@ -23776,23 +23781,27 @@ export function OutsideInstances({ children, ...props }) {
 export function Outside(props) {
   const instances = useContext(context);
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+    >
       <PerspectiveCamera
         makeDefault={true}
         far={100}
         near={0.1}
         fov={22}
-        position={[4.938, 3.889, 2.964]}
+        position={[13.269, 9.993, 12.591]}
         rotation={[-0.708, 0.762, 0.534]}
         zoom={0.9}
+        scale={2.8}
       />
       <directionalLight
         castShadow
         intensity={1}
         shadow-bias={-0.005}
-        position={[0, 5, -1]}
+        position={[0, 5 * 2.8, -1 * 2.8]}
         rotation={[-1.404, -0.22, -0.301]}
-        ref={lightRef}
+        // ref={lightRef}
         shadow-camera-left={-15}
         shadow-camera-right={15}
         shadow-camera-top={15}
@@ -23803,7 +23812,10 @@ export function Outside(props) {
         shadow-radius={4}
         shadow-intensity={0.5}
       />
-      <instances.Bunker position={[0.26, -0.896, -3.314]} scale={1.125} />
+      <instances.Bunker
+        position={[0.26, -0.896, -3.314]}
+        scale={1.125}
+      />
       <instances.Bush
         position={[-7.677, -0.773, 3.761]}
         rotation={[0.157, 0.036, -0.015]}
@@ -41973,12 +41985,21 @@ export function Outside(props) {
         rotation={[1.189, -0.991, -0.594]}
         scale={[0.097, 0.039, 0.008]}
       />
-      <group position={[-2.713, 0.917, -5.833]} scale={2.8}>
+      <group
+        position={[-2.713, 0.917, -5.833]}
+        scale={2.8}
+      >
         <instances.Cylinder />
         <instances.Cylinder1 />
       </group>
-      <instances.Ground position={[-0.556, -0.896, 4.292]} scale={2.8} />
-      <group position={[-2.713, 0.917, -5.833]} scale={2.8}>
+      <instances.Ground
+        position={[-0.556, -0.896, 4.292]}
+        scale={2.8}
+      />
+      <group
+        position={[-2.713, 0.917, -5.833]}
+        scale={2.8}
+      >
         <instances.Cylinder2 />
         <instances.Cylinder3 />
       </group>
@@ -42526,14 +42547,38 @@ export function Outside(props) {
         <instances.Tree />
         <instances.Tree1 />
       </group>
-      <instances.Water position={[-2.14, -1.022, 13.74]} scale={12.642} />
-      <instances.Wire position={[-1.038, 7.471, -6.819]} scale={2.8} />
-      <instances.Wire1 position={[-1.038, 6.816, -6.819]} scale={2.8} />
-      <instances.Wire2 position={[-2.32, 7.258, -7.098]} scale={2.8} />
-      <instances.Wire3 position={[-2.32, 6.772, -7.098]} scale={2.8} />
-      <instances.Wire4 position={[-1.208, 7.696, -7.17]} scale={3.203} />
-      <instances.Wire5 position={[-1.283, 7.707, -7.143]} scale={3.203} />
-      <instances.Wire6 position={[-1.389, 6.286, -6.422]} scale={2.8} />
+      <instances.Water
+        position={[-2.14, -1.022, 13.74]}
+        scale={12.642}
+      />
+      <instances.Wire
+        position={[-1.038, 7.471, -6.819]}
+        scale={2.8}
+      />
+      <instances.Wire1
+        position={[-1.038, 6.816, -6.819]}
+        scale={2.8}
+      />
+      <instances.Wire2
+        position={[-2.32, 7.258, -7.098]}
+        scale={2.8}
+      />
+      <instances.Wire3
+        position={[-2.32, 6.772, -7.098]}
+        scale={2.8}
+      />
+      <instances.Wire4
+        position={[-1.208, 7.696, -7.17]}
+        scale={3.203}
+      />
+      <instances.Wire5
+        position={[-1.283, 7.707, -7.143]}
+        scale={3.203}
+      />
+      <instances.Wire6
+        position={[-1.389, 6.286, -6.422]}
+        scale={2.8}
+      />
     </group>
   );
 }
