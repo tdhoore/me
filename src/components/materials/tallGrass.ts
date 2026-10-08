@@ -1,10 +1,9 @@
-import { Fn, vec3, positionLocal, color, vec4, mix, uv, time, mul, texture, positionWorld, vec2, instanceIndex } from "three/tsl";
+import { Fn, vec3, positionLocal, color, vec4, mix, uv, time, mul, texture, positionWorld, vec2, instanceIndex, uniform } from "three/tsl";
 import * as THREE from "three/webgpu";
+import simplexNoiseTexture from "./simplexNoiseTexture";
 
-const textureLoader = new THREE.TextureLoader();
-const simplexNoiseTexture = textureLoader.load("./assets/textures/simplex-tiling-noise-256x256.png");
-simplexNoiseTexture.wrapS = THREE.RepeatWrapping;
-simplexNoiseTexture.wrapT = THREE.RepeatWrapping;
+export const tallGrassBaseColor = uniform(new THREE.Color("#89be7e"));
+export const tallGrassDarkColor = uniform(new THREE.Color("#7c9e76"));
 
 export const tallGrass = new THREE.MeshBasicNodeMaterial({
   side: THREE.DoubleSide,
@@ -15,9 +14,7 @@ const ownHeightMap = uv().x.oneMinus();
 tallGrass.colorNode = Fn(() => {
   const colorMix = ownHeightMap.pow(0.5);
 
-  const darkColor = color(0x80f587).mul(0.3);
-  const baseColor = color(0x85ff8c).mul(0.6);
-  return vec4(mix(darkColor, baseColor, colorMix), 0);
+  return vec4(mix(tallGrassDarkColor, tallGrassBaseColor, colorMix), 0);
 })();
 
 tallGrass.positionNode = Fn(() => {
