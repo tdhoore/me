@@ -2,7 +2,7 @@ import * as THREE from "three/webgpu";
 import simplexNoiseTexture from "./simplexNoiseTexture";
 import { add, float, Fn, mix, smoothstep, texture, time, uniform, uv, vec3, vec4 } from "three/tsl";
 
-export const foamLevel = uniform(-1.015).add(time.mul(2).sin().mul(0.0008));
+export const foamLevel = uniform(-1.015).add(time.mul(1.5).sin().mul(0.001));
 export const foamSmoothing = uniform(0.001)
 
 export const waterBaseColor = uniform(new THREE.Color("#86bafd"));

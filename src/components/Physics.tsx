@@ -6,9 +6,13 @@ import { Ecctrl } from "ecctrl";
 import * as THREE from "three/webgpu";
 import { damp, damp3 } from "maath/easing";
 import { InteractionZone } from "./InteractionZone";
+import { map } from "../js/functions";
 
 const newCamPosition = new THREE.Vector3();
 const playerDistance = new THREE.Vector3();
+
+
+const screenBase = 1728;
 const screenDistance = 0.4;
 
 const right = new THREE.Vector3();
@@ -19,7 +23,8 @@ const originalPosition = new THREE.Vector3();
 let panValue = { value: 0 };
 
 const panOffset = new THREE.Vector2();
-const maxPan = 2;
+const maxPan = 5;
+const panSpeed = 0.05;
 
 const panCamera = (dx: number, dy: number, camera: THREE.Camera, delta: number) => {
   const rightAxis = right.setFromMatrixColumn(camera.matrixWorld, 0).normalize();
@@ -29,9 +34,10 @@ const panCamera = (dx: number, dy: number, camera: THREE.Camera, delta: number) 
   panOffset.x += dx;
   panOffset.y += dy;
 
-  panOffset.x = THREE.MathUtils.clamp(panOffset.x, -maxPan, maxPan);
+  const calcMaxPan = Math.min(maxPan * 2, maxPan * (screenBase / window.innerWidth));
 
-  panOffset.y = THREE.MathUtils.clamp(panOffset.y, -maxPan, maxPan);
+  panOffset.x = THREE.MathUtils.clamp(panOffset.x, -calcMaxPan, calcMaxPan);
+  panOffset.y = THREE.MathUtils.clamp(panOffset.y, -calcMaxPan, calcMaxPan);
 
   newCamPosition.copy(originalPosition);
 
@@ -66,12 +72,16 @@ export default function PhysicsScene({ children }) {
       playerDistance.copy(ctrl.currPos);
       playerDistance.project(camera);
 
-      if (playerDistance.x < -1 + screenDistance) {
-        dampTarget = 0.05;
+      const calcScreenDistance = map(window.innerWidth, 0, screenBase, 0, screenDistance);
+
+      const dampSpeed = Math.min(panSpeed * 2, panSpeed * (screenBase / window.innerWidth));
+
+      if (playerDistance.x < -1 + calcScreenDistance) {
+        dampTarget = dampSpeed;
       }
 
-      if (playerDistance.x > 1 - screenDistance) {
-        dampTarget = -0.05;
+      if (playerDistance.x > 1 - calcScreenDistance) {
+        dampTarget = -dampSpeed;
       }
 
       damp(panValue, "value", dampTarget, 0.8, delta);
