@@ -1,3 +1,4 @@
+import "../css/index.css";
 import ReactDOM from "react-dom/client";
 import { Canvas, extend, ThreeToJSXElements } from "@react-three/fiber";
 import { BrowserRouter, NavLink } from "react-router";
@@ -41,6 +42,7 @@ import { barkBaseColor, barkDarkColor } from "./materials/bark";
 import { concreteBaseColor, concreteDarkColor } from "./materials/concrete";
 import { interactableBaseColor, interactableDarkColor } from "./materials/interactable";
 import { waterBaseColor } from "./materials/water";
+import { Layout } from "./ui/layout/Layout";
 
 export const gui = new GUI();
 
@@ -125,11 +127,7 @@ gui.addColor(settings, "waterBaseColor").onChange((value) => {
 export default function App() {
   return (
     <>
-      <nav className="fixed z-50 text-white">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
-      </nav>
+      <Layout/>
 
       <div className="fixed top-0 left-0 w-full h-dvh canvas">
         <Canvas

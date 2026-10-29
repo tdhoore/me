@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "components": {
+    "directory": "src/components",
+    "styleStrategy": "plain-css",
+    "componentLayout": "single-file",
+    "exportStrategy": "direct"
+  },
+  "cssSync": {
+    "enabled": true,
+    "mode": "report",
+    "dynamicClassPolicy": "warn"
+  },
+  "watch": {
+    "debounceMs": 400
+  }
+}

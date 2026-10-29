@@ -1,0 +1,13 @@
+@reference "@app-css";
+
+.about-window {
+  
+}
+
+.about-window__wrapper {
+	
+}
+
+.about-window__external {
+	@apply absolute -left-4 top-4 z-10; 
+}

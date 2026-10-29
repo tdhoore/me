@@ -1,0 +1,6 @@
+@reference "@app-css";
+
+.layout {
+  @apply fixed z-50 top-0 left-0 size-full pointer-events-none;  
+}
+

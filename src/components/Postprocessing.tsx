@@ -4,6 +4,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three/webgpu";
 import { pass } from "three/tsl";
 import { bloom } from "three/addons/tsl/display/BloomNode.js";
+import { pixelationPass } from "three/addons/tsl/display/PixelationPassNode.js";
 
 export function PostProcessing() {
   const { gl, scene, camera } = useThree();
@@ -22,7 +23,10 @@ export function PostProcessing() {
       0.8, // threshold
     );
 
-    pp.outputNode = scenePass.add(bloomPass);
+    const pixelPass = pixelationPass(scene, camera, 4, 0, 0);
+
+    //pp.outputNode = scenePass.add(pixelPass);
+    pp.outputNode = pixelPass;
 
     postProcessing.current = pp;
 

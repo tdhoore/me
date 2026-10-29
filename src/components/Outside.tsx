@@ -136,9 +136,7 @@ export function OutsideInstances({ children, ...props }) {
 export function Outside(props) {
   const instances = useContext(context);
 
-  const dirLight = useRef(null)
-
-  useHelper(dirLight, THREE.DirectionalLightHelper, 2, "yellow");
+  const dirLight = useRef(null);
 
 
   return (

@@ -1,0 +1,152 @@
+@reference "@app-css";
+
+.btn {
+  @apply relative flex justify-center items-center border-none bg-none  uppercase font-medium font-heading leading-none  transition-all cursor-pointer;
+
+  svg {
+    @apply size-6;
+  }
+}
+
+.btn__inner {
+  @apply py-3 px-8;
+}
+
+.btn__inner,
+.btn {
+  clip-path: polygon(0px calc(100% - 8px), 4px calc(100% - 8px), 4px calc(100% - 4px), 8px calc(100% - 4px), 8px 100%, calc(100% - 8px) 100%, calc(100% - 8px) calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) calc(100% - 8px), 100% calc(100% - 8px), 100% 8px, calc(100% - 4px) 8px, calc(100% - 4px) 4px, calc(100% - 8px) 4px, calc(100% - 8px) 0px, 8px 0px, 8px 4px, 4px 4px, 4px 8px, 0px 8px);
+  position: relative;
+}
+
+.btn__inner {
+  border: 4px solid transparent;
+}
+
+.btn .btn__inner {
+  display: block;
+  clip-path: polygon(4px 8px, 8px 8px, 8px 4px, calc(100% - 8px) 4px, calc(100% - 8px) 8px, calc(100% - 4px) 8px, calc(100% - 4px) calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) calc(100% - 4px), 8px calc(100% - 4px), 8px calc(100% - 8px), 4px calc(100% - 8px));
+  @apply transition-colors;
+}
+.btn__inner::after,
+.btn::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(0px calc(100% - 8px), 4px calc(100% - 8px), 4px calc(100% - 4px), 8px calc(100% - 4px), 8px 100%, calc(100% - 8px) 100%, calc(100% - 8px) calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) calc(100% - 8px), 100% calc(100% - 8px), 100% 8px, calc(100% - 4px) 8px, calc(100% - 4px) 4px, calc(100% - 8px) 4px, calc(100% - 8px) 0px, 8px 0px, 8px 4px, 4px 4px, 4px 8px, 0px 8px, 0px 50%, 4px 50%, 4px 8px, 8px 8px, 8px 4px, calc(100% - 8px) 4px, calc(100% - 8px) 8px, calc(100% - 4px) 8px, calc(100% - 4px) calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) calc(100% - 4px), 8px calc(100% - 4px), 8px calc(100% - 8px), 4px calc(100% - 8px), 4px 50%, 0px 50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  pointer-events: none;
+}
+.btn__inner::after {
+  margin: -4px;
+}
+
+.btn--primary {
+  &,
+  .btn__inner,
+  .btn__inner::after,
+  &::after {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  &:hover,
+  &:focus {
+    &,
+    .btn__inner {
+      @apply text-primary bg-transparent;
+    }
+  }
+
+  &:active {
+    &,
+    .btn__inner,
+    .btn__inner::after,
+    &::after {
+      @apply bg-primary text-primary-foreground;
+    }
+  }
+}
+
+.btn--outline {
+  @apply text-primary;
+
+  .btn__inner::after,
+  &::after {
+    @apply bg-primary;
+  }
+
+  &:hover,
+  &:focus {
+    &,
+    .btn__inner {
+      @apply text-primary bg-transparent;
+    }
+  }
+
+  &:active {
+      &,
+    .btn__inner {
+      @apply text-primary bg-transparent;
+    }
+  }
+}
+
+.btn--outline-dark {
+  @apply text-primary-foreground;
+
+  .btn__inner::after,
+  &::after {
+    @apply bg-primary-foreground;
+  }
+
+  &:hover,
+  &:focus {
+    &,
+    .btn__inner {
+      @apply text-primary bg-primary-foreground;
+    }
+  }
+
+  &:active {
+      &,
+    .btn__inner {
+      @apply text-primary-foreground bg-primary;
+    }
+  }
+}
+
+.btn--icon {
+  .btn__inner {
+    @apply p-2;
+  }
+}
+
+.btn--icon-sm {
+  .btn__inner {
+    @apply p-0.5;
+    clip-path: polygon(2px 4px, 4px 4px, 4px 2px, calc(100% - 4px) 2px, calc(100% - 4px) 4px, calc(100% - 2px) 4px, calc(100% - 2px) calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) calc(100% - 2px), 4px calc(100% - 2px), 4px calc(100% - 4px), 2px calc(100% - 4px));
+  }
+
+  svg {
+    @apply size-4;
+  }
+
+  .btn__inner,
+  & {
+    clip-path: polygon(0px calc(100% - 4px), 2px calc(100% - 4px), 2px calc(100% - 2px), 4px calc(100% - 2px), 4px 100%, calc(100% - 4px) 100%, calc(100% - 4px) calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) calc(100% - 4px), 100% calc(100% - 4px), 100% 4px, calc(100% - 2px) 4px, calc(100% - 2px) 2px, calc(100% - 4px) 2px, calc(100% - 4px) 0px, 4px 0px, 4px 2px, 2px 2px, 2px 4px, 0px 4px);
+  }
+
+  .btn__inner::after,
+  &::after {
+    clip-path: polygon(0px calc(100% - 4px), 2px calc(100% - 4px), 2px calc(100% - 2px), 4px calc(100% - 2px), 4px 100%, calc(100% - 4px) 100%, calc(100% - 4px) calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) calc(100% - 4px), 100% calc(100% - 4px), 100% 4px, calc(100% - 2px) 4px, calc(100% - 2px) 2px, calc(100% - 4px) 2px, calc(100% - 4px) 0px, 4px 0px, 4px 2px, 2px 2px, 2px 4px, 0px 4px, 0px 50%, 2px 50%, 2px 4px, 4px 4px, 4px 2px, calc(100% - 4px) 2px, calc(100% - 4px) 4px, calc(100% - 2px) 4px, calc(100% - 2px) calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) calc(100% - 2px), 4px calc(100% - 2px), 4px calc(100% - 4px), 2px calc(100% - 4px), 2px 50%, 0px 50%);
+  }
+
+  &::after {
+    margin: -2px;
+  }
+}
+
+.btn-- {
+}

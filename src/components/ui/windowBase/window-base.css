@@ -1,0 +1,34 @@
+@reference "@app-css";
+
+.window-base {
+  @apply pointer-events-auto;
+
+  [aria-label="Resize top"],
+  [aria-label="Resize left"],
+  [aria-label="Resize right"],
+  [aria-label="Resize bottom"] {
+    @apply hidden!;
+  }
+
+  .default-window * {
+    @apply opacity-0;
+  }
+}
+
+.window-base__content {
+  @apply p-4 scale-y-0 transition-transform;
+}
+
+.window-base--open {
+  @apply pointer-events-auto;
+
+  .window-base__content {
+    @apply scale-y-100;
+  }
+
+  .default-window * {
+    @apply opacity-100;
+  }
+}
+
+
