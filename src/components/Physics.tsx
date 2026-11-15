@@ -1,16 +1,16 @@
 import { useEffect, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import {  useKeyboardControls } from "@react-three/drei";
+import { useKeyboardControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import { Ecctrl } from "ecctrl";
 import * as THREE from "three/webgpu";
 import { damp, damp3 } from "maath/easing";
 import { InteractionZone } from "./InteractionZone";
 import { map } from "../js/functions";
+import { Player } from "./Player";
 
 const newCamPosition = new THREE.Vector3();
 const playerDistance = new THREE.Vector3();
-
 
 const screenBase = 1728;
 const screenDistance = 0.4;
@@ -26,15 +26,25 @@ const panOffset = new THREE.Vector2();
 const maxPan = 5;
 const panSpeed = 0.05;
 
-const panCamera = (dx: number, dy: number, camera: THREE.Camera, delta: number) => {
-  const rightAxis = right.setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+const panCamera = (
+  dx: number,
+  dy: number,
+  camera: THREE.Camera,
+  delta: number,
+) => {
+  const rightAxis = right
+    .setFromMatrixColumn(camera.matrixWorld, 0)
+    .normalize();
 
   const upAxis = up.setFromMatrixColumn(camera.matrixWorld, 1).normalize();
 
   panOffset.x += dx;
   panOffset.y += dy;
 
-  const calcMaxPan = Math.min(maxPan * 2, maxPan * (screenBase / window.innerWidth));
+  const calcMaxPan = Math.min(
+    maxPan * 2,
+    maxPan * (screenBase / window.innerWidth),
+  );
 
   panOffset.x = THREE.MathUtils.clamp(panOffset.x, -calcMaxPan, calcMaxPan);
   panOffset.y = THREE.MathUtils.clamp(panOffset.y, -calcMaxPan, calcMaxPan);
@@ -72,9 +82,18 @@ export default function PhysicsScene({ children }) {
       playerDistance.copy(ctrl.currPos);
       playerDistance.project(camera);
 
-      const calcScreenDistance = map(window.innerWidth, 0, screenBase, 0, screenDistance);
+      const calcScreenDistance = map(
+        window.innerWidth,
+        0,
+        screenBase,
+        0,
+        screenDistance,
+      );
 
-      const dampSpeed = Math.min(panSpeed * 2, panSpeed * (screenBase / window.innerWidth));
+      const dampSpeed = Math.min(
+        panSpeed * 2,
+        panSpeed * (screenBase / window.innerWidth),
+      );
 
       if (playerDistance.x < -1 + calcScreenDistance) {
         dampTarget = dampSpeed;
@@ -91,18 +110,18 @@ export default function PhysicsScene({ children }) {
   });
 
   return (
-    <Physics debug>
+    <Physics>
       <Ecctrl
         ref={ecctrlRef}
         maxWalkVel={5}
         accDeltaTime={6}
         decDeltaTime={6}
-        debug
         friction={-0.05}
-      ></Ecctrl>
-     
+      >
+        <Player />
+      </Ecctrl>
+
       {children}
     </Physics>
   );
 }
-

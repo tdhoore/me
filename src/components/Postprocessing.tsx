@@ -23,10 +23,10 @@ export function PostProcessing() {
       0.8, // threshold
     );
 
-    const pixelPass = pixelationPass(scene, camera, 4, 0, 0);
+    //const pixelPass = pixelationPass(scene, camera, 2, 0, 0);
 
-    //pp.outputNode = scenePass.add(pixelPass);
-    pp.outputNode = pixelPass;
+    pp.outputNode = scenePass.add(bloomPass);
+    // pp.outputNode = pixelPass;
 
     postProcessing.current = pp;
 
